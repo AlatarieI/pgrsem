@@ -1,0 +1,4 @@
+# ninja log v6
+23	1756	7625809776148362	CMakeFiles/noframework.dir/main.cpp.obj	ea36ca2841af29ea
+10	3115	7625809776008400	CMakeFiles/glad.dir/lib/glad/src/glad.c.obj	6569e627fe28dd29
+3117	3613	7625809807084605	libglad.a	7670008ee391e073
