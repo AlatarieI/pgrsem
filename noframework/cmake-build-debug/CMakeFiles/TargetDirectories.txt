@@ -1,4 +1,0 @@
-/mnt/c/ČVUT/pgr/pgrsem/noframework/cmake-build-debug/CMakeFiles/glad.dir
-/mnt/c/ČVUT/pgr/pgrsem/noframework/cmake-build-debug/CMakeFiles/noframework.dir
-/mnt/c/ČVUT/pgr/pgrsem/noframework/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/ČVUT/pgr/pgrsem/noframework/cmake-build-debug/CMakeFiles/rebuild_cache.dir
