@@ -3,3 +3,5 @@ C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/stb
 C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/noframework.dir
 C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/edit_cache.dir
 C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/rebuild_cache.dir
+C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/lib/glm/CMakeFiles/edit_cache.dir
+C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/lib/glm/CMakeFiles/rebuild_cache.dir

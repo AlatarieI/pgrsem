@@ -3,3 +3,5 @@ C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-mingw/CMakeFiles/stb_image.d
 C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-mingw/CMakeFiles/noframework.dir
 C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-mingw/CMakeFiles/edit_cache.dir
 C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-mingw/CMakeFiles/rebuild_cache.dir
+C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-mingw/lib/glm/CMakeFiles/edit_cache.dir
+C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-mingw/lib/glm/CMakeFiles/rebuild_cache.dir
