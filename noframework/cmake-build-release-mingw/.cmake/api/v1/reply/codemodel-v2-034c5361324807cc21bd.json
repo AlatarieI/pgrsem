@@ -10,7 +10,7 @@
 					[
 						1
 					],
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.22"
@@ -26,7 +26,7 @@
 				},
 				{
 					"build" : "lib/glm",
-					"jsonFile" : "directory-lib.glm-Debug-ce07c1f5db497389ae15.json",
+					"jsonFile" : "directory-lib.glm-Release-ce07c1f5db497389ae15.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.22"
@@ -36,7 +36,7 @@
 					"source" : "lib/glm"
 				}
 			],
-			"name" : "Debug",
+			"name" : "Release",
 			"projects" : 
 			[
 				{
@@ -59,21 +59,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "glad::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-glad-Debug-c80b194e36c33b142d54.json",
+					"jsonFile" : "target-glad-Release-96d41d46ff8b11772310.json",
 					"name" : "glad",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "noframework::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-noframework-Debug-0347bc5dd5f738f85d47.json",
+					"jsonFile" : "target-noframework-Release-2c71a79d339b962d8112.json",
 					"name" : "noframework",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "stb_image::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-stb_image-Debug-5e8c171811b27486c929.json",
+					"jsonFile" : "target-stb_image-Release-797ac7566c6e41bc7bb9.json",
 					"name" : "stb_image",
 					"projectIndex" : 0
 				}
@@ -83,7 +83,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/\u010cVUT/pgr/pgrsem/noframework/cmake-build-debug-visual-studio",
+		"build" : "C:/\u010cVUT/pgr/pgrsem/noframework/cmake-build-release-mingw",
 		"source" : "C:/\u010cVUT/pgr/pgrsem/noframework"
 	},
 	"version" : 

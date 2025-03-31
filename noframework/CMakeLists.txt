@@ -30,11 +30,15 @@ include_directories(lib/glm)
 find_package(OpenGL REQUIRED)
 
 # Create executable
-add_executable(noframework main.cpp)
+add_executable(noframework main.cpp
+        GameObject.cpp
+        GameObject.h
+        Camera.cpp
+        Camera.h)
 
 # Copy shaders and resources
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/vertex_shader.vert ${CMAKE_CURRENT_BINARY_DIR}/vertex_shader.vert COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/fragment_shader.frag ${CMAKE_CURRENT_BINARY_DIR}/fragment_shader.frag COPYONLY)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/vertex_shader.vert DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/fragment_shader.frag DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 
 # Link libraries

@@ -6,7 +6,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeSystem.cmake"
+			"path" : "cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -20,11 +20,11 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeCCompiler.cmake"
+			"path" : "cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeCCompiler.cmake"
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake"
+			"path" : "cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -88,7 +88,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeRCCompiler.cmake"
+			"path" : "cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -156,19 +156,13 @@
 			"path" : "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/FindPackageMessage.cmake"
 		},
 		{
-			"path" : "vertex_shader.vert"
-		},
-		{
-			"path" : "fragment_shader.frag"
-		},
-		{
 			"path" : "lib/glm/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/\u010cVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio",
+		"build" : "C:/\u010cVUT/pgr/pgrsem/noframework/cmake-build-debug-visual-studio",
 		"source" : "C:/\u010cVUT/pgr/pgrsem/noframework"
 	},
 	"version" : 

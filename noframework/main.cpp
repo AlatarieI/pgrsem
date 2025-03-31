@@ -5,7 +5,11 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 
+#include <fstream>
+#include <sstream>
 #include <iostream>
+
+#include <Camera.h>
 
 
 const unsigned int SCR_WIDTH = 800;
@@ -21,6 +25,7 @@ glm::mat4 view = glm::mat4(1.0f);
 glm::mat4 projection = glm::mat4(1.0f);
 int modelLoc, viewLoc, projLoc;
 
+Camera MainCamera;
 
 glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -53,15 +58,14 @@ void processInput(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-    float cameraSpeed = 2.5f * deltaTime;
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        cameraPos += cameraSpeed * cameraFront;
+        MainCamera.Move(FRONT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        cameraPos -= cameraSpeed * cameraFront;
+        MainCamera.Move(BACK, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+        MainCamera.Move(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+        MainCamera.Move(RIGHT, deltaTime);
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -81,23 +85,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     lastX = xpos;
     lastY = ypos;
 
-    const float sensitivity = 0.1f;
-    xoffset *= sensitivity;
-    yoffset *= sensitivity;
-
-    yaw   += xoffset;
-    pitch += yoffset;
-
-    if(pitch > 89.0f)
-        pitch =  89.0f;
-    if(pitch < -89.0f)
-        pitch = -89.0f;
-
-    glm::vec3 direction;
-    direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    direction.y = sin(glm::radians(pitch));
-    direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    cameraFront = glm::normalize(direction);
+    MainCamera.ChangeDirection(xoffset, yoffset);
 }
 
 void init() {
@@ -130,39 +118,28 @@ void init() {
     glEnable(GL_DEPTH_TEST);
 }
 
+std::string readFile(const char* filename) {
+    std::ifstream file(filename, std::ios::binary);
+    if (!file) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
+}
+
+
 void create_program() {
-    FILE *vertexPtr, *fragmentPtr;
+    std::string vertexCode = readFile(VERTEX_FILE_NAME);
+    std::string fragmentCode = readFile(FRAGMENT_FILE_NAME);
 
-    vertexPtr = fopen(VERTEX_FILE_NAME, "r");
-    if (vertexPtr == NULL) {
-        perror("tf");
-        std::cout << "Error opening file " << VERTEX_FILE_NAME << std::endl;
-        exit(-1);
-    }
-    fseek(vertexPtr, 0, SEEK_END);
-    int vertexSize = ftell(vertexPtr);
-    fseek(vertexPtr, 0, SEEK_SET);
+    const char* vShaderCode = vertexCode.c_str();
+    const char* fShaderCode = fragmentCode.c_str();
 
-    fragmentPtr = fopen(FRAGMENT_FILE_NAME, "r");
-    if (fragmentPtr == NULL) {
-        std::cout << "Error opening file " << FRAGMENT_FILE_NAME << std::endl;
-        exit(-1);
-    }
-    fseek(fragmentPtr, 0, SEEK_END);
-    int fragmentSize = ftell(fragmentPtr);
-    fseek(fragmentPtr, 0, SEEK_SET);
 
-    char* vShaderCode = static_cast<char *>(malloc((vertexSize+1) * sizeof(char)));
-    char * fShaderCode = static_cast<char *>(malloc((fragmentSize+1) * sizeof(char)));
-
-    fread(vShaderCode,sizeof(char),vertexSize,vertexPtr);
-    fread(fShaderCode,sizeof(char),fragmentSize,fragmentPtr);
-
-    fclose(vertexPtr);
-    fclose(fragmentPtr);
-
-    vShaderCode[vertexSize] = '\0'; // Null-terminate
-    fShaderCode[fragmentSize] = '\0'; // Null-terminate
+    std::cout << "Vertex Shader Code:\n" << vShaderCode << std::endl;
+    std::cout << "Fragment Shader Code:\n" << fShaderCode << std::endl;
 
     int success;
     char infoLog[512];
@@ -203,8 +180,8 @@ void create_program() {
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
-    free(vShaderCode);
-    free(fShaderCode);
+    // free(vShaderCode);
+    // free(fShaderCode);
 }
 
 void buffers_set_up() {
@@ -349,7 +326,7 @@ int main() {
     locations_setup();
 
 
-    view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    view = MainCamera.GetViewMatrix();
 
     while(!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
@@ -368,7 +345,7 @@ int main() {
 
         glUseProgram(program);
 
-        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+        view = MainCamera.GetViewMatrix();
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
         glBindVertexArray(VAO);
