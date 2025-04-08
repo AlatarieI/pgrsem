@@ -12,18 +12,18 @@
 #include <Camera.h>
 
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+constexpr unsigned int SCR_WIDTH = 800;
+constexpr unsigned int SCR_HEIGHT = 600;
 const char *VERTEX_FILE_NAME = "vertex_shader.vert";
 const char *FRAGMENT_FILE_NAME = "fragment_shader.frag";
 
-unsigned int program, VBO, VAO, EBO, texture1, texture2;
+GLuint program, VBO, VAO, EBO, texture1, texture2;
 GLFWwindow* window;
 
 glm::mat4 model = glm::mat4(1.0f);
 glm::mat4 view = glm::mat4(1.0f);
 glm::mat4 projection = glm::mat4(1.0f);
-int modelLoc, viewLoc, projLoc;
+GLint modelLoc, viewLoc, projLoc;
 
 Camera MainCamera;
 
@@ -73,19 +73,19 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 }
 
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
     if (firstMouse) {
-        lastX = xpos;
-        lastY = ypos;
+        lastX = xPos;
+        lastY = yPos;
         firstMouse = false;
     }
 
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos;
-    lastX = xpos;
-    lastY = ypos;
+    float xOffset = xPos - lastX;
+    float yOffset = lastY - yPos;
+    lastX = xPos;
+    lastY = yPos;
 
-    MainCamera.ChangeDirection(xoffset, yoffset);
+    MainCamera.ChangeDirection(xOffset, yOffset);
 }
 
 void init() {
@@ -94,8 +94,8 @@ void init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-    if (window == NULL) {
+    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", nullptr, nullptr);
+    if (window == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         exit(-1);
@@ -110,7 +110,7 @@ void init() {
 
 
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         exit(-1);
     }
@@ -138,32 +138,32 @@ void create_program() {
     const char* fShaderCode = fragmentCode.c_str();
 
 
-    std::cout << "Vertex Shader Code:\n" << vShaderCode << std::endl;
-    std::cout << "Fragment Shader Code:\n" << fShaderCode << std::endl;
+    // std::cout << "Vertex Shader Code:\n" << vShaderCode << std::endl;
+    // std::cout << "Fragment Shader Code:\n" << fShaderCode << std::endl;
 
     int success;
     char infoLog[512];
 
-    unsigned int vertex, fragment;
+    GLuint vertex, fragment;
     // vertex shader
     vertex = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex, 1, &vShaderCode, NULL);
+    glShaderSource(vertex, 1, &vShaderCode, nullptr);
     glCompileShader(vertex);
 
     glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
     if (!success) {
-        glGetShaderInfoLog(vertex, 512, NULL, infoLog);
+        glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
         std::cout << "Error: Vertex shader compilation failed:\n" << infoLog << std::endl;
     }
 
     // fragment Shader
     fragment = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment, 1, &fShaderCode, NULL);
+    glShaderSource(fragment, 1, &fShaderCode, nullptr);
     glCompileShader(fragment);
 
     glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
     if (!success) {
-        glGetShaderInfoLog(fragment, 512, NULL, infoLog);
+        glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
         std::cout << "Error: Fragment shader compilation failed:\n" << infoLog << std::endl;
     }
 
@@ -174,7 +174,7 @@ void create_program() {
     glLinkProgram(program);
     glGetProgramiv(program, GL_LINK_STATUS, &success);
     if (!success) {
-        glGetProgramInfoLog(program, 512, NULL, infoLog);
+        glGetProgramInfoLog(program, 512, nullptr, infoLog);
         std::cout << "Error: Program linking failed:\n" << infoLog << std::endl;
     }
 
@@ -254,13 +254,13 @@ void buffers_set_up() {
     // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
     glEnableVertexAttribArray(0);
 
     // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     // glEnableVertexAttribArray(1);
 
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -351,7 +351,7 @@ int main() {
         glBindVertexArray(VAO);
 
         for(unsigned int i = 0; i < 10; i++) {
-            glm::mat4 model = glm::mat4(1.0f);
+            glm::mat4 model(1.0f);
             model = glm::translate(model, cubePositions[i]);
             float angle = 20.0f * i;
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
