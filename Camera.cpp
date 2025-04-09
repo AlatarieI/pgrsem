@@ -12,6 +12,14 @@ Camera::Camera() {
     Pitch = 0.0f;
 }
 
+Camera::Camera(glm::vec3 position) {
+    Position = position;
+    Speed = 2.5;
+    Sensitivity = 0.1;
+    Yaw = -90.0f;
+    Pitch = 0.0f;
+}
+
 Camera::Camera(glm::vec3 position, float speed, float sensitivity, float yaw, float pitch) {
     Position = position;
     Speed = speed;
