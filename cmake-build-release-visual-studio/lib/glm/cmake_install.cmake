@@ -1,8 +1,8 @@
-# Install script for directory: C:/ČVUT/pgr/pgrsem/noframework/lib/glm
+# Install script for directory: C:/ČVUT/pgr/pgrsem/lib/glm
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/noframework")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/pgrsem")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

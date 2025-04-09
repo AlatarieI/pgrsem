@@ -1,8 +1,8 @@
-# Install script for directory: C:/ČVUT/pgr/pgrsem/noframework
+# Install script for directory: C:/ČVUT/pgr/pgrsem
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/noframework")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/pgrsem")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/lib/glm/cmake_install.cmake")
+  include("C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/lib/glm/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

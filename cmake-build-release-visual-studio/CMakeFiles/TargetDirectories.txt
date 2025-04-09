@@ -1,7 +1,7 @@
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/glad.dir
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/stb_image.dir
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/noframework.dir
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/edit_cache.dir
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/CMakeFiles/rebuild_cache.dir
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/lib/glm/CMakeFiles/edit_cache.dir
-C:/ČVUT/pgr/pgrsem/noframework/cmake-build-release-visual-studio/lib/glm/CMakeFiles/rebuild_cache.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/glad.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/stb_image.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/pgrsem.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/edit_cache.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/rebuild_cache.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/lib/glm/CMakeFiles/edit_cache.dir
+C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/lib/glm/CMakeFiles/rebuild_cache.dir

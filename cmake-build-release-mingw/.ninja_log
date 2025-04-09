@@ -1,9 +1,0 @@
-# ninja log v6
-79	1668	7651578796698916	CMakeFiles/noframework.dir/Camera.cpp.obj	139c86e137bd6b1
-7	449	7651583022333080	build.ninja	d08f10bba0b5d718
-3245	3462	7651578828355501	libglad.a	b304855026acd1b6
-58	1605	7651578796488881	CMakeFiles/noframework.dir/GameObject.cpp.obj	2d9295839b7cfdff
-38	2874	7651578796288933	CMakeFiles/noframework.dir/main.cpp.obj	c297eff9a41bda2a
-4	3242	7651578795938924	CMakeFiles/glad.dir/lib/glad/src/glad.c.obj	bd543cc666aad405
-20	8199	7651578796108927	CMakeFiles/stb_image.dir/lib/stb_image/stb_image.cpp.obj	8bd2e9d435180c
-8199	8335	7651578877888384	libstb_image.a	48455245ae8b8847

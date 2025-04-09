@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(noframework)
+project(pgrsem)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -30,16 +30,30 @@ include_directories(lib/glm)
 find_package(OpenGL REQUIRED)
 
 # Create executable
-add_executable(noframework main.cpp
+add_executable(pgrsem main.cpp
         GameObject.cpp
         GameObject.h
         Camera.cpp
         Camera.h)
 
 # Copy shaders and resources
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/vertex_shader.vert DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/fragment_shader.frag DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
+#file(COPY ${CMAKE_SOURCE_DIR}/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+#file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+add_custom_command(
+        TARGET pgrsem POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/shaders
+        ${CMAKE_BINARY_DIR}/shaders
+        COMMENT "Copying shader folder to build directory"
+)
+add_custom_command(
+        TARGET pgrsem POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/resources
+        ${CMAKE_BINARY_DIR}/resources
+        COMMENT "Copying resource folder to build directory"
+)
+
 
 # Link libraries
-target_link_libraries(noframework PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm)
+target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm)
