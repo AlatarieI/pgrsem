@@ -42,6 +42,10 @@ void Camera::Move(Directions direction, float deltaTime) {
         Position -= glm::normalize(glm::cross(Front, Up)) * velocity;
     if (direction == RIGHT)
         Position += glm::normalize(glm::cross(Front, Up)) * velocity;
+    if (direction == UP)
+        Position += WorldUp * velocity;
+    if (direction == DOWN)
+        Position -= WorldUp * velocity;
 }
 
 void Camera::ChangeDirection(float xOffset, float yOffset) {

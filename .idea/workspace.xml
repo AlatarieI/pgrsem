@@ -32,6 +32,8 @@
   <component name="ChangeListManager">
     <list default="true" id="acd7307e-16ab-40b8-9077-3890551c2589" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" afterDir="false" />
@@ -40,8 +42,6 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shaders/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/fragment_shader.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/lightCube.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/lightCube.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/lightCube.vert" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/lightCube.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shaders/vertex_shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/vertex_shader.vert" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +126,7 @@
       <workItem from="1744122476175" duration="2178000" />
       <workItem from="1744226283555" duration="1283000" />
       <workItem from="1744227595339" duration="20000" />
-      <workItem from="1744227631318" duration="6951000" />
+      <workItem from="1744227631318" duration="10927000" />
     </task>
     <servers />
   </component>

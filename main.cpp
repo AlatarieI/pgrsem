@@ -12,12 +12,11 @@
 #include <Camera.h>
 
 
-unsigned int SCR_WIDTH = 800;
-unsigned int SCR_HEIGHT = 600;
+int SCR_WIDTH = 800;
+int SCR_HEIGHT = 600;
 const char *VERTEX_FILE_NAME = "vertex_shader.vert";
 const char *FRAGMENT_FILE_NAME = "fragment_shader.frag";
 
-const char* PROJECT_LOCTION = "C:\\ČVUT\\pgr\\pgrsem";
 
 GLuint main_shader, light_cube_shader, VBO, VAO, EBO, texture1, texture2, light_cube_VAO;
 GLFWwindow* window;
@@ -26,6 +25,8 @@ glm::mat4 model = glm::mat4(1.0f);
 glm::mat4 view = glm::mat4(1.0f);
 glm::mat4 projection = glm::mat4(1.0f);
 GLint modelLoc, viewLoc, projLoc, lightPosLoc, viewPosLoc;
+
+GLint lightAmbientLoc, lightDiffuseLoc, lightSpecularLoc, materialAmbientLoc, materialDiffuseLoc, materialSpecularLoc, materialShininessLoc;
 
 glm::vec3 lightPos = glm::vec3(0.0f, 4.0f, -8.0f);
 
@@ -48,6 +49,11 @@ void processInput(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+        MainCamera.Speed = 6.5f;
+    else
+        MainCamera.Speed = 3.0f;
+
     if (move_camera) {
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
             MainCamera.Move(FRONT, deltaTime);
@@ -57,15 +63,19 @@ void processInput(GLFWwindow *window) {
             MainCamera.Move(LEFT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
             MainCamera.Move(RIGHT, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+            MainCamera.Move(UP, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+            MainCamera.Move(DOWN, deltaTime);
 
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-            MainCamera.ChangeDirection(0.0f, 0.25f);
+            MainCamera.ChangeDirection(0.0f, 0.3f);
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-            MainCamera.ChangeDirection(0.0f, -0.25f);
+            MainCamera.ChangeDirection(0.0f, -0.3f);
         if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-            MainCamera.ChangeDirection(-0.25f, 0.0f);
+            MainCamera.ChangeDirection(-0.3f, 0.0f);
         if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            MainCamera.ChangeDirection(0.25f, 0.0f);
+            MainCamera.ChangeDirection(0.3f, 0.0f);
     }
 }
 
@@ -249,10 +259,10 @@ void buffers_set_up() {
     glBindVertexArray(VAO);
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
     glEnableVertexAttribArray(0);
     // normal attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     glGenVertexArrays(1, &light_cube_VAO);
@@ -260,7 +270,7 @@ void buffers_set_up() {
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     // note that we update the lamp's position attribute's stride to reflect the updated buffer data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
     glEnableVertexAttribArray(0);
 }
 
@@ -311,7 +321,16 @@ void locations_setup() {
     modelLoc = glGetUniformLocation(main_shader, "model");
     viewLoc = glGetUniformLocation(main_shader, "view");
     projLoc = glGetUniformLocation(main_shader, "projection");
-    lightPosLoc = glGetUniformLocation(main_shader, "lightPos");
+
+    lightPosLoc = glGetUniformLocation(main_shader, "light.position");
+    lightAmbientLoc = glGetUniformLocation(main_shader, "light.ambient");
+    lightDiffuseLoc = glGetUniformLocation(main_shader, "light.diffuse");
+    lightSpecularLoc = glGetUniformLocation(main_shader, "light.specular");
+
+    materialAmbientLoc = glGetUniformLocation(main_shader, "material.ambient");
+    materialDiffuseLoc = glGetUniformLocation(main_shader, "material.diffuse");
+    materialSpecularLoc = glGetUniformLocation(main_shader, "material.specular");
+    materialShininessLoc = glGetUniformLocation(main_shader, "material.shininess");
 
     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -349,26 +368,27 @@ int main() {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
         projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH)/ static_cast<float>(SCR_HEIGHT) , 0.1f, 100.0f);
         view = MainCamera.GetViewMatrix();
-        lightPos = glm::vec3(4*cos(currentFrame), 4.0f, 4*sin(currentFrame) - 8.0f);
+        lightPos = glm::vec3(0.0f, 4*cos(currentFrame), 4*sin(currentFrame));
 
         glUseProgram(main_shader);
-        GLint lightColorLoc = glGetUniformLocation(main_shader, "lightColor");
-        GLint objectColorLoc = glGetUniformLocation(main_shader, "objectColor");
 
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        glUniform3fv(lightPosLoc, 1, glm::value_ptr(lightPos));
 
-        glUniform3fv(lightColorLoc, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
-        glUniform3fv(objectColorLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+        glUniform3fv(lightPosLoc, 1, glm::value_ptr(view*glm::vec4(lightPos,1.0f)));
+        glUniform3fv(lightAmbientLoc, 1, glm::value_ptr(glm::vec3( 0.2f, 0.2f, 0.2f)));
+        glUniform3fv(lightDiffuseLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5)));
+        glUniform3fv(lightSpecularLoc, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+
+        glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
+        glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+        glUniform3fv(materialSpecularLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+        glUniform1f(materialShininessLoc, 32.0f);
 
         glBindVertexArray(VAO);
 
-        // model = glm::mat4(1.0f);
-        // model = glm::translate(model, cubePosition);
         model = glm::mat4(1.0f);
 
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -391,7 +411,6 @@ int main() {
 
         glBindVertexArray(light_cube_VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
-
 
         glBindVertexArray(0);
 

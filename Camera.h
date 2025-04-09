@@ -13,7 +13,9 @@ enum Directions {
     FRONT,
     BACK,
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN
 };
 
 
