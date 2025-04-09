@@ -31,137 +31,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acd7307e-16ab-40b8-9077-3890551c2589" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/pgrsem.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shaders/lightCube.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/noframework.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/query/cache-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/cache-v2-fab4cd6f152c325762ae.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/cmakeFiles-v1-afc297a7a23a4ae77d0e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/codemodel-v2-b6b10348000865214f0b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/directory-lib.glm-Debug-ce07c1f5db497389ae15.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/index-2025-03-31T21-05-02-0139.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/target-glad-Debug-c80b194e36c33b142d54.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/target-noframework-Debug-b2e8cd2e92e8bc10497a.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/target-stb_image-Debug-5e8c171811b27486c929.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.cmake/api/v1/reply/toolchains-v1-59c84e7e9823f39a3470.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.ninja_deps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/.ninja_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/ShowIncludes/foo.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/ShowIncludes/main.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/clion-Debug-Visual Studio-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/noframework.dir/embed.manifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/noframework.dir/intermediate.manifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/noframework.dir/manifest.rc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/noframework.dir/manifest.res" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/CMakeFiles/rules.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/build.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/fragment_shader.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/glad.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/lib/glm/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/noframework.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/resources/awesomeface.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/resources/container.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/resources/wall.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/stb_image.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug-visual-studio/vertex_shader.vert" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/cache-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/cache-v2-1c409d8c1fecb132b6fa.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/cmakeFiles-v1-ca2381c265b3b1d9fe5e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/codemodel-v2-034c5361324807cc21bd.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/directory-.-Release-d0094a50bb2071803777.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/directory-lib.glm-Release-ce07c1f5db497389ae15.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/index-2025-03-31T21-05-02-0318.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-glad-Release-96d41d46ff8b11772310.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-noframework-Release-2c71a79d339b962d8112.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-stb_image-Release-797ac7566c6e41bc7bb9.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/toolchains-v1-6ee9c4da362d6f5a79fa.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.ninja_deps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.ninja_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdC/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdCXX/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-Release-MinGW-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/rules.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/build.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/fragment_shader.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/glm/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/libglad.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/libstb_image.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/resources/awesomeface.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/resources/container.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/resources/wall.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/vertex_shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/lightCube.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cache-v2-06558906ec6d365b3acf.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cmakeFiles-v1-28b60d0e8399c44beb89.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/codemodel-v2-bc9619361c8bcb7a512c.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/index-2025-03-31T21-05-02-0136.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-glad-Release-02f76e273fe191f7ed62.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-noframework-Release-70f6c0c73960c869568a.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-stb_image-Release-5a570a8a64489040393d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeSystem.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/clion-Release-Visual Studio-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/clion-Release-Visual Studio-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/rules.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/fragment_shader.frag" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/noframework.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/pgrsem.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/pgrsem.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/fragment_shader.frag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/vertex_shader.vert" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/fragment_shader.frag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vertex_shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/vertex_shader.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shaders/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/fragment_shader.frag" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +123,7 @@
       <workItem from="1744122476175" duration="2178000" />
       <workItem from="1744226283555" duration="1283000" />
       <workItem from="1744227595339" duration="20000" />
-      <workItem from="1744227631318" duration="488000" />
+      <workItem from="1744227631318" duration="2511000" />
     </task>
     <servers />
   </component>

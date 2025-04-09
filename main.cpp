@@ -500,10 +500,17 @@ int main() {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        lightPos = glm::vec3(4*cos(currentFrame), 4.0f, 4*sin(currentFrame) - 8.0f);
+
         glUseProgram(light_cube_shader);
         GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
         view = MainCamera.GetViewMatrix();
         glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
+        glm::mat4 model(1.0f);
+        model = glm::translate(model, lightPos);
+
+        glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
         glBindVertexArray(light_cube_VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -516,6 +523,8 @@ int main() {
         glBindTexture(GL_TEXTURE_2D, texture2);
 
         glUseProgram(main_shader);
+
+        glUniform3fv(lightPosLoc, 1, glm::value_ptr(lightPos));
 
         view = MainCamera.GetViewMatrix();
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
