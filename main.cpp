@@ -5,12 +5,15 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
 
 #include <Camera.h>
-
 
 int SCR_WIDTH = 800;
 int SCR_HEIGHT = 600;

@@ -13,6 +13,7 @@ target_include_directories(stb_image PUBLIC lib/stb_image)
 
 # GLFW - If using a precompiled library
 find_library(GLFW_LIB glfw3 PATHS lib/glfw3/lib-vc2022)
+#find_library(GLFW_LIB glfw3 PATHS lib/glfw3/lib-mingw-w64)
 if(NOT GLFW_LIB)
     message(FATAL_ERROR "GLFW not found in lib/glfw3/lib-vc2022")
 endif()
@@ -28,6 +29,14 @@ include_directories(lib/glm)
 
 # OpenGL
 find_package(OpenGL REQUIRED)
+
+#Assimp
+# Assimp - Manual linking
+set(ASSIMP_DIR "${CMAKE_SOURCE_DIR}/lib/Assimp")
+# Full path to the .lib file (adjust name if it's different)
+set(ASSIMP_LIBRARY "${ASSIMP_DIR}/lib/x64/assimp-vc143-mt.lib")
+# Include directory
+include_directories("${ASSIMP_DIR}/include")
 
 # Create executable
 add_executable(pgrsem main.cpp
@@ -56,4 +65,4 @@ add_custom_command(
 
 
 # Link libraries
-target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm)
+target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm ${ASSIMP_LIBRARY})
