@@ -14,6 +14,8 @@
 #include <iostream>
 
 #include <Camera.h>
+#include "Model.h"
+#include "utility.h"
 
 int SCR_WIDTH = 800;
 int SCR_HEIGHT = 600;
@@ -159,6 +161,8 @@ void init() {
         exit(-1);
     }
 
+    stbi_set_flip_vertically_on_load(true);
+
     glEnable(GL_DEPTH_TEST);
 }
 
@@ -295,38 +299,7 @@ void buffers_set_up() {
     glEnableVertexAttribArray(0);
 }
 
-GLuint load_texture(char const * path) {
-    GLuint textureID;
-    glGenTextures(1, &textureID);
 
-    int width, height, nrComponents;
-    unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
-    if (data) {
-        GLenum format;
-        if (nrComponents == 1)
-            format = GL_RED;
-        else if (nrComponents == 3)
-            format = GL_RGB;
-        else if (nrComponents == 4)
-            format = GL_RGBA;
-
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        stbi_image_free(data);
-    } else {
-        std::cout << "Texture failed to load at path: " << path << std::endl;
-        stbi_image_free(data);
-    }
-
-    return textureID;
-}
 
 void locations_setup() {
     glUseProgram(main_shader);
@@ -366,12 +339,18 @@ int main() {
     light_cube_shader = create_program("shaders/lightCube.vert", "shaders/lightCube.frag");
     buffers_set_up();
     //texture_load_setup();
-    GLuint diffuseMap = load_texture("resources/textures/container2.png");
-    GLuint specularMap = load_texture("resources/textures/container2_specular.png");
+    // GLuint diffuseMap = load_texture("resources/models/mountain/ground_grass.jpg");
+    // GLuint diffuseMap = load_texture("resources/textures/container.jpg");
+    // GLuint specularMap = load_texture("resources/textures/container2_specular.png");
+    // GLuint specularMap = load_texture("resources/models/mountain/ground_grass.jpg");
     glUseProgram(main_shader);
     glUniform1i(glGetUniformLocation(main_shader, "material.diffuse"), 0);
     glUniform1i(glGetUniformLocation(main_shader, "material.specular"), 1);
     locations_setup();
+
+    Model ourModel("resources/models/backpack/backpack.obj", true);
+    // Model ourModel("resources/models/mountain/mount.obj", true);
+    // Model ourModel("resources/models/Wooden_Tower/Wooden_Tower.obj");
 
     view = MainCamera.GetViewMatrix();
 
@@ -401,7 +380,7 @@ int main() {
         glUniform3f(glGetUniformLocation(main_shader, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
         // Point lights
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 1; ++i) {
             std::string idx = "pointLights[" + std::to_string(i) + "]";
             glUniform3fv(glGetUniformLocation(main_shader, (idx + ".position").c_str()), 1, glm::value_ptr(view * glm::vec4(pointLightPositions[i], 1.0f)));
             glUniform3f(glGetUniformLocation(main_shader, (idx + ".ambient").c_str()), 0.05f, 0.05f, 0.05f);
@@ -424,51 +403,58 @@ int main() {
         glUniform1f(glGetUniformLocation(main_shader, "spotLight.cutOff"), glm::cos(glm::radians(12.5f)));
         glUniform1f(glGetUniformLocation(main_shader, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));
 
-        // glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
-        // glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+        glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
+        glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
         glUniform3fv(materialSpecularLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
         glUniform1f(materialShininessLoc, 32.0f);
-
+        //
         glBindVertexArray(VAO);
 
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, diffuseMap);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, specularMap);
+        // glActiveTexture(GL_TEXTURE0);
+        // glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        // glActiveTexture(GL_TEXTURE1);
+        // glBindTexture(GL_TEXTURE_2D, specularMap);
+        //
+        // for(unsigned int i = 0; i < 10; i++) {
+        //     glm::mat4 model = glm::mat4(1.0f);
+        //     model = glm::translate(model, cubePositions[i]);
+        //     float angle = 20.0f * i;
+        //     model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+        //     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //
+        //     glDrawArrays(GL_TRIANGLES, 0, 36);
+        // }
 
-        for(unsigned int i = 0; i < 10; i++) {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
-            float angle = 20.0f * i;
-            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
+        ourModel.Draw(main_shader);
 
-        glUseProgram(light_cube_shader);
-
-        GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
-        GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
-        GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
-
-        glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-        for (unsigned int i = 0; i < 4; i++) {
-            model = glm::mat4(1.0f);
-            model = glm::translate(model, pointLightPositions[i]);
-            model = glm::scale(model, glm::vec3(0.2f));
-            glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-
-
-        glBindVertexArray(light_cube_VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-        glBindVertexArray(0);
+        // glUseProgram(light_cube_shader);
+        //
+        // GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
+        // GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
+        // GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
+        //
+        // glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        // glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        //
+        // for (unsigned int i = 0; i < 4; i++) {
+        //     model = glm::mat4(1.0f);
+        //     model = glm::translate(model, pointLightPositions[i]);
+        //     model = glm::scale(model, glm::vec3(0.2f));
+        //     glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //     glDrawArrays(GL_TRIANGLES, 0, 36);
+        // }
+        //
+        //
+        // glBindVertexArray(light_cube_VAO);
+        // glDrawArrays(GL_TRIANGLES, 0, 36);
+        //
+        // glBindVertexArray(0);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

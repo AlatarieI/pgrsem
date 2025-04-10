@@ -1,0 +1,12 @@
+#DownloadModelFormat: OBJ
+#GeometryFile: mount.obj
+#MaterialFile: mount.mtl
+#PreviewFile: mount.jpg
+#OtherFiles: ground_grass.jpg
+#DownloadedFromURL: free3d.com
+#DateOfDownload: 27.5.2024 
+#CreatedBy: shaiksha35
+#CreatedIn: Blender
+#UploadedBy: Nadzeya Shchahlova
+#Description: Model of little mountain with grass
+#NumberOfPolygons: 6962
