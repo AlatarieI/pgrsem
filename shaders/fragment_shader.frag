@@ -55,8 +55,8 @@ uniform SpotLight spotLight;
 
 uniform sampler2D texture_diffuse1;
 uniform sampler2D texture_specular1;
-uniform sampler2D texture_normal1;
-uniform sampler2D texture_height1;
+//uniform sampler2D texture_normal1;
+//uniform sampler2D texture_height1;
 
 vec3 objectDiffuse;
 vec3 objectSpecular;
@@ -77,7 +77,7 @@ void main() {
 
     vec3 result = vec3(0.0f);
     // Directional lighting
-    //result += CalcDirLight(dirLight, norm, viewDir);
+    result += CalcDirLight(dirLight, norm, viewDir);
     // Point lights
 //    for(int i = 0; i < NR_POINT_LIGHTS; i++)
 //        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
@@ -122,8 +122,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 
     // attenuation
     float distance    = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance +
-    light.quadratic * (distance * distance));
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
     ambient  *= attenuation;
     diffuse  *= attenuation;

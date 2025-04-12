@@ -57,7 +57,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     // walk through each of the mesh's vertices
     for(unsigned int i = 0; i < mesh->mNumVertices; i++) {
         Vertex vertex;
-        glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+        glm::vec3 vector;
         // positions
         vector.x = mesh->mVertices[i].x;
         vector.y = mesh->mVertices[i].y;
@@ -107,29 +107,37 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     // 3. normal maps
-    std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
-    textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
-    // 4. height maps
-    std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
-    textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+    // std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
+    // if (normalMaps.empty()) {
+    //     normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+    // } else {
+    //     // 4. height maps
+    //     std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
+    //     textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+    // }
+    // // insert normal maps
+    // textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
+
 
     Material meshMaterial;
 
     if (diffuseMaps.empty()) {
         aiColor3D color(0.f, 0.f, 0.f);
-        if (AI_SUCCESS == material->Get(AI_MATKEY_COLOR_DIFFUSE, color)) {
+        if (material->Get(AI_MATKEY_COLOR_DIFFUSE, color) == AI_SUCCESS) {
             meshMaterial.diffuseColor = glm::vec3(color.r, color.g, color.b);
         }
     }
 
     if (specularMaps.empty()) {
         aiColor3D color(0.f, 0.f, 0.f);
-        if (AI_SUCCESS == material->Get(AI_MATKEY_COLOR_SPECULAR, color)) {
+        if (material->Get(AI_MATKEY_COLOR_SPECULAR, color) == AI_SUCCESS) {
             meshMaterial.specularColor = glm::vec3(color.r, color.g, color.b);
         }
     }
-
-    material->Get(AI_MATKEY_SHININESS, meshMaterial.shininess);
+    float shininess = 0.0f;
+    if (material->Get(AI_MATKEY_SHININESS, shininess) == AI_SUCCESS) {
+        meshMaterial.shininess =  shininess;
+    }
 
     Mesh resultMesh(vertices, indices, textures);
     resultMesh.material = meshMaterial;

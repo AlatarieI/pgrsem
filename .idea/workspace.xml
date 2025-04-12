@@ -7,8 +7,7 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="136" type="long" />
-    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="43" type="long" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -34,41 +33,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acd7307e-16ab-40b8-9077-3890551c2589" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Mesh.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Mesh.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stb_image/stb_image_write.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utility.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utility.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/cache-v2-4bd45f57b31f1eb19c51.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/codemodel-v2-8c88e1b994afcf8e8837.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/index-2025-04-10T14-37-35-0098.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-glad-Release-2333b788ff28c79c6cdf.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-pgrsem-Release-447808de07ff44e11786.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-stb_image-Release-d0bc23eba1e750f7a5ad.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-Release-MinGW-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-Release-MinGW-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-mingw/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cache-v2-7d95c44ca2a505cad2be.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/codemodel-v2-0980f809decec9ebea4a.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/index-2025-04-10T14-37-34-0793.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-glad-Release-a21b7a4a37b0c6bdfbdc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-pgrsem-Release-f6ed6b36b89fefd54174.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-stb_image-Release-27667bc63806e054fbc0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Mesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Model.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/pgrsem.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/pgrsem.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/fragment_shader.frag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-visual-studio/test.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/help.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shaders/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/fragment_shader.frag" afterDir="false" />
     </list>
@@ -127,11 +103,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.pgrsem">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="glad" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="pgrsem" TARGET_NAME="glad" CONFIG_NAME="Release-Visual Studio">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -173,7 +144,9 @@
       <workItem from="1744290227142" duration="1484000" />
       <workItem from="1744295526868" duration="4160000" />
       <workItem from="1744307831449" duration="3924000" />
-      <workItem from="1744311917292" duration="13126000" />
+      <workItem from="1744311917292" duration="13367000" />
+      <workItem from="1744489405830" duration="4974000" />
+      <workItem from="1744496410071" duration="9000" />
     </task>
     <servers />
   </component>

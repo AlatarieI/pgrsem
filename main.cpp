@@ -349,8 +349,8 @@ int main() {
     locations_setup();
 
     Model ourModel("resources/models/backpack/backpack.obj", true);
-    // Model ourModel("resources/models/mountain/mount.obj", true);
-    // Model ourModel("resources/models/Wooden_Tower/Wooden_Tower.obj");
+    Model ourModel2("resources/models/mountain/mount.obj", true);
+    Model ourModel3("resources/models/Wooden_Tower/Wooden_Tower.obj");
 
     view = MainCamera.GetViewMatrix();
 
@@ -380,7 +380,7 @@ int main() {
         glUniform3f(glGetUniformLocation(main_shader, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
         // Point lights
-        for (int i = 0; i < 1; ++i) {
+        for (int i = 0; i < 4; ++i) {
             std::string idx = "pointLights[" + std::to_string(i) + "]";
             glUniform3fv(glGetUniformLocation(main_shader, (idx + ".position").c_str()), 1, glm::value_ptr(view * glm::vec4(pointLightPositions[i], 1.0f)));
             glUniform3f(glGetUniformLocation(main_shader, (idx + ".ambient").c_str()), 0.05f, 0.05f, 0.05f);
@@ -433,28 +433,44 @@ int main() {
 
         ourModel.Draw(main_shader);
 
-        // glUseProgram(light_cube_shader);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 9.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+        ourModel3.Draw(main_shader);
+
+        // model = glm::mat4(1.0f);
+        // model = glm::translate(model, glm::vec3(0.0f, 4.0f, 12.0f));
+        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         //
-        // GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
-        // GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
-        // GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
-        //
-        // glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        // glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        //
-        // for (unsigned int i = 0; i < 4; i++) {
-        //     model = glm::mat4(1.0f);
-        //     model = glm::translate(model, pointLightPositions[i]);
-        //     model = glm::scale(model, glm::vec3(0.2f));
-        //     glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //     glDrawArrays(GL_TRIANGLES, 0, 36);
-        // }
-        //
-        //
-        // glBindVertexArray(light_cube_VAO);
-        // glDrawArrays(GL_TRIANGLES, 0, 36);
-        //
-        // glBindVertexArray(0);
+        // ourModel2.Draw(main_shader);
+
+
+
+        glUseProgram(light_cube_shader);
+
+        GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
+        GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
+        GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
+
+        glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+        for (unsigned int i = 0; i < 4; i++) {
+            model = glm::mat4(1.0f);
+            model = glm::translate(model, pointLightPositions[i]);
+            model = glm::scale(model, glm::vec3(0.2f));
+            glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+
+
+        glBindVertexArray(light_cube_VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        glBindVertexArray(0);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

@@ -4,6 +4,7 @@
 
 #include "Mesh.h"
 
+#include <iostream>
 #include <gtc/type_ptr.hpp>
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures) {
@@ -56,17 +57,18 @@ void Mesh::Draw(GLuint program) {
         if(name == "texture_diffuse")
             number = std::to_string(diffuseNr++);
         else if(name == "texture_specular")
-            number = std::to_string(specularNr++); // transfer unsigned int to string
+            number = std::to_string(specularNr++);
         else if(name == "texture_normal")
-            number = std::to_string(normalNr++); // transfer unsigned int to string
+            number = std::to_string(normalNr++);
         else if(name == "texture_height")
-            number = std::to_string(heightNr++); // transfer unsigned int to string
+            number = std::to_string(heightNr++);
 
         // now set the sampler to the correct texture unit
         glUniform1i(glGetUniformLocation(program, (name + number).c_str()), i);
         // and finally bind the texture
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
+
 
     // Material uniforms
     glUniform3fv(glGetUniformLocation(program, "material.diffuseColor"), 1, glm::value_ptr(material.diffuseColor));
@@ -75,10 +77,13 @@ void Mesh::Draw(GLuint program) {
 
     // draw mesh
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
 
     // always good practice to set everything back to defaults once configured.
-    glActiveTexture(GL_TEXTURE0);
+    for (unsigned int i = 0; i < textures.size(); ++i) {
+        glActiveTexture(GL_TEXTURE0 + i);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 }
 
