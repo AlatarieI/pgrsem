@@ -101,10 +101,10 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     // normal: texture_normalN
 
     // 1. diffuse maps
-    vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+    vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
     // 2. specular maps
-    vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+    vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     // 3. normal maps
     // std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
@@ -118,28 +118,28 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     // // insert normal maps
     // textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
+    Mesh resultMesh(vertices, indices, textures);
+
+    resultMesh.useDiffuseTexture = !diffuseMaps.empty();
+    resultMesh.useSpecularTexture = !specularMaps.empty();
 
     Material meshMaterial;
 
-    if (diffuseMaps.empty()) {
-        aiColor3D color(0.f, 0.f, 0.f);
-        if (material->Get(AI_MATKEY_COLOR_DIFFUSE, color) == AI_SUCCESS) {
-            meshMaterial.diffuseColor = glm::vec3(color.r, color.g, color.b);
-        }
+    aiColor3D color(0.f, 0.f, 0.f);
+    if (material->Get(AI_MATKEY_COLOR_DIFFUSE, color) == AI_SUCCESS) {
+        meshMaterial.diffuse = glm::vec3(color.r, color.g, color.b);
     }
 
-    if (specularMaps.empty()) {
-        aiColor3D color(0.f, 0.f, 0.f);
-        if (material->Get(AI_MATKEY_COLOR_SPECULAR, color) == AI_SUCCESS) {
-            meshMaterial.specularColor = glm::vec3(color.r, color.g, color.b);
-        }
+    if (material->Get(AI_MATKEY_COLOR_SPECULAR, color) == AI_SUCCESS) {
+        meshMaterial.specular = glm::vec3(color.r, color.g, color.b);
     }
+
     float shininess = 0.0f;
     if (material->Get(AI_MATKEY_SHININESS, shininess) == AI_SUCCESS) {
         meshMaterial.shininess =  shininess;
     }
 
-    Mesh resultMesh(vertices, indices, textures);
+
     resultMesh.material = meshMaterial;
     return resultMesh;
 }

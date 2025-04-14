@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-6t47df"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-6t47df"
+      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-3yl6u4"
+      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-3yl6u4"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -119,11 +119,11 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-6t47df'
+        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-3yl6u4'
         
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_d8d98
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_d8d98.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_d8d98.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_d8d98.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_d8d98.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_d8d98.exe /implib:cmTC_d8d98.lib /pdb:cmTC_d8d98.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_c88a0
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_c88a0.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_c88a0.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCCompilerABI.c"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_c88a0.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_c88a0.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_c88a0.exe /implib:cmTC_c88a0.lib /pdb:cmTC_c88a0.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -163,8 +163,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-rxqre6"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-rxqre6"
+      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-3jkn91"
+      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-3jkn91"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -174,11 +174,11 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-rxqre6'
+        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-3jkn91'
         
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_b240c
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_b240c.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_b240c.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_b240c.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_b240c.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_b240c.exe /implib:cmTC_b240c.lib /pdb:cmTC_b240c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_9ee64
+        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_9ee64.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_9ee64.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\share\\cmake-3.30\\Modules\\CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_9ee64.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_9ee64.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_9ee64.exe /implib:cmTC_9ee64.lib /pdb:cmTC_9ee64.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -209,181 +209,4 @@ events:
       Running the CXX compiler's linker: "C:/PROGRA~1/MICROS~4/2022/COMMUN~1/VC/Tools/MSVC/1439~1.335/bin/Hostx64/x64/link.exe" "-v"
       Microsoft (R) Incremental Linker Version 14.39.33523.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
-...
-
----
-events:
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake:90 (try_compile)"
-      - "lib/assimp/contrib/zlib/CMakeLists.txt:35 (check_include_file)"
-    checks:
-      - "Looking for sys/types.h"
-    directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-06k43e"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-06k43e"
-    cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/\u010cVUT/pgr/pgrsem/lib/assimp/cmake-modules"
-    buildResult:
-      variable: "HAVE_SYS_TYPES_H"
-      cached: true
-      stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-06k43e'
-        
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_9474d
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_9474d.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_9474d.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-06k43e\\CheckIncludeFile.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_9474d.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_9474d.dir\\CheckIncludeFile.c.obj  /out:cmTC_9474d.exe /implib:cmTC_9474d.lib /pdb:cmTC_9474d.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        
-      exitCode: 0
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake:90 (try_compile)"
-      - "lib/assimp/contrib/zlib/CMakeLists.txt:36 (check_include_file)"
-    checks:
-      - "Looking for stdint.h"
-    directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-t668xn"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-t668xn"
-    cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/\u010cVUT/pgr/pgrsem/lib/assimp/cmake-modules"
-    buildResult:
-      variable: "HAVE_STDINT_H"
-      cached: true
-      stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-t668xn'
-        
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_2f2e9
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_2f2e9.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_2f2e9.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-t668xn\\CheckIncludeFile.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_2f2e9.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_2f2e9.dir\\CheckIncludeFile.c.obj  /out:cmTC_2f2e9.exe /implib:cmTC_2f2e9.lib /pdb:cmTC_2f2e9.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        
-      exitCode: 0
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake:90 (try_compile)"
-      - "lib/assimp/contrib/zlib/CMakeLists.txt:37 (check_include_file)"
-    checks:
-      - "Looking for stddef.h"
-    directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-o1tclk"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-o1tclk"
-    cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/\u010cVUT/pgr/pgrsem/lib/assimp/cmake-modules"
-    buildResult:
-      variable: "HAVE_STDDEF_H"
-      cached: true
-      stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-o1tclk'
-        
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_26d53
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_26d53.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_26d53.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-o1tclk\\CheckIncludeFile.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_26d53.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_26d53.dir\\CheckIncludeFile.c.obj  /out:cmTC_26d53.exe /implib:cmTC_26d53.lib /pdb:cmTC_26d53.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        
-      exitCode: 0
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckTypeSize.cmake:147 (try_compile)"
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckTypeSize.cmake:272 (__check_type_size_impl)"
-      - "lib/assimp/contrib/zlib/CMakeLists.txt:55 (check_type_size)"
-    checks:
-      - "Check size of off64_t"
-    directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-wen1yv"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-wen1yv"
-    cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/\u010cVUT/pgr/pgrsem/lib/assimp/cmake-modules"
-    buildResult:
-      variable: "HAVE_OFF64_T"
-      cached: true
-      stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-wen1yv'
-        
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_7c9cb
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_7c9cb.dir\\OFF64_T.c.obj /FdCMakeFiles\\cmTC_7c9cb.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c
-        FAILED: CMakeFiles/cmTC_7c9cb.dir/OFF64_T.c.obj 
-        C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_SYS_TYPES_H -D_LARGEFILE64_SOURCE=1  /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_7c9cb.dir\\OFF64_T.c.obj /FdCMakeFiles\\cmTC_7c9cb.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c
-        C:\\ČVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c(29): error C2065: off64_t: nedeklarovaný identifikátor
-        C:\\ČVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c(30): error C2065: off64_t: nedeklarovaný identifikátor
-        C:\\ČVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c(31): error C2065: off64_t: nedeklarovaný identifikátor
-        C:\\ČVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c(32): error C2065: off64_t: nedeklarovaný identifikátor
-        C:\\ČVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-wen1yv\\OFF64_T.c(33): error C2065: off64_t: nedeklarovaný identifikátor
-        ninja: build stopped: subcommand failed.
-        
-      exitCode: 1
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckFunctionExists.cmake:86 (try_compile)"
-      - "lib/assimp/contrib/zlib/CMakeLists.txt:64 (check_function_exists)"
-    checks:
-      - "Looking for fseeko"
-    directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-34cta5"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-34cta5"
-    cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/\u010cVUT/pgr/pgrsem/lib/assimp/cmake-modules"
-    buildResult:
-      variable: "HAVE_FSEEKO"
-      cached: true
-      stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-34cta5'
-        
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_4cb18
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS -DCHECK_FUNCTION_EXISTS=fseeko /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_4cb18.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_4cb18.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-34cta5\\CheckFunctionExists.c
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_4cb18.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_4cb18.dir\\CheckFunctionExists.c.obj  /out:cmTC_4cb18.exe /implib:cmTC_4cb18.lib /pdb:cmTC_4cb18.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        FAILED: cmTC_4cb18.exe 
-        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.3.3\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_4cb18.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_4cb18.dir\\CheckFunctionExists.c.obj  /out:cmTC_4cb18.exe /implib:cmTC_4cb18.lib /pdb:cmTC_4cb18.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
-        LINK Pass 1: command "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_4cb18.dir\\CheckFunctionExists.c.obj /out:cmTC_4cb18.exe /implib:cmTC_4cb18.lib /pdb:cmTC_4cb18.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_4cb18.dir/intermediate.manifest CMakeFiles\\cmTC_4cb18.dir/manifest.res" failed (exit code 1120) with the following output:
-        CheckFunctionExists.c.obj : error LNK2019: Nerozpoznaný externí symbol fseeko odkazovaný ve funkci main\x0d
-        cmTC_4cb18.exe : fatal error LNK1120: Počet nerozpoznaných externích typů: 1\x0d
-        ninja: build stopped: subcommand failed.
-        
-      exitCode: 1
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "C:/Program Files/JetBrains/CLion 2024.3.3/bin/cmake/win/x64/share/cmake-3.30/Modules/CheckIncludeFile.cmake:90 (try_compile)"
-      - "lib/assimp/contrib/zlib/CMakeLists.txt:72 (check_include_file)"
-    checks:
-      - "Looking for unistd.h"
-    directories:
-      source: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-ktwdpp"
-      binary: "C:/\u010cVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-ktwdpp"
-    cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
-      CMAKE_MODULE_PATH: "C:/\u010cVUT/pgr/pgrsem/lib/assimp/cmake-modules"
-    buildResult:
-      variable: "Z_HAVE_UNISTD_H"
-      cached: true
-      stdout: |
-        Change Dir: 'C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/CMakeFiles/CMakeScratch/TryCompile-ktwdpp'
-        
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.3.3/bin/ninja/win/x64/ninja.exe" -v cmTC_b222c
-        [1/2] C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_b222c.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_b222c.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-ktwdpp\\CheckIncludeFile.c
-        FAILED: CMakeFiles/cmTC_b222c.dir/CheckIncludeFile.c.obj 
-        C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1439~1.335\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_b222c.dir\\CheckIncludeFile.c.obj /FdCMakeFiles\\cmTC_b222c.dir\\ /FS -c C:\\─îVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-ktwdpp\\CheckIncludeFile.c
-        C:\\ČVUT\\pgr\\pgrsem\\cmake-build-release-visual-studio\\CMakeFiles\\CMakeScratch\\TryCompile-ktwdpp\\CheckIncludeFile.c(1): fatal error C1083: Nejde otevřít soubor zahrnout: unistd.h: No such file or directory
-        ninja: build stopped: subcommand failed.
-        
-      exitCode: 1
 ...

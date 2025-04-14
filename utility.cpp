@@ -11,7 +11,6 @@ GLuint load_texture(char const * path) {
 
     int width, height, nrComponents;
     unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
-    stbi_write_png("test.png", width, height, 1, data, 0);
     if (data) {
         GLenum format;
         if (nrComponents == 1)

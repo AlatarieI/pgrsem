@@ -49,39 +49,42 @@ void Mesh::Draw(GLuint program) {
     unsigned int specularNr = 1;
     unsigned int normalNr   = 1;
     unsigned int heightNr   = 1;
-    for(unsigned int i = 0; i < textures.size(); i++) {
+    for(GLint i = 0; i < textures.size(); i++) {
         glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
         // retrieve texture number (the N in diffuse_textureN)
         string number;
         string name = textures[i].type;
-        if(name == "texture_diffuse")
+        if(name == "diffuse")
             number = std::to_string(diffuseNr++);
-        else if(name == "texture_specular")
+        else if(name == "specular")
             number = std::to_string(specularNr++);
-        else if(name == "texture_normal")
+        else if(name == "normal")
             number = std::to_string(normalNr++);
-        else if(name == "texture_height")
+        else if(name == "height")
             number = std::to_string(heightNr++);
 
         // now set the sampler to the correct texture unit
-        glUniform1i(glGetUniformLocation(program, (name + number).c_str()), i);
+        glUniform1i(glGetUniformLocation(program, ("materialTexture" + number + "." + name).c_str()), i);
         // and finally bind the texture
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
 
+    glUniform1i(glGetUniformLocation(program, "useDiffuseTexture"), useDiffuseTexture);
+    glUniform1i(glGetUniformLocation(program, "useSpecularTexture"), useSpecularTexture);
+
 
     // Material uniforms
-    glUniform3fv(glGetUniformLocation(program, "material.diffuseColor"), 1, glm::value_ptr(material.diffuseColor));
-    glUniform3fv(glGetUniformLocation(program, "material.specularColor"), 1, glm::value_ptr(material.specularColor));
+    glUniform3fv(glGetUniformLocation(program, "material.diffuse"), 1, glm::value_ptr(material.diffuse));
+    glUniform3fv(glGetUniformLocation(program, "material.specular"), 1, glm::value_ptr(material.specular));
     glUniform1f(glGetUniformLocation(program, "material.shininess"), material.shininess);
 
-    // draw mesh
+    // draw
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, nullptr);
+    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, nullptr);
     glBindVertexArray(0);
 
-    // always good practice to set everything back to defaults once configured.
-    for (unsigned int i = 0; i < textures.size(); ++i) {
+    // clean up after drawing
+    for (int i = 0; i < textures.size(); ++i) {
         glActiveTexture(GL_TEXTURE0 + i);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
