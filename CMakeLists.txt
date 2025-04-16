@@ -4,7 +4,8 @@ project(pgrsem)
 set(CMAKE_CXX_STANDARD 20)
 
 # Add glad
-add_library(glad STATIC lib/glad/src/glad.c)
+add_library(glad STATIC lib/glad/src/glad.c
+        header/globals.h)
 target_include_directories(glad PUBLIC lib/glad/include)
 
 # Add stb_image
@@ -42,17 +43,17 @@ set(ASSIMP_LIBRARY "${ASSIMP_DIR}/lib/x64/assimp-vc143-mt.lib")
 include_directories("${ASSIMP_DIR}/include")
 
 # Create executable
-add_executable(pgrsem main.cpp
-        GameObject.cpp
-        GameObject.h
-        Camera.cpp
-        Camera.h
-        Mesh.cpp
-        Mesh.h
-        Model.cpp
-        Model.h
-        utility.h
-        utility.cpp)
+add_executable(pgrsem
+        main.cpp
+        src/game_object.cpp
+        src/camera.cpp
+        src/mesh.cpp
+        src/Model.cpp
+        src/utility.cpp
+        src/Scene.cpp
+        src/init.cpp
+)
+
 
 # Copy shaders and resources
 #file(COPY ${CMAKE_SOURCE_DIR}/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -71,15 +72,21 @@ add_custom_command(
         ${CMAKE_BINARY_DIR}/resources
         COMMENT "Copying resource folder to build directory"
 )
-add_custom_command(
-        TARGET pgrsem POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/lib
-        ${CMAKE_BINARY_DIR}/lib
-        COMMENT "Copying lib folder to build directory"
-)
+#add_custom_command(
+#        TARGET pgrsem POST_BUILD
+#        COMMAND ${CMAKE_COMMAND} -E copy_directory
+#        ${CMAKE_SOURCE_DIR}/lib
+#        ${CMAKE_BINARY_DIR}/lib
+#        COMMENT "Copying lib folder to build directory"
+#)
+
+add_custom_command(TARGET pgrsem POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${ASSIMP_DIR}/bin/x64/assimp-vc143-mt.dll"
+        $<TARGET_FILE_DIR:pgrsem>)
 
 
 
+target_include_directories(pgrsem PRIVATE header)
 # Link libraries
 target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm ${ASSIMP_LIBRARY})

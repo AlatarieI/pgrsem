@@ -1,0 +1,15 @@
+# ninja log v6
+9	1110	7665364691348689	CMakeFiles/glad.dir/lib/glad/src/glad.c.obj	8985323b0386823b
+63	3805	7665364691888628	CMakeFiles/pgrsem.dir/src/mesh.cpp.obj	fb29859e280b3781
+1892	2037	7665364710178684	stb_image.lib	e75eb10d6b40a900
+1112	1382	7665364702378713	glad.lib	bbe9b1a40ed4850
+42	4336	7665364691678701	CMakeFiles/pgrsem.dir/src/game_object.cpp.obj	f156319810832471
+22	1891	7665364691478666	CMakeFiles/stb_image.dir/lib/stb_image/stb_image.cpp.obj	24adef1558d8c216
+1787	4868	7665364709128657	CMakeFiles/pgrsem.dir/src/utility.cpp.obj	a9480e3614ac2c6f
+52	1787	7665364691788676	CMakeFiles/pgrsem.dir/src/camera.cpp.obj	3ad945100336fd5f
+32	5148	7665364691578763	CMakeFiles/pgrsem.dir/main.cpp.obj	95d77bca437c28f1
+3805	3925	7665364729318794	CMakeFiles/pgrsem.dir/src/init.cpp.obj	eb375dc789d3ddb5
+1382	5603	7665364705088694	CMakeFiles/pgrsem.dir/src/model.cpp.obj	6048d8cf599c7936
+5	277	7665376137990477	build.ninja	557a17f9f149fd46
+2038	5990	7665364711638843	CMakeFiles/pgrsem.dir/src/scene.cpp.obj	5be56b4c087d6172
+5990	7052	7665364751158658	pgrsem.exe	a6443c79492d0d14

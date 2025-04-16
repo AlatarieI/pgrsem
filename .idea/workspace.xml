@@ -7,11 +7,12 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="358" type="long" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="14" type="long" />
   </component>
-  <component name="CMakePresetLoader">{
-  &quot;useNewFormat&quot;: true
-}</component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
   </component>
@@ -28,38 +29,93 @@
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Release-Visual Studio" ENABLED="true" CONFIG_NAME="Release" TOOLCHAIN_NAME="Visual Studio" />
-      <configuration PROFILE_NAME="Release-MinGW" ENABLED="true" CONFIG_NAME="Release" TOOLCHAIN_NAME="MinGW" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acd7307e-16ab-40b8-9077-3890551c2589" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/shaders/skyDome.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shaders/skyDome.vert" afterDir="false" />
+    <list default="true" id="a398c0b6-4ee7-4611-be98-5acf34216b4c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/header/game_object.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/header/globals.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/header/init.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/header/scene.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game_object.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/init.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Mesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/Mesh.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Model.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model.h" beforeDir="false" afterPath="$PROJECT_DIR$/Model.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameObject.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameObject.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/mesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/mesh.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/model.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/cache-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/cache-v2-c5afec4bbf7174c5755c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/cmakeFiles-v1-eca150af7f3c19e312de.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/codemodel-v2-edcd71a70ad6666b6782.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/index-2025-04-10T21-46-14-0845.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/directory-.-Release-d0094a50bb2071803777.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/directory-lib.glm-Release-ce07c1f5db497389ae15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/index-2025-04-14T01-25-24-0542.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-glad-Release-4574a467d99f0e81e8cf.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-pgrsem-Release-6963754fd0153c6da742.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-Release-MinGW-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-Release-MinGW-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/target-stb_image-Release-9323853dcab052d87e73.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/.cmake/api/v1/reply/toolchains-v1-6ee9c4da362d6f5a79fa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdC/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/3.30.5/CompilerIdCXX/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/CheckTypeSize/OFF64_T.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-Release-MinGW-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/build.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/CMakeFiles/Export/48d9c4119e0f845c087d34dc4fbb1ef2/assimpTargets-release.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/CMakeFiles/Export/48d9c4119e0f845c087d34dc4fbb1ef2/assimpTargets.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/assimp.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/cmake_uninstall.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/code/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/contrib/zlib/CTestTestfile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/contrib/zlib/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/contrib/zlib/zconf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/contrib/zlib/zlib.pc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/generated/assimpConfig.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/generated/assimpConfigVersion.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/include/assimp/config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/include/assimp/revision.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/test/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/assimp/test/headercheck/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-mingw/lib/glm/cmake_install.cmake" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/query/cache-v2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/query/cmakeFiles-v1" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/query/codemodel-v2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/query/toolchains-v1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cache-v2-ff2840219b9202a3b18d.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cmakeFiles-v1-e6836dc45968511f55f1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cache-v2-ab883258c468cae593d5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/cmakeFiles-v1-caae90fb783f1f51c2de.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/codemodel-v2-8b3919855c565fe302d7.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/directory-.-Release-d0094a50bb2071803777.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/directory-lib.glm-Release-ce07c1f5db497389ae15.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/index-2025-04-10T21-46-14-0672.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/index-2025-04-14T01-25-26-0933.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-glad-Release-93c7f1c8254927ee320e.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-pgrsem-Release-70fba1e167dadb6f9bca.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/target-stb_image-Release-71187cb36486b908f626.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.cmake/api/v1/reply/toolchains-v1-59c84e7e9823f39a3470.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_deps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/.ninja_log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeCache.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeCCompiler.cmake" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake" beforeDir="false" />
@@ -81,899 +137,10 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/CMakeFiles/rules.ninja" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/build.ninja" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/glad.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/CMakeFiles/Export/48d9c4119e0f845c087d34dc4fbb1ef2/assimpTargets-release.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/CMakeFiles/Export/48d9c4119e0f845c087d34dc4fbb1ef2/assimpTargets.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/CREDITS" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/WEB" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/assimp.pc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/Coveralls.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/CoverallsClear.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/CoverallsGenerateGcov.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/DebSourcePPA.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/FindDevIL.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/FindDirectX.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/FindPkgMacros.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/FindRT.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/FindZLIB.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/Findassimp.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/HunterGate.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/MinGW_x86_64.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/PrecompiledHeader.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/assimp-hunter-config.cmake.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/assimp-plain-config.cmake.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake-modules/cmake_uninstall.cmake.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/cmake_uninstall.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/code/CMakeFiles/assimp.dir/res/assimp.i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/code/CMakeFiles/assimp.dir/res/assimp.rc.res" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/code/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/contrib/zlib/CTestTestfile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/contrib/zlib/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/contrib/zlib/zconf.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/contrib/zlib/zlib.pc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/contrib/zlib/zlibstatic.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/generated/assimpConfig.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/generated/assimpConfigVersion.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Base64.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/BaseImporter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Bitmap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/BlobIOSystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ByteSwapper.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ColladaMetaData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Compiler/poppack1.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Compiler/pstdint.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Compiler/pushpack1.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/CreateAnimMesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/DefaultIOStream.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/DefaultIOSystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/DefaultLogger.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Exceptional.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Exporter.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/GenericProperty.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/GltfMaterial.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Hash.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/IOStream.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/IOStreamBuffer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/IOSystem.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Importer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/LineSplitter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/LogAux.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/LogStream.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Logger.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/MathFunctions.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/MemoryIOWrapper.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/NullLogger.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ObjMaterial.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ParsingUtils.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Profiler.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ProgressHandler.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/RemoveComments.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SGSpatialSort.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SceneCombiner.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SkeletonMeshBuilder.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SmallVector.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SmoothingGroups.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SmoothingGroups.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/SpatialSort.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/StandardShapes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/StreamReader.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/StreamWriter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/StringComparison.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/StringUtils.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Subdivision.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/TinyFormatter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/Vertex.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/XMLTools.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/XmlParser.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ZipArchiveIOSystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/aabb.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/ai_assert.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/anim.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/cexport.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/cfileio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/cimport.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/color4.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/color4.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/commonMetaData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/config.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/config.h.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/defs.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/fast_atof.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/importerdesc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/light.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/material.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/material.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/matrix3x3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/matrix3x3.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/matrix4x4.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/matrix4x4.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/mesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/metadata.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/pbrmaterial.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/port/AndroidJNI/AndroidJNIIOSystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/port/AndroidJNI/BundledAssetIOSystem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/postprocess.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/qnan.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/quaternion.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/quaternion.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/revision.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/scene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/texture.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/types.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/vector2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/vector2.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/vector3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/vector3.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/include/assimp/version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/readme_installer.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SharedCode/UTFConverter.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SharedCode/UTFConverter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/English.lproj/Credits.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/English.lproj/InfoPlist.strings" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/English.lproj/MainMenu.xib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/English.lproj/MyDocument.xib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/ModelLoaderHelperClasses.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/ModelLoaderHelperClasses.mm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/MyDocument.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/MyDocument.mm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/MyDocument.xcdatamodel/elements" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/MyDocument.xcdatamodel/layout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/SimpleAssimpViewX-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/SimpleAssimpViewX.xcodeproj/project.pbxproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/SimpleAssimpViewX.xcodeproj/vade.mode1v3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/SimpleAssimpViewX.xcodeproj/vade.pbxuser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/include/copy_assimp_headers_here.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleAssimpViewX/main.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleOpenGL/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleOpenGL/Sample_SimpleOpenGL.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleOpenGL/SimpleOpenGL.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleOpenGL/SimpleOpenGL.vcproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/Mesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/ModelLoader.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/ModelLoader.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/PixelShader.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/SafeRelease.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/TextureLoader.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/TextureLoader.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/VertexShader.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedDirectx11/SimpleTexturedDirectx11/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedOpenGL/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedOpenGL/SimpleTexturedOpenGL.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedOpenGL/SimpleTexturedOpenGL/SimpleTexturedOpenGL.vcproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/samples/SimpleTexturedOpenGL/SimpleTexturedOpenGL/src/model_loading.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/BlenderImporter/BlenderScene.cpp.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/BlenderImporter/BlenderSceneGen.h.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/BlenderImporter/genblenddna.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/OgreImporter/assimp.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/CppGenerator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/ExpressReader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/IFCReaderGen.cpp.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/IFCReaderGen.h.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/StepReaderGen.cpp.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/StepReaderGen.h.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/extract_step_token.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/genentitylist.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/ifc_entitylist.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/part403ts_wg3n2635mim_lf.exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/schema_ap203e2_mim_lf.exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/schema_ifc2x3.exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/StepImporter/step_entitylist.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/adjust_header_paths.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/scripts/android_crosscompile/make_android.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/stub/vc_redist.x64.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/test/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/test/headercheck/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/unins000.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/Assimp/unins000.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glad/include/KHR/khrplatform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glad/include/glad/glad.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glad/src/glad.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/bc_s.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/bc_sd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/build_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/build_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/closed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/compat_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/compat_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/compile_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/compile_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/context_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/context_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/deprecated.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/dir_13577e2d8b9423099662de029791bd7d.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/dir_7f92719a7fe62e5b064f87d7a3c220b1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/dir_a788ef6c2b1e5b367804e0b6ccfd6f11.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/dir_b11153cd0f4fd04a7564cc166f482635.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/doc.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/docd.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/doxygen.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/doxygen.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/dynsections.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/extra.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/files.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/folderclosed.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/folderclosedd.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/folderopen.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/folderopend.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/glfw3_8h.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/glfw3_8h_source.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/glfw3native_8h.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/glfw3native_8h_source.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__buttons.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__context.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__errors.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__gamepad__axes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__gamepad__buttons.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__hat__state.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__init.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__input.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__joysticks.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__keys.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__mods.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__monitor.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__native.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__shapes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__vulkan.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/group__window.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/input_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/input_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/internal_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/internals_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/intro_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/intro_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/main_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/menu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/menudata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/minus.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/minusd.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/monitor_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/monitor_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/moving_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/moving_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/nav_f.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/nav_fd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/nav_g.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/nav_h.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/nav_hd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/news.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/news_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/open.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/pages.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/plus.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/plusd.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/quick_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/quick_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_10.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_11.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_12.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_13.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_14.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_15.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_16.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_17.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_18.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_19.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_1f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/all_f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/classes_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/close.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/defines_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/files_8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/functions_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_10.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/groups_f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/mag.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/mag_d.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/mag_sel.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/mag_seld.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_10.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_11.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_b.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/pages_f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/search.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/searchdata.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/typedefs_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/search/variables_9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/spaces.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/splitbar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/splitbard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/struct_g_l_f_wallocator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/struct_g_l_f_wgamepadstate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/struct_g_l_f_wgammaramp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/struct_g_l_f_wimage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/struct_g_l_f_wvidmode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/sync_off.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/sync_on.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_ad.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_bd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_h.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_hd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_s.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tab_sd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/tabs.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/topics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/vulkan_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/vulkan_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/window_8md.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/docs/html/window_guide.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/include/GLFW/glfw3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/include/GLFW/glfw3native.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-mingw-w64/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-mingw-w64/libglfw3.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-mingw-w64/libglfw3dll.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-static-ucrt/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-static-ucrt/glfw3dll.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2013/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2013/glfw3.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2013/glfw3_mt.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2013/glfw3dll.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2015/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2015/glfw3.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2015/glfw3_mt.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2015/glfw3dll.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2017/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2017/glfw3.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2017/glfw3_mt.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2017/glfw3dll.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2019/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2019/glfw3.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2019/glfw3_mt.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2019/glfw3dll.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2022/glfw3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2022/glfw3.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2022/glfw3_mt.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glfw3/lib-vc2022/glfw3dll.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/CMakeLists.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/copying.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/_features.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/_fixes.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/_noise.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/_swizzle.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/_swizzle_func.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/_vectorize.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/compute_common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/compute_vector_decl.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/compute_vector_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_common.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_common_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_exponential.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_exponential_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_geometric.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_geometric_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_integer.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_integer_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_matrix.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_matrix_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_packing.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_packing_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_trigonometric.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_trigonometric_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_vector_relational.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/func_vector_relational_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/glm.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/qualifier.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/setup.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_float.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_half.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_half.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat2x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat2x2.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat2x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat2x3.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat2x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat2x4.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat3x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat3x2.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat3x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat3x3.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat3x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat3x4.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x2.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x3.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x4.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_mat4x4_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_quat.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_quat.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_quat_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec1.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec2.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec3.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec4.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/detail/type_vec4_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/exponential.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/_matrix_vectorize.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_clip_space.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_clip_space.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_common.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double2x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double2x2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double2x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double2x3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double2x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double2x4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double3x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double3x2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double3x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double3x3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double3x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double3x4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double4x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double4x2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double4x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double4x3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double4x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_double4x4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float2x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float2x2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float2x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float2x3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float2x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float2x4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float3x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float3x2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float3x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float3x3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float3x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float3x4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float4x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float4x2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float4x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float4x3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float4x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_float4x4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int2x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int2x2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int2x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int2x3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int2x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int2x4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int3x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int3x2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int3x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int3x3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int3x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int3x4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int4x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int4x2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int4x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int4x3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int4x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_int4x4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_integer.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_projection.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_projection.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_relational.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_transform.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_transform.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint2x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint2x2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint2x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint2x3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint2x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint2x4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint3x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint3x2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint3x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint3x3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint3x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint3x4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint4x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint4x2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint4x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint4x3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint4x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/matrix_uint4x4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_common.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_common_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_double.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_double_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_exponential.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_exponential.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_float.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_float_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_geometric.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_geometric.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_relational.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_transform.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_transform.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_trigonometric.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/quaternion_trigonometric.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_common.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_constants.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_constants.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_int_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_integer.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_packing.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_packing.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_reciprocal.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_reciprocal.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_relational.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_uint_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_ulp.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/scalar_ulp.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool1_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_bool4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_common.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double1_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_double4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float1_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float2_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float3_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_float4_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int1_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_int4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_integer.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_packing.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_packing.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_reciprocal.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_reciprocal.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_relational.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint1_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint2_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint3_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_uint4_sized.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_ulp.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/ext/vector_ulp.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/fwd.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/geometric.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/glm.cppm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/glm.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/bitfield.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/bitfield.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/color_space.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/color_space.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/constants.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/constants.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/epsilon.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/epsilon.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/integer.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_access.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_access.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_inverse.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_inverse.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_transform.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/matrix_transform.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/noise.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/noise.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/packing.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/packing.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/quaternion.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/quaternion.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/quaternion_simd.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/random.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/random.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/reciprocal.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/round.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/round.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/type_aligned.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/type_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/type_precision.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/type_ptr.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/type_ptr.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/ulp.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/ulp.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtc/vec1.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/associated_min_max.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/associated_min_max.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/bit.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/bit.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/closest_point.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/closest_point.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/color_encoding.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/color_encoding.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/color_space.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/color_space.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/color_space_YCoCg.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/color_space_YCoCg.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/common.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/common.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/compatibility.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/compatibility.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/component_wise.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/component_wise.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/dual_quaternion.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/dual_quaternion.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/easing.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/easing.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/euler_angles.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/euler_angles.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/extend.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/extend.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/extended_min_max.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/extended_min_max.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/exterior_product.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/exterior_product.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/fast_exponential.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/fast_exponential.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/fast_square_root.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/fast_square_root.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/fast_trigonometry.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/fast_trigonometry.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/float_notmalize.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/functions.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/functions.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/gradient_paint.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/gradient_paint.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/handed_coordinate_space.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/handed_coordinate_space.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/hash.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/hash.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/integer.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/intersect.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/intersect.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/io.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/io.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/log_base.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/log_base.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_cross_product.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_cross_product.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_decompose.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_decompose.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_factorisation.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_factorisation.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_interpolation.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_interpolation.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_major_storage.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_major_storage.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_operation.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_operation.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_query.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_query.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_transform_2d.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/matrix_transform_2d.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/mixed_product.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/mixed_product.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/norm.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/norm.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/normal.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/normal.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/normalize_dot.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/normalize_dot.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/number_precision.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/optimum_pow.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/optimum_pow.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/orthonormalize.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/orthonormalize.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/pca.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/pca.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/perpendicular.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/perpendicular.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/polar_coordinates.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/polar_coordinates.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/projection.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/projection.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/quaternion.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/quaternion.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/range.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/raw_data.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/raw_data.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/rotate_normalized_axis.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/rotate_normalized_axis.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/rotate_vector.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/rotate_vector.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/scalar_multiplication.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/scalar_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/scalar_relational.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/spline.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/spline.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/std_based_type.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/std_based_type.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/string_cast.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/string_cast.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/texture.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/texture.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/transform.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/transform.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/transform2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/transform2.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/type_aligned.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/type_aligned.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/type_trait.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/type_trait.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/vec_swizzle.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/vector_angle.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/vector_angle.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/vector_query.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/vector_query.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/wrap.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/gtx/wrap.inl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/integer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat2x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat2x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat2x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat3x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat3x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat3x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat4x2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat4x3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/mat4x4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/matrix.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/packing.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/common.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/exponential.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/geometric.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/integer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/matrix.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/neon.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/packing.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/platform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/trigonometric.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/simd/vector_relational.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/trigonometric.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/vec2.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/vec3.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/vec4.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/glm/vector_relational.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/stb_image/stb_image.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/stb_image/stb_image.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/lib/stb_image/stb_image_write.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/pgrsem.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/Wood_Tower_Nor.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/Wooden_Tower/Wood_Tower_Col.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/Wooden_Tower/Wood_Tower_Nor.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/Wooden_Tower/Wooden_Tower.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/Wooden_Tower/Wooden_Tower.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/Wooden_Tower/Wooden_Tower.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/ao.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/backpack.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/diffuse.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/roughness.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/source_attribution.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/backpack/specular.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/mountain/ground_grass.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/mountain/ground_grass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/mountain/mount.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/mountain/mount.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/models/mountain/mount.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/textures/awesomeface.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/textures/container.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/textures/container2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/textures/container2_specular.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/resources/textures/wall.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/fragment_shader.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/lightCube.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/lightCube.vert" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/shaders/vertex_shader.vert" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/stb_image.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/test" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-release-visual-studio/test.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/fragment_shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/fragment_shader.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/lightCube.frag" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/lightCube.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shaders/vertex_shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/shaders/vertex_shader.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/utility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility.h" beforeDir="false" afterPath="$PROJECT_DIR$/header/utility.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -984,14 +151,6 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release-Visual Studio" />
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="vs-template" />
-        <option value="fs-template" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -1001,42 +160,35 @@
     <option name="minorVersion" value="3.3" />
     <option name="productBranch" value="Classic" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2vRz3Ji4ujIItW1bBH3foe13vaE" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2vpAnLoFZAAl0t5ey0DWQ2kqQk6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;CMake Application.pgrsem.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/ČVUT/pgr/pgrsem&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CMakeSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.pgrsem.executor": "Run",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\ČVUT\pgr\pgrsem\resources\textures" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="CMake Application.pgrsem">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -1049,9 +201,6 @@
       </method>
     </configuration>
     <configuration name="pgrsem" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="pgrsem" TARGET_NAME="pgrsem" CONFIG_NAME="Release-Visual Studio" RUN_TARGET_PROJECT_NAME="pgrsem" RUN_TARGET_NAME="pgrsem">
-      <envs>
-        <env name="PATH" value="C:\ČVUT\pgr\pgrsem\lib\assimp\bin\x64" />
-      </envs>
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -1070,24 +219,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="acd7307e-16ab-40b8-9077-3890551c2589" name="Changes" comment="" />
-      <created>1744122474037</created>
+      <changelist id="a398c0b6-4ee7-4611-be98-5acf34216b4c" name="Changes" comment="" />
+      <created>1744831810158</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1744122474037</updated>
-      <workItem from="1744122476175" duration="2178000" />
-      <workItem from="1744226283555" duration="1283000" />
-      <workItem from="1744227595339" duration="20000" />
-      <workItem from="1744227631318" duration="10927000" />
-      <workItem from="1744278215118" duration="558000" />
-      <workItem from="1744278812503" duration="8090000" />
-      <workItem from="1744290227142" duration="1484000" />
-      <workItem from="1744295526868" duration="4160000" />
-      <workItem from="1744307831449" duration="3924000" />
-      <workItem from="1744311917292" duration="13367000" />
-      <workItem from="1744489405830" duration="4974000" />
-      <workItem from="1744496410071" duration="9000" />
-      <workItem from="1744563132154" duration="25874000" />
+      <updated>1744831810158</updated>
+      <workItem from="1744831812574" duration="2755000" />
     </task>
     <servers />
   </component>

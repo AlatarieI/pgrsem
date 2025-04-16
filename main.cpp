@@ -13,8 +13,11 @@
 #include <sstream>
 #include <iostream>
 
-#include <Camera.h>
-#include "Model.h"
+#include <camera.h>
+
+#include "game_object.h"
+#include "model.h"
+#include "scene.h"
 #include "utility.h"
 
 int SCR_WIDTH = 800;
@@ -42,7 +45,9 @@ GLint lightAmbientLoc, lightDiffuseLoc, lightSpecularLoc, materialAmbientLoc, ma
 
 glm::vec3 lightPos = glm::vec3(0.0f, 4.0f, -8.0f);
 
-Camera mainCamera(glm::vec3(0.0f, 0.0f, 2.0f));
+Camera* currentCamera;
+Camera camera1(glm::vec3(0.0f, 0.0f, 2.0f));
+Camera camera2(glm::vec3(0.0f, 0.0f, 12.0f));
 
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -78,32 +83,37 @@ void processInput(GLFWwindow *window) {
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-        mainCamera.Speed = 6.5f;
+        currentCamera->Speed = 6.5f;
     else
-        mainCamera.Speed = 3.0f;
+        currentCamera->Speed = 3.0f;
+
+    if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
+        currentCamera = &camera1;
+    if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
+        currentCamera = &camera2;
 
     if (move_camera) {
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-            mainCamera.Move(FRONT, deltaTime);
+            currentCamera->Move(FRONT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            mainCamera.Move(BACK, deltaTime);
+            currentCamera->Move(BACK, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-            mainCamera.Move(LEFT, deltaTime);
+            currentCamera->Move(LEFT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-            mainCamera.Move(RIGHT, deltaTime);
+            currentCamera->Move(RIGHT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-            mainCamera.Move(UP, deltaTime);
+            currentCamera->Move(UP, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-            mainCamera.Move(DOWN, deltaTime);
+            currentCamera->Move(DOWN, deltaTime);
 
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-            mainCamera.ChangeDirection(0.0f, 0.3f);
+            currentCamera->ChangeDirection(0.0f, 0.4f);
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-            mainCamera.ChangeDirection(0.0f, -0.3f);
+            currentCamera->ChangeDirection(0.0f, -0.4f);
         if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-            mainCamera.ChangeDirection(-0.3f, 0.0f);
+            currentCamera->ChangeDirection(-0.4f, 0.0f);
         if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            mainCamera.ChangeDirection(0.3f, 0.0f);
+            currentCamera->ChangeDirection(0.4f, 0.0f);
     }
 }
 
@@ -139,7 +149,7 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
     lastY = yPos;
 
     if (move_camera) {
-        mainCamera.ChangeDirection(xOffset, yOffset);
+        currentCamera->ChangeDirection(xOffset, yOffset);
     }
 }
 
@@ -172,18 +182,6 @@ void init() {
 
     glEnable(GL_DEPTH_TEST);
 }
-
-std::string readFile(const char* filename) {
-    std::ifstream file(filename, std::ios::binary);
-    if (!file) {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        exit(EXIT_FAILURE);
-    }
-    std::stringstream buffer;
-    buffer << file.rdbuf();
-    return buffer.str();
-}
-
 
 GLuint create_program(const char* vertex_file_name, const char* fragment_file_name) {
     std::string vertexCode = readFile(vertex_file_name);
@@ -362,7 +360,7 @@ void generateSkyDome() {
     // Now create indices
     for (unsigned int y = 0; y < Y_SEGMENTS; ++y) {
         for (unsigned int x = 0; x < X_SEGMENTS; ++x) {
-            unsigned int i0 = y       * (X_SEGMENTS + 1) + x;
+            unsigned int i0 = y * (X_SEGMENTS + 1) + x;
             unsigned int i1 = (y + 1) * (X_SEGMENTS + 1) + x;
 
             indices.push_back(i0);
@@ -404,7 +402,7 @@ void drawSkyDome() {
     glDepthMask(GL_FALSE);
     glUseProgram(skyDome_shader);
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, mainCamera.Position);
+    model = glm::translate(model, currentCamera->Position);
     model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     model = glm::scale(model, glm::vec3(10.0f));
 
@@ -435,8 +433,7 @@ void setLightUniforms() {
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.direction"),
                                     glm::sin(glm::radians(-30.0f)) * glm::cos(glm::radians(45.0f)),
                                     glm::sin(glm::radians(-30.0f)) * glm::sin(glm::radians(45.0f)),
-                                    glm::cos(glm::radians(-30.0f)));
-    // glUniform3f(glGetUniformLocation(main_shader, "dirLight.direction"), 0.0f,1.0f,0.0f);
+                                    glm::cos(glm::radians(-30.0f))); // approximate direction to sky dome sun
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.ambient"), 0.05f, 0.05f, 0.05f);
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
@@ -454,8 +451,8 @@ void setLightUniforms() {
     }
 
     // Spotlight
-    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.position"), 1, glm::value_ptr(mainCamera.Position));
-    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.direction"), 1, glm::value_ptr(mainCamera.Front));
+    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.position"), 1, glm::value_ptr(currentCamera->Position));
+    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.direction"), 1, glm::value_ptr(currentCamera->Front));
     glUniform3f(glGetUniformLocation(main_shader, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
     glUniform3f(glGetUniformLocation(main_shader, "spotLight.diffuse"), 1.0f, 1.0f, 1.0f);
     glUniform3f(glGetUniformLocation(main_shader, "spotLight.specular"), 1.0f, 1.0f, 1.0f);
@@ -464,6 +461,18 @@ void setLightUniforms() {
     glUniform1f(glGetUniformLocation(main_shader, "spotLight.quadratic"), 0.032f);
     glUniform1f(glGetUniformLocation(main_shader, "spotLight.cutOff"), glm::cos(glm::radians(12.5f)));
     glUniform1f(glGetUniformLocation(main_shader, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));
+}
+
+Scene createScene() {
+    Scene scene = Scene();
+
+    SceneNode* node = new SceneNode(new GameObject("resources/models/mountain/mount.obj", true, main_shader, glm::vec3(0.0f, 9.0f, 0.0f)));
+    node->children.push_back(new SceneNode(new GameObject("resources/models/Wooden_Tower/Wooden_Tower.obj", false, main_shader, glm::vec3(0.0f, 0.0f, 0.0f))));
+    scene.addNode(node);
+
+    scene.addNode(new SceneNode(new GameObject("resources/models/backpack/backpack.obj", true, main_shader, glm::vec3(0.0f, 0.0f, 1.0f))));
+
+    return scene;
 }
 
 
@@ -483,11 +492,16 @@ int main() {
 
     locations_setup();
 
-    Model ourModel("resources/models/backpack/backpack.obj", true);
-    Model ourModel2("resources/models/mountain/mount.obj", true);
-    Model ourModel3("resources/models/Wooden_Tower/Wooden_Tower.obj");
+    // Model ourModel("resources/models/backpack/backpack.obj", true);
+    // Model ourModel2("resources/models/mountain/mount.obj", true);
+    // Model ourModel3("resources/models/Wooden_Tower/Wooden_Tower.obj");
 
-    view = mainCamera.GetViewMatrix();
+    currentCamera = &camera1;
+
+    view = currentCamera->GetViewMatrix();
+    
+    Scene scene = createScene();
+
 
     while(!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
@@ -500,16 +514,15 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH)/ static_cast<float>(SCR_HEIGHT) , 0.1f, 100.0f);
-        view = mainCamera.GetViewMatrix();
+        view = currentCamera->GetViewMatrix();
         lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
-
 
         drawSkyDome();
 
         glUseProgram(main_shader);
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        glUniform3fv(glGetUniformLocation(main_shader, "viewPos"), 1, glm::value_ptr(mainCamera.Position));
+        glUniform3fv(glGetUniformLocation(main_shader, "viewPos"), 1, glm::value_ptr(currentCamera->Position));
 
 
         setLightUniforms();
@@ -551,26 +564,28 @@ int main() {
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        // glm::mat4 model = glm::mat4(1.0f);
+        // model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f)); // translate it down so it's at the center of the scene
+        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //
+        // ourModel.draw(main_shader);
+        // game_object.draw();
+        scene.draw();
 
-        ourModel.Draw(main_shader);
+        // model = glm::mat4(1.0f);
+        // model = glm::translate(model, glm::vec3(0.0f, 9.0f, 0.0f));
+        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //
+        // ourModel3.draw(main_shader);
 
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 9.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-        ourModel3.Draw(main_shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 4.0f, 12.0f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-        ourModel2.Draw(main_shader);
+        // model = glm::mat4(1.0f);
+        // model = glm::translate(model, glm::vec3(0.0f, 4.0f, 12.0f));
+        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //
+        // ourModel2.draw(main_shader);
 
 
 
@@ -584,7 +599,7 @@ int main() {
         glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
         GLint colorLoc = glGetUniformLocation(light_cube_shader, "color");
-        glUniform3fv(colorLoc, 1, glm::value_ptr(mainCamera.Position));
+        glUniform3fv(colorLoc, 1, glm::value_ptr(currentCamera->Position));
         glBindVertexArray(light_cube_VAO);
 
         for (unsigned int i = 0; i < 4; i++) {
