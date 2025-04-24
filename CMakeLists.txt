@@ -3,9 +3,27 @@ project(pgrsem)
 
 set(CMAKE_CXX_STANDARD 20)
 
+# Create executable
+add_executable(pgrsem
+        main.cpp
+        src/game_object.cpp
+        src/camera.cpp
+        src/mesh.cpp
+        src/Model.cpp
+        src/utility.cpp
+        src/Scene.cpp
+        src/init.cpp
+        src/scene_object.cpp
+        src/lights.cpp
+)
+
+
+target_include_directories(pgrsem PRIVATE header)
+
+target_include_directories(pgrsem PRIVATE lib)
+
 # Add glad
-add_library(glad STATIC lib/glad/src/glad.c
-        header/globals.h)
+add_library(glad STATIC lib/glad/src/glad.c)
 target_include_directories(glad PUBLIC lib/glad/include)
 
 # Add stb_image
@@ -42,18 +60,6 @@ set(ASSIMP_LIBRARY "${ASSIMP_DIR}/lib/x64/assimp-vc143-mt.lib")
 # Include directory
 include_directories("${ASSIMP_DIR}/include")
 
-# Create executable
-add_executable(pgrsem
-        main.cpp
-        src/game_object.cpp
-        src/camera.cpp
-        src/mesh.cpp
-        src/Model.cpp
-        src/utility.cpp
-        src/Scene.cpp
-        src/init.cpp
-)
-
 
 # Copy shaders and resources
 #file(COPY ${CMAKE_SOURCE_DIR}/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -87,6 +93,6 @@ add_custom_command(TARGET pgrsem POST_BUILD
 
 
 
-target_include_directories(pgrsem PRIVATE header)
+
 # Link libraries
 target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm ${ASSIMP_LIBRARY})

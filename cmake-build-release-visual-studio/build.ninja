@@ -41,6 +41,115 @@ include CMakeFiles\rules.ninja
 
 cmake_ninja_workdir = C$:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio\
 # =============================================================================
+# Object build statements for EXECUTABLE target pgrsem
+
+
+#############################################
+# Order-only phony target for pgrsem
+
+build cmake_object_order_depends_target_pgrsem: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_stb_image
+
+build CMakeFiles\pgrsem.dir\main.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\main.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\game_object.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\game_object.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\camera.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\camera.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\mesh.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\mesh.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\model.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\model.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\utility.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\utility.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\scene.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\scene.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\init.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\init.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\scene_object.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\scene_object.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+build CMakeFiles\pgrsem.dir\src\lights.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\lights.cpp || cmake_object_order_depends_target_pgrsem
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_PDB = pgrsem.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target pgrsem
+
+
+#############################################
+# Link the executable pgrsem.exe
+
+build pgrsem.exe: CXX_EXECUTABLE_LINKER__pgrsem_Release CMakeFiles\pgrsem.dir\main.cpp.obj CMakeFiles\pgrsem.dir\src\game_object.cpp.obj CMakeFiles\pgrsem.dir\src\camera.cpp.obj CMakeFiles\pgrsem.dir\src\mesh.cpp.obj CMakeFiles\pgrsem.dir\src\model.cpp.obj CMakeFiles\pgrsem.dir\src\utility.cpp.obj CMakeFiles\pgrsem.dir\src\scene.cpp.obj CMakeFiles\pgrsem.dir\src\init.cpp.obj CMakeFiles\pgrsem.dir\src\scene_object.cpp.obj CMakeFiles\pgrsem.dir\src\lights.cpp.obj | C$:\ČVUT\pgr\pgrsem\lib\glfw3\lib-vc2022\glfw3.lib glad.lib stb_image.lib C$:\ČVUT\pgr\pgrsem\lib\assimp\lib\x64\assimp-vc143-mt.lib || glad.lib stb_image.lib
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -MD
+  LINK_FLAGS = /machine:x64 /INCREMENTAL:NO /subsystem:console
+  LINK_LIBRARIES = C:\ČVUT\pgr\pgrsem\lib\glfw3\lib-vc2022\glfw3.lib  glad.lib  opengl32.lib  stb_image.lib  C:\ČVUT\pgr\pgrsem\lib\assimp\lib\x64\assimp-vc143-mt.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = CMakeFiles\pgrsem.dir
+  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio && "C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_directory C:/ČVUT/pgr/pgrsem/shaders C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/shaders && cd /D C:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio && "C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_directory C:/ČVUT/pgr/pgrsem/resources C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/resources && cd /D C:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio && "C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/ČVUT/pgr/pgrsem/lib/assimp/bin/x64/assimp-vc143-mt.dll C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio"
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
+  TARGET_FILE = pgrsem.exe
+  TARGET_IMPLIB = pgrsem.lib
+  TARGET_PDB = pgrsem.pdb
+
+# =============================================================================
 # Object build statements for STATIC_LIBRARY target glad
 
 
@@ -110,99 +219,6 @@ build stb_image.lib: CXX_STATIC_LIBRARY_LINKER__stb_image_Release CMakeFiles\stb
   TARGET_FILE = stb_image.lib
   TARGET_PDB = stb_image.pdb
 
-# =============================================================================
-# Object build statements for EXECUTABLE target pgrsem
-
-
-#############################################
-# Order-only phony target for pgrsem
-
-build cmake_object_order_depends_target_pgrsem: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_stb_image
-
-build CMakeFiles\pgrsem.dir\main.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\main.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\game_object.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\game_object.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\camera.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\camera.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\mesh.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\mesh.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\model.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\model.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\utility.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\utility.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\scene.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\scene.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-build CMakeFiles\pgrsem.dir\src\init.cpp.obj: CXX_COMPILER__pgrsem_unscanned_Release C$:\ČVUT\pgr\pgrsem\src\init.cpp || cmake_object_order_depends_target_pgrsem
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\ČVUT\pgr\pgrsem\lib\glfw3\include -IC:\ČVUT\pgr\pgrsem\lib\glm -IC:\ČVUT\pgr\pgrsem\lib\assimp\include -IC:\ČVUT\pgr\pgrsem\header -IC:\ČVUT\pgr\pgrsem\lib\glad\include -IC:\ČVUT\pgr\pgrsem\lib\stb_image -IC:\ČVUT\pgr\pgrsem
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  OBJECT_FILE_DIR = CMakeFiles\pgrsem.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_PDB = pgrsem.pdb
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target pgrsem
-
-
-#############################################
-# Link the executable pgrsem.exe
-
-build pgrsem.exe: CXX_EXECUTABLE_LINKER__pgrsem_Release CMakeFiles\pgrsem.dir\main.cpp.obj CMakeFiles\pgrsem.dir\src\game_object.cpp.obj CMakeFiles\pgrsem.dir\src\camera.cpp.obj CMakeFiles\pgrsem.dir\src\mesh.cpp.obj CMakeFiles\pgrsem.dir\src\model.cpp.obj CMakeFiles\pgrsem.dir\src\utility.cpp.obj CMakeFiles\pgrsem.dir\src\scene.cpp.obj CMakeFiles\pgrsem.dir\src\init.cpp.obj | C$:\ČVUT\pgr\pgrsem\lib\glfw3\lib-vc2022\glfw3.lib glad.lib stb_image.lib C$:\ČVUT\pgr\pgrsem\lib\assimp\lib\x64\assimp-vc143-mt.lib || glad.lib stb_image.lib
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -MD
-  LINK_FLAGS = /machine:x64 /INCREMENTAL:NO /subsystem:console
-  LINK_LIBRARIES = C:\ČVUT\pgr\pgrsem\lib\glfw3\lib-vc2022\glfw3.lib  glad.lib  opengl32.lib  stb_image.lib  C:\ČVUT\pgr\pgrsem\lib\assimp\lib\x64\assimp-vc143-mt.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\pgrsem.dir
-  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio && "C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_directory C:/ČVUT/pgr/pgrsem/shaders C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/shaders && cd /D C:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio && "C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_directory C:/ČVUT/pgr/pgrsem/resources C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio/resources && cd /D C:\ČVUT\pgr\pgrsem\cmake-build-release-visual-studio && "C:\Program Files\JetBrains\CLion 2024.3.3\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/ČVUT/pgr/pgrsem/lib/assimp/bin/x64/assimp-vc143-mt.dll C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio"
-  PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\pgrsem.dir\
-  TARGET_FILE = pgrsem.exe
-  TARGET_IMPLIB = pgrsem.lib
-  TARGET_PDB = pgrsem.pdb
-
 
 #############################################
 # Utility command for edit_cache
@@ -271,7 +287,7 @@ build stb_image: phony stb_image.lib
 #############################################
 # Folder: C:/ČVUT/pgr/pgrsem/cmake-build-release-visual-studio
 
-build all: phony glad.lib stb_image.lib pgrsem.exe lib\glm\all
+build all: phony pgrsem.exe glad.lib stb_image.lib lib\glm\all
 
 # =============================================================================
 
