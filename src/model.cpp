@@ -30,6 +30,8 @@ void Model::loadModel(string const &path, bool flipUV) {
         cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << endl;
         return;
     }
+
+    printf("Loaded model %s\n", path.c_str());
     // retrieve the directory path of the filepath
     directory = path.substr(0, path.find_last_of('/'));
 
@@ -39,6 +41,7 @@ void Model::loadModel(string const &path, bool flipUV) {
 
 
 void Model::processNode(aiNode *node, const aiScene *scene) {
+    printf("Processing node %s, meshes %d\n", node->mName.data, node->mNumMeshes);
     // process each mesh located at the current node
     for(unsigned int i = 0; i < node->mNumMeshes; i++) {
         // the node object only contains indices to index the actual objects in the scene.

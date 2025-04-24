@@ -73,7 +73,15 @@ void Mesh::Draw(GLuint program) {
     glUniform1i(glGetUniformLocation(program, "useSpecularTexture"), useSpecularTexture);
 
 
+    // glm::vec3 defaultDiffuseColor(255.0f, 0.0f, 255.0f);
+    // glm::vec3 defaultSpecularColor(0.5f, 0.5f, 0.5f);
+    // float defaultShininess = 2.0f;
+
     // Material uniforms
+    // glUniform3fv(glGetUniformLocation(program, "material.diffuse"), 1, glm::value_ptr(defaultDiffuseColor));
+    // glUniform3fv(glGetUniformLocation(program, "material.specular"), 1, glm::value_ptr(defaultSpecularColor));
+    // glUniform1f(glGetUniformLocation(program, "material.shininess"), defaultShininess);
+
     glUniform3fv(glGetUniformLocation(program, "material.diffuse"), 1, glm::value_ptr(material.diffuse));
     glUniform3fv(glGetUniformLocation(program, "material.specular"), 1, glm::value_ptr(material.specular));
     glUniform1f(glGetUniformLocation(program, "material.shininess"), material.shininess);

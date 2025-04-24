@@ -107,13 +107,13 @@ void processInput(GLFWwindow *window) {
             currentCamera->Move(DOWN, deltaTime);
 
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-            currentCamera->ChangeDirection(0.0f, 0.4f);
+            currentCamera->ChangeDirection(0.0f, 1.0f);
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-            currentCamera->ChangeDirection(0.0f, -0.4f);
+            currentCamera->ChangeDirection(0.0f, -1.0f);
         if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-            currentCamera->ChangeDirection(-0.4f, 0.0f);
+            currentCamera->ChangeDirection(-1.0f, 0.0f);
         if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            currentCamera->ChangeDirection(0.4f, 0.0f);
+            currentCamera->ChangeDirection(1.0f, 0.0f);
     }
 }
 
@@ -431,10 +431,10 @@ void setLightUniforms() {
 
     // Directional light
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.direction"),
-                                    glm::sin(glm::radians(-30.0f)) * glm::cos(glm::radians(45.0f)),
-                                    glm::sin(glm::radians(-30.0f)) * glm::sin(glm::radians(45.0f)),
+                                    glm::sin(glm::radians(-30.0f)) * glm::cos(glm::radians(70.0f)),
+                                    glm::sin(glm::radians(-30.0f)) * glm::sin(glm::radians(70.0f)),
                                     glm::cos(glm::radians(-30.0f))); // approximate direction to sky dome sun
-    glUniform3f(glGetUniformLocation(main_shader, "dirLight.ambient"), 0.05f, 0.05f, 0.05f);
+    glUniform3f(glGetUniformLocation(main_shader, "dirLight.ambient"), 0.2f, 0.2f, 0.2f);
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
@@ -466,11 +466,17 @@ void setLightUniforms() {
 Scene createScene() {
     Scene scene = Scene();
 
-    SceneNode* node = new SceneNode(new GameObject("resources/models/mountain/mount.obj", true, main_shader, glm::vec3(0.0f, 9.0f, 0.0f)));
-    node->children.push_back(new SceneNode(new GameObject("resources/models/Wooden_Tower/Wooden_Tower.obj", false, main_shader, glm::vec3(0.0f, 0.0f, 0.0f))));
-    scene.addNode(node);
+    // SceneNode* node = new SceneNode(new GameObject("resources/models/mountain/mount.obj", true, main_shader, glm::vec3(0.0f, 9.0f, 0.0f)));
+    // node->children.push_back(new SceneNode(new GameObject("resources/models/Wooden_Tower/Wooden_Tower.obj", false, main_shader, glm::vec3(0.0f, 0.0f, 0.0f))));
+    // scene.addNode(node);
+    //
+    // scene.addNode(new SceneNode(new GameObject("resources/models/backpack/backpack.obj", true, main_shader, glm::vec3(0.0f, 0.0f, 1.0f))));
+    //
+    // scene.addNode(new SceneNode(new GameObject("resources/models/ground/ground.obj", true, main_shader,
+    //         glm::vec3(0.0f), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(0.1f))));
 
-    scene.addNode(new SceneNode(new GameObject("resources/models/backpack/backpack.obj", true, main_shader, glm::vec3(0.0f, 0.0f, 1.0f))));
+    scene.addNode(new SceneNode(new GameObject("resources/models/myisland/myisland.obj", false, main_shader,
+            glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f))));
 
     return scene;
 }
@@ -492,7 +498,7 @@ int main() {
 
     locations_setup();
 
-    // Model ourModel("resources/models/backpack/backpack.obj", true);
+    // Model ourModel("resources/models/tropical-island/island.obj", true);
     // Model ourModel2("resources/models/mountain/mount.obj", true);
     // Model ourModel3("resources/models/Wooden_Tower/Wooden_Tower.obj");
 
@@ -566,11 +572,13 @@ int main() {
 
         // glm::mat4 model = glm::mat4(1.0f);
         // model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f)); // translate it down so it's at the center of the scene
-        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        // model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
         // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         //
         // ourModel.draw(main_shader);
         // game_object.draw();
+
+
         scene.draw();
 
         // model = glm::mat4(1.0f);
