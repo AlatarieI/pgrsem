@@ -33,11 +33,11 @@ public:
 
     Camera(glm::vec3 position, float speed, float sensitivity = 0.1f, float yaw = -90.0f, float pitch = 0.0f);
 
-    glm::mat4 GetViewMatrix();
+    glm::mat4 getViewMatrix();
 
-    void Move(Directions direction, float deltaTime);
+    void move(Directions direction, float deltaTime);
 
-    void ChangeDirection(float xOffset, float yOffset);
+    void changeDirection(float xOffset, float yOffset);
 };
 
 

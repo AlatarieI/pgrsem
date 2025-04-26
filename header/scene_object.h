@@ -6,6 +6,8 @@
 #define SCENE_OBJECT_H
 #include <glm.hpp>
 #include <string>
+#include <glad/glad.h>
+#include <gtc/matrix_transform.hpp>
 
 
 class SceneObject {
@@ -13,12 +15,21 @@ public:
 
     GLuint shader;
 
-    SceneObject parent;
+    SceneObject* parent;
 
     std::string name;
-    glm::vec3 position;
-    int modelIndex;  // Index into models
 
+    glm::vec3 position{};
+    glm::vec3 rotation{};
+    glm::vec3 scale{};
+
+    int modelIndex{};
+
+    SceneObject();
+
+    SceneObject(GLuint shader,  int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+
+    [[nodiscard]] glm::mat4 getModelMatrix() const;
 };
 
 

@@ -1,31 +1,37 @@
 #include "scene.h"
 
+#include <Camera.h>
+#include <Camera.h>
+#include <Camera.h>
+#include <Camera.h>
+#include <Camera.h>
+#include <Camera.h>
+
 using json = nlohmann::json;
 
-int Scene::addModel(std::string path) {
-    // Check if model already loaded
+int Scene::addModel(std::string path, bool flipUV, bool gamma) {
     for (int i = 0; i < modelPaths.size(); ++i) {
         if (modelPaths[i] == path)
             return i;
     }
 
-    Model* newModel = new Model(path);
+    Model* newModel = new Model(path, flipUV, gamma);
     models.push_back(newModel);
     modelPaths.push_back(path);
     return models.size() - 1;
 }
 
-void Scene::addObject(int modelIndex, glm::vec3 position) {
-    if (modelIndex < 0 || modelIndex >= models.size()) return;
-    SceneObject obj;
-    obj.modelIndex = modelIndex;
-    obj.position = position;
-    objects.push_back(obj);
+int Scene::addModel(Model* model) {
+    models.push_back(model);
+    modelPaths.push_back("");
+    return models.size() - 1;
 }
 
-void Scene::addObject(std::string path, glm::vec3 position) {
-    int index = addModel(path);
-    addObject(index, position);
+void Scene::addObject(std::string name, GLuint shader, int modelIndex,  glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) {
+    if (modelIndex < 0 || modelIndex >= models.size()) return;
+    SceneObject obj = SceneObject(shader,  modelIndex, position, rotation, scale);
+    obj.name = name;
+    objects.push_back(obj);
 }
 
 void Scene::addPointLight(PointLight light) {
@@ -45,29 +51,46 @@ void Scene::addCamera(Camera camera) {
 }
 
 Camera* Scene::getActiveCamera() {
-    if (activeCameraIndex >= 0 && activeCameraIndex < cameras.size())
-        return &cameras[activeCameraIndex];
-    return nullptr;
+    return &cameras[activeCameraIndex];
 }
 
-void Scene::draw() {
+void Scene::draw(glm::mat4 projection) {
     for (const auto& obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size()) {
-            // Set model matrix and pass to shader in actual usage
-            models[obj.modelIndex]->draw(obj.shader); // Replace 0 with actual shader program
+            auto model = obj.getModelMatrix();
+            // auto model = glm::mat4(1.0f);
+            glUniformMatrix4fv(glGetUniformLocation(obj.shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+            auto view = getActiveCamera()->getViewMatrix();
+            glUniformMatrix4fv(glGetUniformLocation(obj.shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+            glUniformMatrix4fv(glGetUniformLocation(obj.shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+            models[obj.modelIndex]->draw(obj.shader);
         }
     }
 }
 
 void Scene::save(const std::string& file) {
     json j;
-    j["models"] = modelPaths;
+
+    for (int i = 0; i < models.size(); ++i) {
+        if (!modelPaths[i].empty()) {
+            Model* model = models[i];
+            j["models"].push_back({
+                {"path", modelPaths[i]},
+                {"flipUV", model->flipUV},
+                {"gamma", model->gammaCorrection}
+            });
+        }
+
+    }
     j["skyTexturePath"] = skyTexturePath;
 
     for (const auto& obj : objects) {
         j["objects"].push_back({
+            {"name", obj.name},
             {"modelIndex", obj.modelIndex},
-            {"position", {obj.position.x, obj.position.y, obj.position.z}}
+            {"position", {obj.position.x, obj.position.y, obj.position.z}},
+            {"rotation", {obj.rotation.x, obj.rotation.y, obj.rotation.z}},
+            {"scale", {obj.scale.x, obj.scale.y, obj.scale.z}}
         });
     }
 
@@ -151,8 +174,11 @@ void Scene::load(const std::string& file) {
     spotLights.clear();
     cameras.clear();
 
-    for (const auto& path : j["models"]) {
-        addModel(path);
+    for (const auto& m : j["models"]) {
+        std::string path = m["path"];
+        bool flipUV = m["flipUV"];
+        bool gamma = m["gamma"];
+        addModel(path, flipUV, gamma);
     }
 
     if (j.contains("skyTexturePath")) {
@@ -161,14 +187,19 @@ void Scene::load(const std::string& file) {
 
     for (const auto& o : j["objects"]) {
         SceneObject obj;
+        obj.name = o["name"];
         obj.modelIndex = o["modelIndex"];
         auto pos = o["position"];
+        auto rot = o["rotation"];
+        auto scale = o["scale"];
         obj.position = glm::vec3(pos[0], pos[1], pos[2]);
+        obj.rotation = glm::vec3(rot[0], rot[1], rot[2]);
+        obj.scale = glm::vec3(scale[0], scale[1], scale[2]);
         objects.push_back(obj);
     }
 
     for (const auto& l : j["pointLights"]) {
-        PointLight light;
+        PointLight light{};
         light.position = glm::vec3(l["position"][0], l["position"][1], l["position"][2]);
         light.ambient = glm::vec3(l["ambient"][0], l["ambient"][1], l["ambient"][2]);
         light.diffuse = glm::vec3(l["diffuse"][0], l["diffuse"][1], l["diffuse"][2]);
@@ -180,7 +211,7 @@ void Scene::load(const std::string& file) {
     }
 
     for (const auto& l : j["directionalLights"]) {
-        DirectionalLight light;
+        DirectionalLight light{};
         light.direction = glm::vec3(l["direction"][0], l["direction"][1], l["direction"][2]);
         light.ambient = glm::vec3(l["ambient"][0], l["ambient"][1], l["ambient"][2]);
         light.diffuse = glm::vec3(l["diffuse"][0], l["diffuse"][1], l["diffuse"][2]);
@@ -189,7 +220,7 @@ void Scene::load(const std::string& file) {
     }
 
     for (const auto& l : j["spotLights"]) {
-        SpotLight light;
+        SpotLight light{};
         light.position = glm::vec3(l["position"][0], l["position"][1], l["position"][2]);
         light.direction = glm::vec3(l["direction"][0], l["direction"][1], l["direction"][2]);
         light.ambient = glm::vec3(l["ambient"][0], l["ambient"][1], l["ambient"][2]);
@@ -204,7 +235,7 @@ void Scene::load(const std::string& file) {
     }
 
     for (const auto& cam : j["cameras"]) {
-        Camera c;
+        Camera c{};
         c.Position = glm::vec3(cam["position"][0], cam["position"][1], cam["position"][2]);
         c.Front = glm::vec3(cam["front"][0], cam["front"][1], cam["front"][2]);
         c.Up = glm::vec3(cam["up"][0], cam["up"][1], cam["up"][2]);

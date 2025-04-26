@@ -22,6 +22,7 @@ target_include_directories(pgrsem PRIVATE header)
 
 target_include_directories(pgrsem PRIVATE lib)
 
+
 # Add glad
 add_library(glad STATIC lib/glad/src/glad.c)
 target_include_directories(glad PUBLIC lib/glad/include)

@@ -29,6 +29,7 @@ public:
     vector<Mesh>    meshes;
     string directory;
     bool gammaCorrection;
+    bool flipUV;
 
     // constructor, expects a filepath to a 3D model.
     Model(string const &path, bool flipUV = false, bool gamma = false);

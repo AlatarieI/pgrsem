@@ -4,7 +4,7 @@
 
 #include "model.h"
 
-Model::Model(string const &path, bool flipUV, bool gamma) : gammaCorrection(gamma) {
+Model::Model(string const &path, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV) {
     loadModel(path, flipUV);
 }
 

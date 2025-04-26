@@ -9,8 +9,9 @@
 #include <queue>
 #include <string>
 #include <fstream>
-#include <nlohmann/json.hpp> // Be sure to add nlohmann/json to your project
+#include <nlohmann/json.hpp>
 #include <iostream>
+#include <gtc/type_ptr.hpp>
 
 #include "camera.h"
 #include "model.h"
@@ -19,9 +20,8 @@
 
 class Scene {
 public:
-    // Shared resources
-    std::vector<std::string> modelPaths;      // Paths to all models
-    std::vector<Model*> models;               // Loaded models matching the paths
+    std::vector<std::string> modelPaths;
+    std::vector<Model*> models;
 
 
     std::vector<SceneObject> objects;
@@ -31,13 +31,12 @@ public:
     std::vector<Camera> cameras;
     int activeCameraIndex = 0;
 
-    // Sky dome
     std::string skyTexturePath;
 
-    // Methods
-    int addModel(std::string path);
-    void addObject(int modelIndex, glm::vec3 position);
-    void addObject(std::string path, glm::vec3 position);
+    int addModel(std::string path, bool flipUV = false, bool gamma = false);
+    int addModel(Model *model);
+
+    void addObject(std::string name, GLuint shader, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
     void addPointLight(PointLight light);
     void addDirLight(DirectionalLight light);
     void addSpotLight(SpotLight light);
@@ -48,7 +47,7 @@ public:
     void load(const std::string& file);
     void save(const std::string& file);
 
-    void draw();
+    void draw(glm::mat4 projection);
 };
 
 #endif //SCENE_H

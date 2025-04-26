@@ -28,11 +28,11 @@ Camera::Camera(glm::vec3 position, float speed, float sensitivity, float yaw, fl
     Pitch = pitch;
 }
 
-glm::mat4 Camera::GetViewMatrix() {
+glm::mat4 Camera::getViewMatrix() {
     return glm::lookAt(Position, Position + Front, Up);
 }
 
-void Camera::Move(Directions direction, float deltaTime) {
+void Camera::move(Directions direction, float deltaTime) {
     float velocity = Speed * deltaTime;
     if (direction == FRONT)
         Position += Front * velocity;
@@ -48,7 +48,7 @@ void Camera::Move(Directions direction, float deltaTime) {
         Position -= WorldUp * velocity;
 }
 
-void Camera::ChangeDirection(float xOffset, float yOffset) {
+void Camera::changeDirection(float xOffset, float yOffset) {
     xOffset *= Sensitivity;
     yOffset *= Sensitivity;
 

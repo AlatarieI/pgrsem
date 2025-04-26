@@ -57,6 +57,8 @@ float lastX = 400, lastY = 300;
 
 bool firstMouse = true, move_camera = true;
 
+Scene scene;
+
 
 glm::vec3 cubePositions[] = {
     glm::vec3( 0.0f,  0.0f,  0.0f),
@@ -79,6 +81,7 @@ glm::vec3 pointLightPositions[] = {
 };
 
 void processInput(GLFWwindow *window) {
+    currentCamera = scene.getActiveCamera();
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
@@ -88,32 +91,32 @@ void processInput(GLFWwindow *window) {
         currentCamera->Speed = 3.0f;
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
-        currentCamera = &camera1;
+        scene.activeCameraIndex = 0;
     if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
-        currentCamera = &camera2;
+        scene.activeCameraIndex = 1;
 
     if (move_camera) {
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-            currentCamera->Move(FRONT, deltaTime);
+            currentCamera->move(FRONT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            currentCamera->Move(BACK, deltaTime);
+            currentCamera->move(BACK, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-            currentCamera->Move(LEFT, deltaTime);
+            currentCamera->move(LEFT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-            currentCamera->Move(RIGHT, deltaTime);
+            currentCamera->move(RIGHT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-            currentCamera->Move(UP, deltaTime);
+            currentCamera->move(UP, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-            currentCamera->Move(DOWN, deltaTime);
+            currentCamera->move(DOWN, deltaTime);
 
         if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-            currentCamera->ChangeDirection(0.0f, 1.0f);
+            currentCamera->changeDirection(0.0f, 1.0f);
         if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-            currentCamera->ChangeDirection(0.0f, -1.0f);
+            currentCamera->changeDirection(0.0f, -1.0f);
         if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-            currentCamera->ChangeDirection(-1.0f, 0.0f);
+            currentCamera->changeDirection(-1.0f, 0.0f);
         if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            currentCamera->ChangeDirection(1.0f, 0.0f);
+            currentCamera->changeDirection(1.0f, 0.0f);
     }
 }
 
@@ -132,11 +135,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
     SCR_WIDTH = width;
     SCR_HEIGHT = height;
-
 }
 
 
 void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
+    currentCamera = scene.getActiveCamera();
     if (firstMouse) {
         lastX = xPos;
         lastY = yPos;
@@ -149,7 +152,7 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
     lastY = yPos;
 
     if (move_camera) {
-        currentCamera->ChangeDirection(xOffset, yOffset);
+        currentCamera->changeDirection(xOffset, yOffset);
     }
 }
 
@@ -464,7 +467,7 @@ void setLightUniforms() {
 }
 
 Scene createScene() {
-    Scene scene = Scene();
+    Scene scene;
 
     // SceneNode* node = new SceneNode(new GameObject("resources/models/mountain/mount.obj", true, main_shader, glm::vec3(0.0f, 9.0f, 0.0f)));
     // node->children.push_back(new SceneNode(new GameObject("resources/models/Wooden_Tower/Wooden_Tower.obj", false, main_shader, glm::vec3(0.0f, 0.0f, 0.0f))));
@@ -475,8 +478,15 @@ Scene createScene() {
     // scene.addNode(new SceneNode(new GameObject("resources/models/ground/ground.obj", true, main_shader,
     //         glm::vec3(0.0f), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(0.1f))));
 
-    scene.addNode(new SceneNode(new GameObject("resources/models/myisland/myisland.obj", false, main_shader,
-            glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f))));
+    // scene.addNode(new SceneNode(new GameObject("resources/models/myisland/myisland.obj", false, main_shader,
+    //         glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f))));
+
+    scene.addCamera(camera1);
+    scene.addCamera(camera2);
+
+
+    int idx = scene.addModel("resources/models/backpack/backpack.obj", true);
+    scene.addObject("island", main_shader, idx, glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f));
 
     return scene;
 }
@@ -504,12 +514,13 @@ int main() {
 
     currentCamera = &camera1;
 
-    view = currentCamera->GetViewMatrix();
+    view = currentCamera->getViewMatrix();
     
-    Scene scene = createScene();
+    scene = createScene();
 
 
     while(!glfwWindowShouldClose(window)) {
+        currentCamera = scene.getActiveCamera();
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -520,7 +531,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH)/ static_cast<float>(SCR_HEIGHT) , 0.1f, 100.0f);
-        view = currentCamera->GetViewMatrix();
+        view = currentCamera->getViewMatrix();
         lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
 
         drawSkyDome();
@@ -544,7 +555,6 @@ int main() {
             std::cerr << "OpenGL error: " << err << std::endl;
         }
 
-        //
         glBindVertexArray(VAO);
 
         glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.diffuse"), 0);
@@ -579,7 +589,7 @@ int main() {
         // game_object.draw();
 
 
-        scene.draw();
+        scene.draw(projection);
 
         // model = glm::mat4(1.0f);
         // model = glm::translate(model, glm::vec3(0.0f, 9.0f, 0.0f));
