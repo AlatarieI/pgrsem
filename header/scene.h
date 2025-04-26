@@ -17,13 +17,14 @@
 #include "model.h"
 #include "lights.h"
 #include "scene_object.h"
+#include "shader.h"
 
 class Scene {
 public:
     std::vector<std::string> modelPaths;
     std::vector<Model*> models;
 
-
+    std::vector<Shader> shaders;
     std::vector<SceneObject> objects;
     std::vector<DirectionalLight> dirLights;
     std::vector<PointLight> pointLights;
@@ -33,10 +34,13 @@ public:
 
     std::string skyTexturePath;
 
+    int addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);
+    int addShader(Shader shader);
+
     int addModel(std::string path, bool flipUV = false, bool gamma = false);
     int addModel(Model *model);
 
-    void addObject(std::string name, GLuint shader, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+    void addObject(std::string name, int shaderIndex, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
     void addPointLight(PointLight light);
     void addDirLight(DirectionalLight light);
     void addSpotLight(SpotLight light);

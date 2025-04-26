@@ -6,15 +6,15 @@ set(CMAKE_CXX_STANDARD 20)
 # Create executable
 add_executable(pgrsem
         main.cpp
-        src/game_object.cpp
         src/camera.cpp
         src/mesh.cpp
-        src/Model.cpp
+        src/model.cpp
         src/utility.cpp
-        src/Scene.cpp
+        src/scene.cpp
         src/init.cpp
         src/scene_object.cpp
         src/lights.cpp
+        src/shader.cpp
 )
 
 

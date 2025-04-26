@@ -5,12 +5,12 @@
 #include "scene_object.h"
 
 SceneObject::SceneObject() {
-    shader = 0;
+    shaderIndex = 0;
     parent = nullptr;
 }
 
-SceneObject::SceneObject(const GLuint shader, int modelIndex, const glm::vec3 position, const glm::vec3 rotation, const glm::vec3 scale) {
-    this->shader = shader;
+SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 position, const glm::vec3 rotation, const glm::vec3 scale) {
+    this->shaderIndex = shaderIndex;
     this->modelIndex = modelIndex;
     this->position = position;
     this->rotation = rotation;

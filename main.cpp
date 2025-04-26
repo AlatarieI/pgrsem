@@ -15,7 +15,6 @@
 
 #include <camera.h>
 
-#include "game_object.h"
 #include "model.h"
 #include "scene.h"
 #include "utility.h"
@@ -484,9 +483,9 @@ Scene createScene() {
     scene.addCamera(camera1);
     scene.addCamera(camera2);
 
-
-    int idx = scene.addModel("resources/models/backpack/backpack.obj", true);
-    scene.addObject("island", main_shader, idx, glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f));
+    int shaderIdx = scene.addShader("shaders/vertex_shader.vert", "shaders/fragment_shader.frag");
+    int modelIdx = scene.addModel("resources/models/backpack/backpack.obj", true);
+    scene.addObject("backpack", shaderIdx, modelIdx, glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f));
 
     return scene;
 }
@@ -516,8 +515,8 @@ int main() {
 
     view = currentCamera->getViewMatrix();
     
-    scene = createScene();
-
+    // scene = createScene();
+    scene.load("test.json");
 
     while(!glfwWindowShouldClose(window)) {
         currentCamera = scene.getActiveCamera();
@@ -641,6 +640,8 @@ int main() {
     glDeleteBuffers(1, &VBO);
     glDeleteProgram(main_shader);
     glDeleteProgram(light_cube_shader);
+
+    scene.save("test.json");
 
     glfwTerminate();
     return 0;

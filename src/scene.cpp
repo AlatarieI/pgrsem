@@ -1,13 +1,17 @@
 #include "scene.h"
 
-#include <Camera.h>
-#include <Camera.h>
-#include <Camera.h>
-#include <Camera.h>
-#include <Camera.h>
-#include <Camera.h>
-
 using json = nlohmann::json;
+
+int Scene::addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource) {
+    Shader shader = Shader(vertexShaderSource, fragmentShaderSource);
+    this->shaders.push_back(shader);
+    return shaders.size() - 1;
+}
+
+int Scene::addShader(Shader shader) {
+    this->shaders.push_back(shader);
+    return shaders.size() - 1;
+}
 
 int Scene::addModel(std::string path, bool flipUV, bool gamma) {
     for (int i = 0; i < modelPaths.size(); ++i) {
@@ -27,9 +31,9 @@ int Scene::addModel(Model* model) {
     return models.size() - 1;
 }
 
-void Scene::addObject(std::string name, GLuint shader, int modelIndex,  glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) {
+void Scene::addObject(std::string name, int shaderIndex, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) {
     if (modelIndex < 0 || modelIndex >= models.size()) return;
-    SceneObject obj = SceneObject(shader,  modelIndex, position, rotation, scale);
+    SceneObject obj = SceneObject(shaderIndex,  modelIndex, position, rotation, scale);
     obj.name = name;
     objects.push_back(obj);
 }
@@ -56,20 +60,28 @@ Camera* Scene::getActiveCamera() {
 
 void Scene::draw(glm::mat4 projection) {
     for (const auto& obj : objects) {
-        if (obj.modelIndex >= 0 && obj.modelIndex < models.size()) {
+        if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIndex >= 0 && obj.shaderIndex < shaders.size()) {
+            GLuint shader = shaders[obj.shaderIndex].id;
             auto model = obj.getModelMatrix();
             // auto model = glm::mat4(1.0f);
-            glUniformMatrix4fv(glGetUniformLocation(obj.shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+            glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
             auto view = getActiveCamera()->getViewMatrix();
-            glUniformMatrix4fv(glGetUniformLocation(obj.shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-            glUniformMatrix4fv(glGetUniformLocation(obj.shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-            models[obj.modelIndex]->draw(obj.shader);
+            glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+            glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+            models[obj.modelIndex]->draw(shader);
         }
     }
 }
 
 void Scene::save(const std::string& file) {
     json j;
+
+    for (const auto& shader : shaders) {
+        j["shaders"].push_back({
+            {"vertexShaderSource", shader.vertexShaderSource},
+            {"fragmentShaderSource", shader.fragmentShaderSource},
+        });
+    }
 
     for (int i = 0; i < models.size(); ++i) {
         if (!modelPaths[i].empty()) {
@@ -166,6 +178,7 @@ void Scene::load(const std::string& file) {
     json j;
     in >> j;
 
+    shaders.clear();
     modelPaths.clear();
     models.clear();
     objects.clear();
@@ -173,6 +186,12 @@ void Scene::load(const std::string& file) {
     dirLights.clear();
     spotLights.clear();
     cameras.clear();
+
+    for (const auto& m : j["shaders"]) {
+        std::string vertexShaderSource = m["vertexShaderSource"];
+        std::string fragmentShaderSource = m["fragmentShaderSource"];
+        addShader(vertexShaderSource, fragmentShaderSource);
+    }
 
     for (const auto& m : j["models"]) {
         std::string path = m["path"];
