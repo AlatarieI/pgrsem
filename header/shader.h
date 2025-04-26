@@ -20,6 +20,8 @@ public:
     Shader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);
 
     void createProgram();
+
+    void use();
 };
 
 

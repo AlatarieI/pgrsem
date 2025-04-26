@@ -59,11 +59,12 @@ Camera* Scene::getActiveCamera() {
 }
 
 void Scene::draw(glm::mat4 projection) {
+    skyDome->draw(shaders[skyDome->shaderIdx].id, getActiveCamera(), projection);
     for (const auto& obj : objects) {
-        if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIndex >= 0 && obj.shaderIndex < shaders.size()) {
-            GLuint shader = shaders[obj.shaderIndex].id;
+        if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
+            GLuint shader = shaders[obj.shaderIdx].id;
+            glUseProgram(shader);
             auto model = obj.getModelMatrix();
-            // auto model = glm::mat4(1.0f);
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
             auto view = getActiveCamera()->getViewMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
@@ -94,7 +95,13 @@ void Scene::save(const std::string& file) {
         }
 
     }
-    j["skyTexturePath"] = skyTexturePath;
+
+    if (skyDome) {
+        j["skyDome"] = {
+            {"texturePath", skyDome->texture.path},
+            {"shaderIdx", skyDome->shaderIdx}
+        };
+    }
 
     for (const auto& obj : objects) {
         j["objects"].push_back({
@@ -102,7 +109,9 @@ void Scene::save(const std::string& file) {
             {"modelIndex", obj.modelIndex},
             {"position", {obj.position.x, obj.position.y, obj.position.z}},
             {"rotation", {obj.rotation.x, obj.rotation.y, obj.rotation.z}},
-            {"scale", {obj.scale.x, obj.scale.y, obj.scale.z}}
+            {"scale", {obj.scale.x, obj.scale.y, obj.scale.z}},
+            {"parentIdx", obj.parentIdx},
+            {"shaderIdx", obj.shaderIdx}
         });
     }
 
@@ -200,8 +209,9 @@ void Scene::load(const std::string& file) {
         addModel(path, flipUV, gamma);
     }
 
-    if (j.contains("skyTexturePath")) {
-        skyTexturePath = j["skyTexturePath"];
+    if (j.contains("skyDome")) {
+        auto dome = j["skyDome"];
+        skyDome = new SkyDome(dome["texturePath"], dome["shaderIdx"]);
     }
 
     for (const auto& o : j["objects"]) {
@@ -214,6 +224,15 @@ void Scene::load(const std::string& file) {
         obj.position = glm::vec3(pos[0], pos[1], pos[2]);
         obj.rotation = glm::vec3(rot[0], rot[1], rot[2]);
         obj.scale = glm::vec3(scale[0], scale[1], scale[2]);
+
+        obj.parentIdx = o["parentIdx"];
+        if (obj.parentIdx >= 0 && obj.parentIdx < objects.size())
+            obj.parent = &objects[obj.parentIdx];
+        else
+            obj.parent = nullptr;
+
+        obj.shaderIdx = o["shaderIdx"];
+
         objects.push_back(obj);
     }
 

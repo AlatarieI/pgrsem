@@ -43,7 +43,7 @@ void Mesh::setupMesh() {
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoords));
 }
 
-void Mesh::Draw(GLuint program) {
+void Mesh::draw(GLuint program) {
     // bind appropriate textures
     unsigned int diffuseNr  = 1;
     unsigned int specularNr = 1;
@@ -52,8 +52,8 @@ void Mesh::Draw(GLuint program) {
     for(GLint i = 0; i < textures.size(); i++) {
         glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
         // retrieve texture number (the N in diffuse_textureN)
-        string number;
-        string name = textures[i].type;
+        std::string number;
+        std::string name = textures[i].type;
         if(name == "diffuse")
             number = std::to_string(diffuseNr++);
         else if(name == "specular")

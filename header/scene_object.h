@@ -13,9 +13,10 @@
 class SceneObject {
 public:
 
-    int shaderIndex;
+    int shaderIdx;
 
     SceneObject* parent;
+    int parentIdx;
 
     std::string name;
 
@@ -27,7 +28,7 @@ public:
 
     SceneObject();
 
-    SceneObject(int shaderIndex, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+    SceneObject(int shaderIdx, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
 
     [[nodiscard]] glm::mat4 getModelMatrix() const;
 };

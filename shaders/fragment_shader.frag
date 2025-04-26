@@ -55,8 +55,6 @@ in vec3 FragPos;
 in vec3 Normal;
 in vec2 TexCoords;
 
-
-
 uniform Material material;
 uniform MaterialTexture materialTexture1;
 
@@ -70,11 +68,6 @@ uniform vec3 colori;
 uniform bool useDiffuseTexture;
 uniform bool useSpecularTexture;
 
-//uniform sampler2D texture_diffuse1;
-//uniform sampler2D texture_specular1;
-//uniform sampler2D texture_normal1;
-//uniform sampler2D texture_height1;
-
 vec3 objectDiffuse;
 vec3 objectSpecular;
 
@@ -82,19 +75,14 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
-
-
-
 void main() {
     if (useDiffuseTexture) {
-//        objectDiffuse = texture(texture_diffuse1, TexCoords).rgb;
         objectDiffuse = texture(materialTexture1.diffuse, TexCoords).rgb;
     } else {
         objectDiffuse = material.diffuse;
     }
 
     if (useSpecularTexture) {
-//        objectSpecular = texture(texture_specular1, TexCoords).rgb;
         objectSpecular = texture(materialTexture1.specular, TexCoords).rgb;
     } else {
         objectSpecular = material.specular;

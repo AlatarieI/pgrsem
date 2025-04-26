@@ -4,21 +4,21 @@
 
 #include "model.h"
 
-Model::Model(string const &path, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV) {
+Model::Model(std::string const &path, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV) {
     loadModel(path, flipUV);
 }
 
-Model::Model(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures, bool flipUV, bool gamma) {
+Model::Model(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, bool flipUV, bool gamma) {
     meshes.push_back(Mesh(vertices,indices,textures));
 }
 
 
 void Model::draw(GLuint program) {
     for(unsigned int i = 0; i < meshes.size(); i++)
-        meshes[i].Draw(program);
+        meshes[i].draw(program);
 }
 
-void Model::loadModel(string const &path, bool flipUV) {
+void Model::loadModel(std::string const &path, bool flipUV) {
     // read file via ASSIMP
     Assimp::Importer importer;
     auto flags = aiProcess_Triangulate | aiProcess_GenSmoothNormals;
@@ -27,7 +27,7 @@ void Model::loadModel(string const &path, bool flipUV) {
     const aiScene* scene = importer.ReadFile(path, flags);
     // check for errors
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
-        cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << endl;
+        std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return;
     }
 
@@ -58,9 +58,9 @@ void Model::processNode(aiNode *node, const aiScene *scene) {
 
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     // data to fill
-    vector<Vertex> vertices;
-    vector<unsigned int> indices;
-    vector<Texture> textures;
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+    std::vector<Texture> textures;
 
     // walk through each of the mesh's vertices
     for(unsigned int i = 0; i < mesh->mNumVertices; i++) {
@@ -109,10 +109,10 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     // normal: texture_normalN
 
     // 1. diffuse maps
-    vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
+    std::vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "diffuse");
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
     // 2. specular maps
-    vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");
+    std::vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     // 3. normal maps
     // std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
@@ -154,8 +154,8 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
 
 
 
-vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type, string typeName) {
-    vector<Texture> textures;
+std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName) {
+    std::vector<Texture> textures;
     for(unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
         aiString str;
         mat->GetTexture(type, i, &str);
@@ -170,7 +170,7 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
         }
         if(!skip) {   // if texture hasn't been loaded already, load it
             Texture texture;
-            string filepath = this->directory + "/" + string(str.C_Str());
+            std::string filepath = this->directory + "/" + std::string(str.C_Str());
             texture.id = load_texture(filepath.c_str());
             texture.type = typeName;
             texture.path = str.C_Str();

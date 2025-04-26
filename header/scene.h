@@ -11,6 +11,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <iostream>
+#include <sky_dome.h>
 #include <gtc/type_ptr.hpp>
 
 #include "camera.h"
@@ -32,7 +33,7 @@ public:
     std::vector<Camera> cameras;
     int activeCameraIndex = 0;
 
-    std::string skyTexturePath;
+    SkyDome* skyDome;
 
     int addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);
     int addShader(Shader shader);

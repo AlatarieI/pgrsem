@@ -5,17 +5,19 @@
 #include "scene_object.h"
 
 SceneObject::SceneObject() {
-    shaderIndex = 0;
+    shaderIdx = 0;
     parent = nullptr;
+    parentIdx = -1;
 }
 
 SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 position, const glm::vec3 rotation, const glm::vec3 scale) {
-    this->shaderIndex = shaderIndex;
+    this->shaderIdx = shaderIndex;
     this->modelIndex = modelIndex;
     this->position = position;
     this->rotation = rotation;
     this->scale = scale;
     parent = nullptr;
+    parentIdx = -1;
 }
 
 glm::mat4 SceneObject::getModelMatrix() const {

@@ -15,6 +15,7 @@ add_executable(pgrsem
         src/scene_object.cpp
         src/lights.cpp
         src/shader.cpp
+        src/sky_dome.cpp
 )
 
 
