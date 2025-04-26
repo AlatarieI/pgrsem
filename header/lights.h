@@ -7,6 +7,8 @@
 
 #include <glad/glad.h>
 #include <glm.hpp>
+#include <gtc/type_ptr.hpp>
+#include <string>
 
 class DirectionalLight{
 public:
@@ -31,7 +33,7 @@ public:
     float linear;
     float quadratic;
 
-    void setUniforms(GLuint lightingShader);
+    void setUniforms(GLuint lightingShader, int index);
 };
 
 class SpotLight{

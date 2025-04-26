@@ -58,12 +58,27 @@ Camera* Scene::getActiveCamera() {
     return &cameras[activeCameraIndex];
 }
 
+void Scene::setLightUniforms(GLuint shader) {
+    for (auto dirLight : dirLights) {
+        dirLight.setUniforms(shader);
+    }
+
+    for (int i = 0; i < pointLights.size(); i++) {
+        pointLights[i].setUniforms(shader, i);
+    }
+
+    for (auto spot : spotLights) {
+        spot.setUniforms(shader);
+    }
+}
+
 void Scene::draw(glm::mat4 projection) {
     skyDome->draw(shaders[skyDome->shaderIdx].id, getActiveCamera(), projection);
     for (const auto& obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
             GLuint shader = shaders[obj.shaderIdx].id;
             glUseProgram(shader);
+            setLightUniforms(shader);
             auto model = obj.getModelMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
             auto view = getActiveCamera()->getViewMatrix();

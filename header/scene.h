@@ -47,6 +47,8 @@ public:
     void addSpotLight(SpotLight light);
     void addCamera(Camera camera);
 
+    void setLightUniforms(GLuint shader);
+
     Camera* getActiveCamera();
 
     void load(const std::string& file);

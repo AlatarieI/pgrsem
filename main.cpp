@@ -495,31 +495,18 @@ int main() {
     init();
     main_shader = create_program("shaders/vertex_shader.vert", "shaders/fragment_shader.frag");
     light_cube_shader = create_program("shaders/lightCube.vert", "shaders/lightCube.frag");
-    // skyDome_shader = create_program("shaders/skyDome.vert", "shaders/skyDome.frag");
+
     buffers_set_up();
-    //texture_load_setup();
-    // GLuint diffuseMap = load_texture("resources/models/mountain/ground_grass.jpg");
+
     GLuint diffuseMap = load_texture("resources/textures/container2.png");
     GLuint specularMap = load_texture("resources/textures/container2_specular.png");
 
-    // generateSkyDome();
-    // skyDome.texture = load_texture("resources/textures/skyDome1.hdr");
-
     locations_setup();
 
-    // Model ourModel("resources/models/tropical-island/island.obj", true);
-    // Model ourModel2("resources/models/mountain/mount.obj", true);
-    // Model ourModel3("resources/models/Wooden_Tower/Wooden_Tower.obj");
-
-    currentCamera = &camera1;
 
     view = currentCamera->getViewMatrix();
-    
-    // scene = createScene();
+
     scene.load("test.json");
-    //
-    // scene.addShader("shaders/skyDome.vert", "shaders/skyDome.frag");
-    // scene.skyDome = new SkyDome("resources/textures/skyDome1.hdr", 1);
 
     while(!glfwWindowShouldClose(window)) {
         currentCamera = scene.getActiveCamera();
@@ -536,8 +523,9 @@ int main() {
         view = currentCamera->getViewMatrix();
         lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
 
-        // skyDome.draw(skyDome_shader, currentCamera, projection);
 
+
+        scene.draw(projection);
 
         glUseProgram(main_shader);
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -546,7 +534,7 @@ int main() {
 
 
         setLightUniforms();
-        
+
         glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
         glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
         glUniform3fv(materialSpecularLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
@@ -587,7 +575,6 @@ int main() {
         // ourModel.draw(main_shader);
         // game_object.draw();
 
-        scene.draw(projection);
 
 
         // model = glm::mat4(1.0f);
