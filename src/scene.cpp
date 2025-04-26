@@ -73,21 +73,45 @@ void Scene::setLightUniforms(GLuint shader) {
 }
 
 void Scene::draw(glm::mat4 projection) {
-    skyDome->draw(shaders[skyDome->shaderIdx].id, getActiveCamera(), projection);
-    for (const auto& obj : objects) {
+    Camera* currentCamera = getActiveCamera();
+
+    skyDome->draw(shaders[skyDome->shaderIdx].id, currentCamera, projection);
+
+    for (auto& obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
             GLuint shader = shaders[obj.shaderIdx].id;
             glUseProgram(shader);
             setLightUniforms(shader);
-            auto model = obj.getModelMatrix();
+            glUniform3fv(glGetUniformLocation(shader, "viewPos"), 1, glm::value_ptr(currentCamera->Position));
+            glm::mat4 model = obj.getModelMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-            auto view = getActiveCamera()->getViewMatrix();
+            glm::mat4 view = currentCamera->getViewMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
             models[obj.modelIndex]->draw(shader);
         }
     }
 }
+
+void Scene::drawPicking(glm::mat4 projection) {
+    Camera* currentCamera = getActiveCamera();
+    for (int i = 0; i < objects.size(); i++) {
+        SceneObject obj = objects[i];
+        if (obj.modelIndex >= 0 && obj.modelIndex < models.size()) {
+            GLuint shader = shaders[pickingShaderIdx].id;
+            glUseProgram(shader);
+            glm::mat4 model = obj.getModelMatrix();
+            glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+            glm::mat4 view = currentCamera->getViewMatrix();
+            glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+            glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+            glUniform1f(glGetUniformLocation(shader, "id"), static_cast<float>(i + 1));
+
+            models[obj.modelIndex]->draw(shader);
+        }
+    }
+}
+
 
 void Scene::save(const std::string& file) {
     json j;
@@ -98,6 +122,8 @@ void Scene::save(const std::string& file) {
             {"fragmentShaderSource", shader.fragmentShaderSource},
         });
     }
+
+    j["pickingShaderIdx"] = pickingShaderIdx;
 
     for (int i = 0; i < models.size(); ++i) {
         if (!modelPaths[i].empty()) {
@@ -217,6 +243,12 @@ void Scene::load(const std::string& file) {
         addShader(vertexShaderSource, fragmentShaderSource);
     }
 
+    if (j.contains("pickingShaderIdx")) {
+        pickingShaderIdx = j["pickingShaderIdx"];
+    }
+
+    std::cout << "Shaders loaded" << std::endl;
+
     for (const auto& m : j["models"]) {
         std::string path = m["path"];
         bool flipUV = m["flipUV"];
@@ -224,10 +256,14 @@ void Scene::load(const std::string& file) {
         addModel(path, flipUV, gamma);
     }
 
+    std::cout << "Models loaded" << std::endl;
+
     if (j.contains("skyDome")) {
         auto dome = j["skyDome"];
         skyDome = new SkyDome(dome["texturePath"], dome["shaderIdx"]);
     }
+
+    std::cout << "Sky dome loaded" << std::endl;
 
     for (const auto& o : j["objects"]) {
         SceneObject obj;
@@ -251,6 +287,8 @@ void Scene::load(const std::string& file) {
         objects.push_back(obj);
     }
 
+    std::cout << "Objects loaded" << std::endl;
+
     for (const auto& l : j["pointLights"]) {
         PointLight light{};
         light.position = glm::vec3(l["position"][0], l["position"][1], l["position"][2]);
@@ -263,6 +301,8 @@ void Scene::load(const std::string& file) {
         pointLights.push_back(light);
     }
 
+    std::cout << "Point lights loaded" << std::endl;
+
     for (const auto& l : j["directionalLights"]) {
         DirectionalLight light{};
         light.direction = glm::vec3(l["direction"][0], l["direction"][1], l["direction"][2]);
@@ -271,6 +311,8 @@ void Scene::load(const std::string& file) {
         light.specular = glm::vec3(l["specular"][0], l["specular"][1], l["specular"][2]);
         dirLights.push_back(light);
     }
+
+    std::cout << "Dir lights loaded" << std::endl;
 
     for (const auto& l : j["spotLights"]) {
         SpotLight light{};
@@ -287,6 +329,8 @@ void Scene::load(const std::string& file) {
         spotLights.push_back(light);
     }
 
+    std::cout << "Spotlights loaded" << std::endl;
+
     for (const auto& cam : j["cameras"]) {
         Camera c{};
         c.Position = glm::vec3(cam["position"][0], cam["position"][1], cam["position"][2]);
@@ -298,6 +342,8 @@ void Scene::load(const std::string& file) {
         c.Sensitivity = cam["sensitivity"];
         cameras.push_back(c);
     }
+
+    std::cout << "Cameras loaded" << std::endl;
 
     if (j.contains("activeCameraIndex")) {
         activeCameraIndex = j["activeCameraIndex"];

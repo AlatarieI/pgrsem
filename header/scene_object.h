@@ -6,6 +6,7 @@
 #define SCENE_OBJECT_H
 #include <glm.hpp>
 #include <string>
+#include <vector>
 #include <glad/glad.h>
 #include <gtc/matrix_transform.hpp>
 
@@ -15,6 +16,7 @@ public:
 
     int shaderIdx;
 
+    std::vector<SceneObject*> children;
     SceneObject* parent;
     int parentIdx;
 
@@ -23,6 +25,9 @@ public:
     glm::vec3 position{};
     glm::vec3 rotation{};
     glm::vec3 scale{};
+    glm::mat4 transform = glm::mat4(1.0f);
+
+    bool isDirty = true;
 
     int modelIndex{};
 
@@ -30,7 +35,9 @@ public:
 
     SceneObject(int shaderIdx, int modelIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
 
-    [[nodiscard]] glm::mat4 getModelMatrix() const;
+    glm::mat4 getModelMatrix();
+
+    void updateSelfAndChildren();
 };
 
 

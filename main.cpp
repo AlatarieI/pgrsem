@@ -9,6 +9,10 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include <imgui/imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -24,13 +28,8 @@ int SCR_HEIGHT = 600;
 const char *VERTEX_FILE_NAME = "vertex_shader.vert";
 const char *FRAGMENT_FILE_NAME = "fragment_shader.frag";
 
-// struct SkyDome {
-//     GLuint VAO, VBO, EBO, texture;
-//     int size;
-// };
-//
-// SkyDome skyDome;
-GLuint skyDome_shader;
+bool doPicking = false;
+double mouseX, mouseY;
 
 GLuint main_shader, light_cube_shader, VBO, VAO, EBO, texture1, texture2, light_cube_VAO;
 GLFWwindow* window;
@@ -128,6 +127,11 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         }
     }
+
+    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+        glfwGetCursorPos(window, &mouseX, &mouseY);
+        doPicking = true;
+    }
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -183,6 +187,18 @@ void init() {
     stbi_set_flip_vertically_on_load(true);
 
     glEnable(GL_DEPTH_TEST);
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+
+    // Initialize backends
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330"); // Use appropriate GLSL version
 }
 
 GLuint create_program(const char* vertex_file_name, const char* fragment_file_name) {
@@ -490,23 +506,66 @@ Scene createScene() {
     return scene;
 }
 
+void renderUI(Scene& scene) {
+    ImGui::Begin("Scene Controls");
+
+    // Camera selection
+    if (!scene.cameras.empty()) {
+        static int selectedCamera = scene.activeCameraIndex;
+        if (ImGui::SliderInt("Active Camera", &selectedCamera, 0, scene.cameras.size() - 1)) {
+            scene.activeCameraIndex = selectedCamera;
+        }
+    }
+
+    // SkyDome control
+    if (scene.skyDome) {
+        static char skyPath[256] = "";
+        ImGui::InputText("Sky Texture Path", skyPath, sizeof(skyPath));
+        if (ImGui::Button("Set Sky Texture")) {
+            scene.skyDome->texture.path = std::string(skyPath);
+            scene.skyDome->texture.id = load_texture(skyPath);
+        }
+    }
+
+    // Scene objects
+    if (!scene.objects.empty()) {
+        ImGui::Separator();
+        ImGui::Text("Scene Objects");
+
+        for (size_t i = 0; i < scene.objects.size(); ++i) {
+            SceneObject& obj = scene.objects[i];
+            if (ImGui::TreeNode(obj.name.c_str())) {
+                bool changed = false;
+                changed |= ImGui::DragFloat3("Position", glm::value_ptr(obj.position), 0.1f);
+                changed |= ImGui::DragFloat3("Rotation", glm::value_ptr(obj.rotation), 0.1f);
+                changed |= ImGui::DragFloat3("Scale",    glm::value_ptr(obj.scale), 0.1f);
+                if (changed) {
+                    obj.isDirty = true;
+                }
+                ImGui::TreePop();
+            }
+        }
+    }
+
+    ImGui::End();
+}
+
 
 int main() {
     init();
-    main_shader = create_program("shaders/vertex_shader.vert", "shaders/fragment_shader.frag");
-    light_cube_shader = create_program("shaders/lightCube.vert", "shaders/lightCube.frag");
-
-    buffers_set_up();
-
-    GLuint diffuseMap = load_texture("resources/textures/container2.png");
-    GLuint specularMap = load_texture("resources/textures/container2_specular.png");
-
-    locations_setup();
-
-
-    view = currentCamera->getViewMatrix();
+    // main_shader = create_program("shaders/vertex_shader.vert", "shaders/fragment_shader.frag");
+    // light_cube_shader = create_program("shaders/lightCube.vert", "shaders/lightCube.frag");
+    //
+    // buffers_set_up();
+    //
+    // GLuint diffuseMap = load_texture("resources/textures/container2.png");
+    // GLuint specularMap = load_texture("resources/textures/container2_specular.png");
+    //
+    // locations_setup();
 
     scene.load("test.json");
+
+    Model myModel = Model("resources/models/backpack/backpack.obj", true);
 
     while(!glfwWindowShouldClose(window)) {
         currentCamera = scene.getActiveCamera();
@@ -523,57 +582,67 @@ int main() {
         view = currentCamera->getViewMatrix();
         lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
 
+        // Start the frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
+
+        renderUI(scene);
 
         scene.draw(projection);
 
-        glUseProgram(main_shader);
-        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        glUniform3fv(glGetUniformLocation(main_shader, "viewPos"), 1, glm::value_ptr(currentCamera->Position));
-
-
-        setLightUniforms();
-
-        glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
-        glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
-        glUniform3fv(materialSpecularLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
-        glUniform1f(materialShininessLoc, 32.0f);
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 
 
-        glBindVertexArray(VAO);
-
-        glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.diffuse"), 0);
-        glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.specular"), 1);
-
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, diffuseMap);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, specularMap);
-
-
-
-        glUniform1i(glGetUniformLocation(main_shader, "useDiffuseTexture"), true);
-        glUniform1i(glGetUniformLocation(main_shader, "useSpecularTexture"), true);
-
-        for(unsigned int i = 0; i < 10; i++) {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
-            float angle = 20.0f * i;
-            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-
+        // glUseProgram(main_shader);
+        // glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        // glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        // glUniform3fv(glGetUniformLocation(main_shader, "viewPos"), 1, glm::value_ptr(currentCamera->Position));
+        //
+        //
+        // setLightUniforms();
+        //
+        // // glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
+        // // glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+        // // glUniform3fv(materialSpecularLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+        // // glUniform1f(materialShininessLoc, 32.0f);
+        //
+        //
+        //
+        // glBindVertexArray(VAO);
+        //
+        // glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.diffuse"), 0);
+        // glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.specular"), 1);
+        //
+        // glActiveTexture(GL_TEXTURE0);
+        // glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        // glActiveTexture(GL_TEXTURE1);
+        // glBindTexture(GL_TEXTURE_2D, specularMap);
+        //
+        //
+        //
+        // glUniform1i(glGetUniformLocation(main_shader, "useDiffuseTexture"), true);
+        // glUniform1i(glGetUniformLocation(main_shader, "useSpecularTexture"), true);
+        //
+        // for(unsigned int i = 0; i < 10; i++) {
+        //     glm::mat4 model = glm::mat4(1.0f);
+        //     model = glm::translate(model, cubePositions[i]);
+        //     float angle = 20.0f * i;
+        //     model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+        //     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //
+        //     glDrawArrays(GL_TRIANGLES, 0, 36);
+        // }
+        //
         // glm::mat4 model = glm::mat4(1.0f);
         // model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f)); // translate it down so it's at the center of the scene
-        // model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
+        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
         // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         //
-        // ourModel.draw(main_shader);
-        // game_object.draw();
+        // myModel.draw(main_shader);
 
 
 
@@ -593,33 +662,58 @@ int main() {
 
 
 
-        glUseProgram(light_cube_shader);
-
-        GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
-        GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
-        GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
-
-        glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-        GLint colorLoc = glGetUniformLocation(light_cube_shader, "color");
-        glUniform3fv(colorLoc, 1, glm::value_ptr(currentCamera->Position));
-        glBindVertexArray(light_cube_VAO);
-
-        for (unsigned int i = 0; i < 4; i++) {
-            model = glm::mat4(1.0f);
-            model = glm::translate(model, pointLightPositions[i]);
-            model = glm::scale(model, glm::vec3(0.2f));
-            glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-
-
-        glBindVertexArray(0);
+        // glUseProgram(light_cube_shader);
+        //
+        // GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
+        // GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
+        // GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
+        //
+        // glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        // glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        //
+        // GLint colorLoc = glGetUniformLocation(light_cube_shader, "color");
+        // glUniform3fv(colorLoc, 1, glm::value_ptr(currentCamera->Position));
+        // glBindVertexArray(light_cube_VAO);
+        //
+        // for (unsigned int i = 0; i < 4; i++) {
+        //     model = glm::mat4(1.0f);
+        //     model = glm::translate(model, pointLightPositions[i]);
+        //     model = glm::scale(model, glm::vec3(0.2f));
+        //     glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        //     glDrawArrays(GL_TRIANGLES, 0, 36);
+        // }
+        //
+        //
+        // glBindVertexArray(0);
 
 
         glfwSwapBuffers(window);
+
+        if (doPicking) {
+            doPicking = false;
+            int winX = static_cast<int>(mouseX);
+            int winY = SCR_HEIGHT - static_cast<int>(mouseY) - 1; // Flip Y
+
+            glClearColor(0, 0, 0, 0);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            scene.drawPicking(projection); // Use pick shader, encode object IDs into color
+
+            glFlush(); // Ensure all commands finish
+
+            unsigned char pixel[4];
+            glReadPixels(winX, winY, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+
+            int objectId = static_cast<int>(pixel[0]) - 1; // Assuming R channel stores ID
+            printf("%d %d %d \n", objectId, pixel[1], pixel[2]);
+            // std::cout << "Clicked on object " << pixel[0] << " " << pixel[1] << " " << pixel[2] << " " <<"\n";
+
+
+        }
+
         glfwPollEvents();
+
+
     }
 
     glDeleteVertexArrays(1, &VAO);
@@ -627,6 +721,10 @@ int main() {
     glDeleteBuffers(1, &VBO);
     glDeleteProgram(main_shader);
     glDeleteProgram(light_cube_shader);
+
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
 
     scene.save("test.json");
 

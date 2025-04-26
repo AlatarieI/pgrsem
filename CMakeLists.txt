@@ -24,6 +24,20 @@ target_include_directories(pgrsem PRIVATE header)
 target_include_directories(pgrsem PRIVATE lib)
 
 
+# Add ImGui sources
+set(IMGUI_SRC
+        lib/imgui/imgui.cpp
+        lib/imgui/imgui_draw.cpp
+        lib/imgui/imgui_tables.cpp
+        lib/imgui/imgui_widgets.cpp
+        lib/imgui/backends/imgui_impl_glfw.cpp
+        lib/imgui/backends/imgui_impl_opengl3.cpp
+)
+
+add_library(imgui STATIC ${IMGUI_SRC})
+target_include_directories(imgui PUBLIC imgui lib/imgui/backends)
+target_include_directories(imgui PUBLIC lib/imgui)
+
 # Add glad
 add_library(glad STATIC lib/glad/src/glad.c)
 target_include_directories(glad PUBLIC lib/glad/include)
@@ -97,4 +111,4 @@ add_custom_command(TARGET pgrsem POST_BUILD
 
 
 # Link libraries
-target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm ${ASSIMP_LIBRARY})
+target_link_libraries(pgrsem PRIVATE ${GLFW_LIB} glad OpenGL::GL stb_image glm ${ASSIMP_LIBRARY} imgui)

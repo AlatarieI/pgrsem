@@ -20,7 +20,14 @@ SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 posit
     parentIdx = -1;
 }
 
-glm::mat4 SceneObject::getModelMatrix() const {
+glm::mat4 SceneObject::getModelMatrix() {
+    if (isDirty) {
+        updateSelfAndChildren();
+    }
+    return transform;
+}
+
+void SceneObject::updateSelfAndChildren() {
     auto modelMatrix = parent != nullptr ? parent->getModelMatrix() : glm::mat4(1.0f);
     modelMatrix = glm::translate(modelMatrix, position);
     modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::vec3(1, 0, 0));
@@ -28,6 +35,12 @@ glm::mat4 SceneObject::getModelMatrix() const {
     modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.z), glm::vec3(0, 0, 1));
     modelMatrix = glm::scale(modelMatrix, scale);
 
-    return modelMatrix;
+    transform = modelMatrix;
+    isDirty = false;
+
+    for (auto child : children) {
+        child->updateSelfAndChildren();
+    }
 }
+
 

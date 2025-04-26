@@ -33,6 +33,8 @@ public:
     std::vector<Camera> cameras;
     int activeCameraIndex = 0;
 
+    int pickingShaderIdx = 2;
+
     SkyDome* skyDome;
 
     int addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);
@@ -55,6 +57,7 @@ public:
     void save(const std::string& file);
 
     void draw(glm::mat4 projection);
+    void drawPicking(glm::mat4 projection);
 };
 
 #endif //SCENE_H
