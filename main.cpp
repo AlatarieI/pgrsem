@@ -25,10 +25,10 @@
 
 int SCR_WIDTH = 800;
 int SCR_HEIGHT = 600;
-const char *VERTEX_FILE_NAME = "vertex_shader.vert";
-const char *FRAGMENT_FILE_NAME = "fragment_shader.frag";
 
 bool doPicking = false;
+bool showUI = false;
+int pickedObjectIdx = -1;
 double mouseX, mouseY;
 
 GLuint main_shader, light_cube_shader, VBO, VAO, EBO, texture1, texture2, light_cube_VAO;
@@ -53,7 +53,7 @@ float lastFrame = 0.0f;
 float yaw = -90.0f, pitch = 0.0f;
 float lastX = 400, lastY = 300;
 
-bool firstMouse = true, move_camera = true;
+bool firstMouse = true, showCursor = false;
 
 Scene scene;
 
@@ -93,7 +93,11 @@ void processInput(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
         scene.activeCameraIndex = 1;
 
-    if (move_camera) {
+    if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS) {
+        showUI = !showUI;
+    }
+
+    if (!showCursor) {
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
             currentCamera->move(FRONT, deltaTime);
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -120,8 +124,8 @@ void processInput(GLFWwindow *window) {
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
-        move_camera = !move_camera;
-        if (move_camera) {
+        showCursor = !showCursor;
+        if (!showCursor) {
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         } else {
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -154,7 +158,7 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
     lastX = xPos;
     lastY = yPos;
 
-    if (move_camera) {
+    if (!showCursor) {
         currentCamera->changeDirection(xOffset, yOffset);
     }
 }
@@ -506,35 +510,113 @@ Scene createScene() {
     return scene;
 }
 
+// void renderUI(Scene& scene) {
+//     ImGui::Begin("Scene Controls");
+//
+//     // Camera selection
+//     if (!scene.cameras.empty()) {
+//         static int selectedCamera = scene.activeCameraIndex;
+//         if (ImGui::SliderInt("Active Camera", &selectedCamera, 0, scene.cameras.size() - 1)) {
+//             scene.activeCameraIndex = selectedCamera;
+//         }
+//     }
+//
+//     // SkyDome control
+//     if (scene.skyDome) {
+//         static char skyPath[256] = "";
+//         ImGui::InputText("Sky Texture Path", skyPath, sizeof(skyPath));
+//         if (ImGui::Button("Set Sky Texture")) {
+//             scene.skyDome->texture.path = std::string(skyPath);
+//             scene.skyDome->texture.id = load_texture(skyPath);
+//         }
+//     }
+//
+//     // Scene objects
+//     if (!scene.objects.empty()) {
+//         ImGui::Separator();
+//         ImGui::Text("Scene Objects");
+//
+//         for (size_t i = 0; i < scene.objects.size(); ++i) {
+//             SceneObject& obj = scene.objects[i];
+//             if (ImGui::TreeNode(obj.name.c_str())) {
+//                 bool changed = false;
+//                 changed |= ImGui::DragFloat3("Position", glm::value_ptr(obj.position), 0.1f);
+//                 changed |= ImGui::DragFloat3("Rotation", glm::value_ptr(obj.rotation), 0.1f);
+//                 changed |= ImGui::DragFloat3("Scale",    glm::value_ptr(obj.scale), 0.1f);
+//                 if (changed) {
+//                     obj.isDirty = true;
+//                 }
+//                 ImGui::TreePop();
+//             }
+//         }
+//     }
+//
+//     ImGui::End();
+// }
+
 void renderUI(Scene& scene) {
-    ImGui::Begin("Scene Controls");
+    static char fileName[128] = "scene.json";
 
-    // Camera selection
-    if (!scene.cameras.empty()) {
-        static int selectedCamera = scene.activeCameraIndex;
-        if (ImGui::SliderInt("Active Camera", &selectedCamera, 0, scene.cameras.size() - 1)) {
-            scene.activeCameraIndex = selectedCamera;
+    if (!showUI) return;
+
+    ImGui::Begin("Scene Editor");
+
+    if (ImGui::BeginTabBar("MainTabs")) {
+        if (ImGui::BeginTabItem("Scene")) {
+            ImGui::InputText("File Name", fileName, 128);
+            if (ImGui::Button("Save Scene")) scene.save(fileName);
+            if (ImGui::Button("Load Scene")) {
+                scene.load(fileName);
+                pickedObjectIdx = -1;  // Clear selected
+            }
+            ImGui::EndTabItem();
         }
-    }
+        if (ImGui::BeginTabItem("Models")) {
+            static char modelPath[256] = "";
+            ImGui::InputText("Model Path", modelPath, 256);
+            if (ImGui::Button("Add Model")) {
+                scene.addModel(modelPath);
+                modelPath[0] = '\0';
+            }
 
-    // SkyDome control
-    if (scene.skyDome) {
-        static char skyPath[256] = "";
-        ImGui::InputText("Sky Texture Path", skyPath, sizeof(skyPath));
-        if (ImGui::Button("Set Sky Texture")) {
-            scene.skyDome->texture.path = std::string(skyPath);
-            scene.skyDome->texture.id = load_texture(skyPath);
+            ImGui::SeparatorText("Loaded Models:");
+            for (int i = 0; i < scene.modelPaths.size(); ++i) {
+                ImGui::Text("%d: %s", i, scene.modelPaths[i].c_str());
+            }
+            ImGui::EndTabItem();
         }
-    }
+        if (ImGui::BeginTabItem("Objects")) {
+            static char objectName[128] = "";
+            static int shaderIndex = 0;
+            static int modelIndex = 0;
 
-    // Scene objects
-    if (!scene.objects.empty()) {
-        ImGui::Separator();
-        ImGui::Text("Scene Objects");
+            ImGui::InputText("Object Name", objectName, 128);
+            ImGui::InputInt("Shader Index", &shaderIndex);
+            ImGui::InputInt("Model Index", &modelIndex);
+            if (ImGui::Button("Add Object")) {
+                scene.addObject(objectName, shaderIndex, modelIndex, {0,0,0}, {0,0,0}, {1,1,1});
+                objectName[0] = '\0';
+            }
+            ImGui::EndTabItem();
+        }
 
-        for (size_t i = 0; i < scene.objects.size(); ++i) {
-            SceneObject& obj = scene.objects[i];
-            if (ImGui::TreeNode(obj.name.c_str())) {
+        if (ImGui::BeginTabItem("Lights")) {
+            ImGui::Text("Light management coming soon...");
+            ImGui::EndTabItem();
+        }
+
+        if (ImGui::BeginTabItem("Cameras")) {
+            ImGui::Text("Camera management coming soon...");
+            ImGui::EndTabItem();
+        }
+
+        if (ImGui::BeginTabItem("Selected")) {
+            if (pickedObjectIdx >= 0) {
+                SceneObject& obj = scene.objects[pickedObjectIdx];
+
+                char* nameBuffer = &obj.name[0];
+                ImGui::InputText("Name", nameBuffer, obj.name.capacity() + 1);
+
                 bool changed = false;
                 changed |= ImGui::DragFloat3("Position", glm::value_ptr(obj.position), 0.1f);
                 changed |= ImGui::DragFloat3("Rotation", glm::value_ptr(obj.rotation), 0.1f);
@@ -542,13 +624,25 @@ void renderUI(Scene& scene) {
                 if (changed) {
                     obj.isDirty = true;
                 }
-                ImGui::TreePop();
+
+                if (ImGui::Button("Delete")) {
+                    scene.objects.erase(scene.objects.begin() + pickedObjectIdx);
+                    pickedObjectIdx = -1;
+                }
+            } else {
+                ImGui::Text("Click object to select it.");
             }
+
+            ImGui::EndTabItem();
         }
+
+
+        ImGui::EndTabBar();
     }
 
     ImGui::End();
 }
+
 
 
 int main() {
@@ -595,7 +689,7 @@ int main() {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-
+        glfwSwapBuffers(window);
 
         // glUseProgram(main_shader);
         // glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -686,34 +780,28 @@ int main() {
         //
         // glBindVertexArray(0);
 
-
-        glfwSwapBuffers(window);
-
-        if (doPicking) {
-            doPicking = false;
-            int winX = static_cast<int>(mouseX);
-            int winY = SCR_HEIGHT - static_cast<int>(mouseY) - 1; // Flip Y
+        if (!ImGui::GetIO().WantCaptureMouse && doPicking) {
+            int winX = showCursor ? static_cast<int>(mouseX) : SCR_WIDTH/2;
+            int winY = showCursor ? SCR_HEIGHT - static_cast<int>(mouseY) - 1 : SCR_HEIGHT/2; // Flip Y
 
             glClearColor(0, 0, 0, 0);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            scene.drawPicking(projection); // Use pick shader, encode object IDs into color
+            scene.drawPicking(projection);
 
-            glFlush(); // Ensure all commands finish
+            glFlush();
 
             unsigned char pixel[4];
             glReadPixels(winX, winY, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
 
-            int objectId = static_cast<int>(pixel[0]) - 1; // Assuming R channel stores ID
-            printf("%d %d %d \n", objectId, pixel[1], pixel[2]);
-            // std::cout << "Clicked on object " << pixel[0] << " " << pixel[1] << " " << pixel[2] << " " <<"\n";
-
-
+            pickedObjectIdx = static_cast<int>(pixel[0]) - 1;
+            // printf("%d %d %d \n", objectId, pixel[1], pixel[2]);
+            std::cout << "Clicked on object " << pickedObjectIdx <<"\n";
         }
 
+        doPicking = false;
+
         glfwPollEvents();
-
-
     }
 
     glDeleteVertexArrays(1, &VAO);
@@ -726,7 +814,6 @@ int main() {
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
 
-    scene.save("test.json");
 
     glfwTerminate();
     return 0;
