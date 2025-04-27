@@ -10,8 +10,10 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 
 GLuint load_texture(char const * path);
 std::string readFile(const char* filename);
+GLuint loadCubemap(std::string dir);
 
 #endif //UTILITY_H

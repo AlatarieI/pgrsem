@@ -1,0 +1,6 @@
+grass
+#7EC850
+#5FA243
+ground
+#A46F4A
+#80553A

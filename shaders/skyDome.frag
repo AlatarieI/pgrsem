@@ -1,9 +1,14 @@
 #version 330 core
-in vec2 TexCoords;
+in vec3 TexCoords;
 out vec4 FragColor;
 
-uniform sampler2D skyTexture;
+uniform samplerCube skyTexture1;
+uniform samplerCube skyTexture2;
+
+uniform float blend;
 
 void main() {
-    FragColor = texture(skyTexture, TexCoords);
+    vec4 tex1 = texture(skyTexture1, TexCoords);
+    vec4 tex2 = texture(skyTexture2, TexCoords);
+    FragColor = mix(tex1, tex2, blend);
 }

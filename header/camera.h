@@ -20,16 +20,17 @@ enum Directions {
 
 class Camera {
 public:
-    float Speed, Sensitivity;
-    float Yaw, Pitch;
-    glm::vec3 Position{};
-    glm::vec3 Front = glm::vec3(0.0f, 0.0f, -1.0f);
-    glm::vec3 Up = glm::vec3(0.0f, 1.0f,  0.0f);
-    glm::vec3 WorldUp = glm::vec3(0.0f, 1.0f,  0.0f);
+    float speed, sensitivity;
+    float yaw, pitch;
+    glm::vec3 position{};
+    glm::vec3 front = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 up = glm::vec3(0.0f, 1.0f,  0.0f);
+    glm::vec3 worldUp = glm::vec3(0.0f, 1.0f,  0.0f);
+    bool shouldMove;
 
     Camera();
 
-    explicit Camera(glm::vec3 position);
+    explicit Camera(glm::vec3 position , bool shouldMove);
 
     Camera(glm::vec3 position, float speed, float sensitivity = 0.1f, float yaw = -90.0f, float pitch = 0.0f);
 

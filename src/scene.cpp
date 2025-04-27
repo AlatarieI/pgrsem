@@ -72,17 +72,28 @@ void Scene::setLightUniforms(GLuint shader) {
     }
 }
 
-void Scene::draw(glm::mat4 projection) {
-    Camera* currentCamera = getActiveCamera();
+void Scene::draw(glm::mat4 projection, float delta) {
+    time += delta;
 
-    skyDome->draw(shaders[skyDome->shaderIdx].id, currentCamera, projection);
+    if (skyBox->shouldBlend) {
+        if (time >= 100/skyBox->textures.size()) {
+            time = 0.0;
+            skyBox->currTextureIdx = (skyBox->currTextureIdx+1) % skyBox->textures.size();
+        }
+        blend = time / (100/skyBox->textures.size());
+    } else {
+        blend = 0.5;
+    }
+
+
+    Camera* currentCamera = getActiveCamera();
 
     for (auto& obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
             GLuint shader = shaders[obj.shaderIdx].id;
             glUseProgram(shader);
             setLightUniforms(shader);
-            glUniform3fv(glGetUniformLocation(shader, "viewPos"), 1, glm::value_ptr(currentCamera->Position));
+            glUniform3fv(glGetUniformLocation(shader, "viewPos"), 1, glm::value_ptr(currentCamera->position));
             glm::mat4 model = obj.getModelMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
             glm::mat4 view = currentCamera->getViewMatrix();
@@ -91,6 +102,9 @@ void Scene::draw(glm::mat4 projection) {
             models[obj.modelIndex]->draw(shader);
         }
     }
+
+
+    skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
 }
 
 void Scene::drawPicking(glm::mat4 projection) {
@@ -137,11 +151,14 @@ void Scene::save(const std::string& file) {
 
     }
 
-    if (skyDome) {
-        j["skyDome"] = {
-            {"texturePath", skyDome->texture.path},
-            {"shaderIdx", skyDome->shaderIdx}
+    if (skyBox) {
+        j["skyBox"] = {
+            {"shaderIdx", skyBox->shaderIdx}
         };
+        for (const auto& texture : skyBox->textures) {
+            j["skyBox"]["texturePaths"].push_back(texture.path);
+        }
+
     }
 
     for (const auto& obj : objects) {
@@ -194,13 +211,14 @@ void Scene::save(const std::string& file) {
 
     for (const auto& cam : cameras) {
         j["cameras"].push_back({
-            {"position", {cam.Position.x, cam.Position.y, cam.Position.z}},
-            {"front", {cam.Front.x, cam.Front.y, cam.Front.z}},
-            {"up", {cam.Up.x, cam.Up.y, cam.Up.z}},
-            {"yaw", cam.Yaw},
-            {"pitch", cam.Pitch},
-            {"speed", cam.Speed},
-            {"sensitivity", cam.Sensitivity}
+            {"position", {cam.position.x, cam.position.y, cam.position.z}},
+            {"front", {cam.front.x, cam.front.y, cam.front.z}},
+            {"up", {cam.up.x, cam.up.y, cam.up.z}},
+            {"yaw", cam.yaw},
+            {"pitch", cam.pitch},
+            {"speed", cam.speed},
+            {"sensitivity", cam.sensitivity},
+            {"shouldMove", cam.shouldMove}
         });
     }
 
@@ -258,12 +276,16 @@ void Scene::load(const std::string& file) {
 
     std::cout << "Models loaded" << std::endl;
 
-    if (j.contains("skyDome")) {
-        auto dome = j["skyDome"];
-        skyDome = new SkyDome(dome["texturePath"], dome["shaderIdx"]);
+    if (j.contains("skyBox")) {
+        auto dome = j["skyBox"];
+        std::vector<std::string> texturePaths;
+        for (const auto& o : dome["texturePaths"]) {
+            texturePaths.push_back(o);
+        }
+        skyBox = new SkyBox(texturePaths, dome["shaderIdx"]);
     }
 
-    std::cout << "Sky dome loaded" << std::endl;
+    std::cout << "Sky box loaded" << std::endl;
 
     for (const auto& o : j["objects"]) {
         SceneObject obj;
@@ -333,13 +355,14 @@ void Scene::load(const std::string& file) {
 
     for (const auto& cam : j["cameras"]) {
         Camera c{};
-        c.Position = glm::vec3(cam["position"][0], cam["position"][1], cam["position"][2]);
-        c.Front = glm::vec3(cam["front"][0], cam["front"][1], cam["front"][2]);
-        c.Up = glm::vec3(cam["up"][0], cam["up"][1], cam["up"][2]);
-        c.Yaw = cam["yaw"];
-        c.Pitch = cam["pitch"];
-        c.Speed = cam["speed"];
-        c.Sensitivity = cam["sensitivity"];
+        c.position = glm::vec3(cam["position"][0], cam["position"][1], cam["position"][2]);
+        c.front = glm::vec3(cam["front"][0], cam["front"][1], cam["front"][2]);
+        c.up = glm::vec3(cam["up"][0], cam["up"][1], cam["up"][2]);
+        c.yaw = cam["yaw"];
+        c.pitch = cam["pitch"];
+        c.speed = cam["speed"];
+        c.sensitivity = cam["sensitivity"];
+        c.shouldMove = cam["shouldMove"];
         cameras.push_back(c);
     }
 

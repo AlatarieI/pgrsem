@@ -19,6 +19,8 @@
 
 #include <camera.h>
 
+#include <sky_box.h>
+
 #include "model.h"
 #include "scene.h"
 #include "utility.h"
@@ -44,8 +46,8 @@ GLint lightAmbientLoc, lightDiffuseLoc, lightSpecularLoc, materialAmbientLoc, ma
 glm::vec3 lightPos = glm::vec3(0.0f, 4.0f, -8.0f);
 
 Camera* currentCamera;
-Camera camera1(glm::vec3(0.0f, 0.0f, 2.0f));
-Camera camera2(glm::vec3(0.0f, 0.0f, 12.0f));
+Camera camera1(glm::vec3(0.0f, 0.0f, 2.0f), true);
+Camera camera2(glm::vec3(0.0f, 0.0f, 12.0f), false);
 
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -84,14 +86,27 @@ void processInput(GLFWwindow *window) {
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-        currentCamera->Speed = 6.5f;
+        currentCamera->speed = 6.5f;
     else
-        currentCamera->Speed = 3.0f;
+        currentCamera->speed = 3.0f;
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
         scene.activeCameraIndex = 0;
     if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
         scene.activeCameraIndex = 1;
+
+    if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
+        Camera* curr = scene.getActiveCamera();
+        scene.activeCameraIndex = 2;
+        Camera* moving = scene.getActiveCamera();
+
+        moving->front = curr->front;
+        moving->up = curr->up;
+        moving->yaw = curr->yaw;
+        moving->pitch = curr->pitch;
+        moving->position = curr->position;
+
+    }
 
     if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS) {
         showUI = !showUI;
@@ -473,8 +488,8 @@ void setLightUniforms() {
     }
 
     // Spotlight
-    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.position"), 1, glm::value_ptr(currentCamera->Position));
-    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.direction"), 1, glm::value_ptr(currentCamera->Front));
+    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.position"), 1, glm::value_ptr(currentCamera->position));
+    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.direction"), 1, glm::value_ptr(currentCamera->front));
     glUniform3f(glGetUniformLocation(main_shader, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
     glUniform3f(glGetUniformLocation(main_shader, "spotLight.diffuse"), 1.0f, 1.0f, 1.0f);
     glUniform3f(glGetUniformLocation(main_shader, "spotLight.specular"), 1.0f, 1.0f, 1.0f);
@@ -574,7 +589,7 @@ void renderUI(Scene& scene) {
         if (ImGui::BeginTabItem("Models")) {
             static char modelPath[256] = "";
             ImGui::InputText("Model Path", modelPath, 256);
-            if (ImGui::Button("Add Model")) {
+            if (ImGui::Button("Add Model") && modelPath[0] != '\0') {
                 scene.addModel(modelPath);
                 modelPath[0] = '\0';
             }
@@ -600,8 +615,30 @@ void renderUI(Scene& scene) {
             ImGui::EndTabItem();
         }
 
+        if (ImGui::BeginTabItem("SkyBox")) {
+            SkyBox* dome = scene.skyBox;
+
+            ImGui::DragFloat("Time", &scene.time, 0.01f,0.0f,1.0f );
+
+            ImGui::SliderInt("Current texture", &dome->currTextureIdx, 0, dome->textures.size()-1);
+            ImGui::Checkbox("Blend texture", &dome->shouldBlend);
+            ImGui::DragFloat("Blend factor", &scene.blend, 0.01f,0.0f,1.0f );
+            ImGui::EndTabItem();
+        }
+
         if (ImGui::BeginTabItem("Lights")) {
-            ImGui::Text("Light management coming soon...");
+            if (ImGui::CollapsingHeader("Directional lights")) {
+                for (int i = 0; i < scene.dirLights.size(); i++) {
+                    auto* light = &scene.dirLights[i];
+                    ImGui::PushID(i);
+                    ImGui::DragFloat3("Direction", glm::value_ptr(light->direction), 0.1f);
+                    ImGui::DragFloat3("Ambient", glm::value_ptr(light->ambient), 0.1f);
+                    ImGui::DragFloat3("Diffuse", glm::value_ptr(light->diffuse), 0.1f);
+                    ImGui::DragFloat3("Specular", glm::value_ptr(light->specular), 0.1f);
+                    ImGui::PopID();
+                }
+            }
+
             ImGui::EndTabItem();
         }
 
@@ -684,7 +721,7 @@ int main() {
 
         renderUI(scene);
 
-        scene.draw(projection);
+        scene.draw(projection, deltaTime);
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

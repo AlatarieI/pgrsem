@@ -42,6 +42,44 @@ GLuint load_texture(char const * path) {
     return textureID;
 }
 
+GLuint loadCubemap(std::string dir){
+    GLuint textureID;
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+
+    std::vector<std::string> faces = {
+        "/px.png", "/nx.png",
+        "/py.png", "/ny.png",
+        "/pz.png", "/nz.png"
+    };
+    int width, height, nrChannels;
+    for (size_t i = 0; i < faces.size(); i++) {
+        unsigned char *data = stbi_load((dir+faces[i]).c_str(), &width, &height, &nrChannels, 0);
+        if (data) {
+            // Flip the image manually if each face is upside down
+            for (int j = 0; j < height / 2; ++j) {
+                for (int k = 0; k < width * nrChannels; ++k) {
+                    std::swap(data[j * width * nrChannels + k], data[(height - 1 - j) * width * nrChannels + k]);
+                }
+            }
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+                         0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
+            );
+            stbi_image_free(data);
+            std::cout << "Cubemap texture load at path: " << (dir+faces[i]).c_str()<< std::endl;
+        } else {
+            std::cout << "Cubemap texture failed to load at path: " << (dir+faces[i]).c_str()<< std::endl;
+            stbi_image_free(data);
+        }
+    }
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    return textureID;
+}
+
 std::string readFile(const char* filename) {
     std::ifstream file(filename, std::ios::binary);
     if (!file) {

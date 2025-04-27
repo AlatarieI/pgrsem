@@ -11,7 +11,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <iostream>
-#include <sky_dome.h>
+#include <sky_box.h>
 #include <gtc/type_ptr.hpp>
 
 #include "camera.h"
@@ -33,9 +33,13 @@ public:
     std::vector<Camera> cameras;
     int activeCameraIndex = 0;
 
+    float time;
+
     int pickingShaderIdx = 2;
 
-    SkyDome* skyDome;
+    float blend = 0.5f;
+
+    SkyBox* skyBox;
 
     int addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);
     int addShader(Shader shader);
@@ -56,7 +60,7 @@ public:
     void load(const std::string& file);
     void save(const std::string& file);
 
-    void draw(glm::mat4 projection);
+    void draw(glm::mat4 projection, float delta);
     void drawPicking(glm::mat4 projection);
 };
 
