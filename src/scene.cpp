@@ -1,5 +1,6 @@
 #include "scene.h"
 
+
 using json = nlohmann::json;
 
 int Scene::addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource) {
@@ -88,15 +89,43 @@ void Scene::draw(glm::mat4 projection, float delta) {
 
     Camera* currentCamera = getActiveCamera();
 
+
+    skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
+
     for (auto& obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
             GLuint shader = shaders[obj.shaderIdx].id;
             glUseProgram(shader);
+            glm::mat4 model = obj.getModelMatrix();
+            glm::mat4 view = currentCamera->getViewMatrix();
+
+            if (obj.name  == "fire") {
+                const float myTime = static_cast<float>(glfwGetTime());
+                glUniform1f(glGetUniformLocation(shader, "time"), myTime);
+                glUniform1i(glGetUniformLocation(shader, "frameCountX"), 12);
+                glUniform1i(glGetUniformLocation(shader, "frameCountY"), 6);
+                glUniform1f(glGetUniformLocation(shader, "frameRate"), 20.0f);
+
+                glm::vec3 direction = glm::normalize(currentCamera->position - obj.position);
+                glm::quat rotation = glm::quatLookAt(-direction, glm::vec3(0.0f, 1.0f, 0.0f));
+                model *= glm::mat4_cast(rotation);
+            }
+
+            if (obj.name == "water") {
+                float scrollSpeed = 0.1f;
+                float offset = scrollSpeed * glfwGetTime();
+
+                // auto offsetVector = glm::vec2(offset);
+
+                auto texTransform = glm::mat3(1.0f);
+                texTransform[2] = glm::vec3(offset, 0.0f, 1.0f);
+                const float myTime = static_cast<float>(glfwGetTime());
+                glUniform1f(glGetUniformLocation(shader, "time"), myTime);
+                glUniformMatrix3fv(glGetUniformLocation(shader, "texTransform"), 1, GL_FALSE, glm::value_ptr(texTransform));
+            }
             setLightUniforms(shader);
             glUniform3fv(glGetUniformLocation(shader, "viewPos"), 1, glm::value_ptr(currentCamera->position));
-            glm::mat4 model = obj.getModelMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-            glm::mat4 view = currentCamera->getViewMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
             models[obj.modelIndex]->draw(shader);
@@ -104,7 +133,6 @@ void Scene::draw(glm::mat4 projection, float delta) {
     }
 
 
-    skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
 }
 
 void Scene::drawPicking(glm::mat4 projection) {

@@ -20,6 +20,8 @@
 #include "scene_object.h"
 #include "shader.h"
 
+#include <GLFW/glfw3.h>
+
 class Scene {
 public:
     std::vector<std::string> modelPaths;

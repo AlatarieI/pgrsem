@@ -183,6 +183,7 @@ void init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_ALPHA_BITS, 8);
 
     window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Nothing is fine", nullptr, nullptr);
     if (window == nullptr) {
@@ -206,6 +207,8 @@ void init() {
     stbi_set_flip_vertically_on_load(true);
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -500,30 +503,10 @@ void setLightUniforms() {
     glUniform1f(glGetUniformLocation(main_shader, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));
 }
 
-Scene createScene() {
-    Scene scene;
-
-    // SceneNode* node = new SceneNode(new GameObject("resources/models/mountain/mount.obj", true, main_shader, glm::vec3(0.0f, 9.0f, 0.0f)));
-    // node->children.push_back(new SceneNode(new GameObject("resources/models/Wooden_Tower/Wooden_Tower.obj", false, main_shader, glm::vec3(0.0f, 0.0f, 0.0f))));
-    // scene.addNode(node);
-    //
-    // scene.addNode(new SceneNode(new GameObject("resources/models/backpack/backpack.obj", true, main_shader, glm::vec3(0.0f, 0.0f, 1.0f))));
-    //
-    // scene.addNode(new SceneNode(new GameObject("resources/models/ground/ground.obj", true, main_shader,
-    //         glm::vec3(0.0f), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(0.1f))));
-
-    // scene.addNode(new SceneNode(new GameObject("resources/models/myisland/myisland.obj", false, main_shader,
-    //         glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(0.0f), glm::vec3(10.0f))));
-
-    scene.addCamera(camera1);
-    scene.addCamera(camera2);
-
-    int shaderIdx = scene.addShader("shaders/vertex_shader.vert", "shaders/fragment_shader.frag");
-    int modelIdx = scene.addModel("resources/models/backpack/backpack.obj", true);
-    scene.addObject("backpack", shaderIdx, modelIdx, glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f));
-
-    return scene;
-}
+// Scene createScene() {
+//
+//
+// }
 
 // void renderUI(Scene& scene) {
 //     ImGui::Begin("Scene Controls");
@@ -653,6 +636,7 @@ void renderUI(Scene& scene) {
 
                 char* nameBuffer = &obj.name[0];
                 ImGui::InputText("Name", nameBuffer, obj.name.capacity() + 1);
+                obj.name = nameBuffer;
 
                 bool changed = false;
                 changed |= ImGui::DragFloat3("Position", glm::value_ptr(obj.position), 0.1f);
@@ -661,6 +645,10 @@ void renderUI(Scene& scene) {
                 if (changed) {
                     obj.isDirty = true;
                 }
+
+
+                ImGui::InputInt("Shader Index", &obj.shaderIdx);
+                ImGui::InputInt("Model Index", &obj.modelIndex);
 
                 if (ImGui::Button("Delete")) {
                     scene.objects.erase(scene.objects.begin() + pickedObjectIdx);
@@ -706,7 +694,7 @@ int main() {
 
         processInput(window);
 
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH)/ static_cast<float>(SCR_HEIGHT) , 0.1f, 100.0f);
