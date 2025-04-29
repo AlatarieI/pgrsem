@@ -30,7 +30,7 @@ public:
 
     Model(std::string const &path, bool flipUV = false, bool gamma = false);
 
-    Model(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, bool flipUV = false, bool gamma = false);
+    Model(std::vector<Mesh> meshes, bool flipUV = false, bool gamma = false);
 
     void draw(GLuint program);
 

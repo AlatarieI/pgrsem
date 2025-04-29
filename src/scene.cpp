@@ -64,12 +64,27 @@ void Scene::setLightUniforms(GLuint shader) {
         dirLight.setUniforms(shader);
     }
 
+    glUniform1i(glGetUniformLocation(shader, "activePointLights"), static_cast<int>(pointLights.size()));
     for (int i = 0; i < pointLights.size(); i++) {
+        if (pointLights[i].objectIdx >= 0) {
+            pointLights[i].position = objects[pointLights[i].objectIdx].getModelMatrix() * glm::vec4( objects[pointLights[i].objectIdx].position,1.0f);
+        }
         pointLights[i].setUniforms(shader, i);
     }
 
-    for (auto spot : spotLights) {
-        spot.setUniforms(shader);
+    int activeSpotLights = cameraSpotlightActive ? static_cast<int>(spotLights.size()) : static_cast<int>(spotLights.size())-1;
+    glUniform1i(glGetUniformLocation(shader, "activeSpotLights"), activeSpotLights);
+    for (int i = 0; i < spotLights.size(); i++) {
+        if (i == 0 && cameraSpotlightActive) {
+            spotLights[i].position = getActiveCamera()->position;
+            spotLights[i].direction = getActiveCamera()->front;
+        } else if (i == 0 && !cameraSpotlightActive) {
+            continue;
+        } else if (spotLights[i].objectIdx >= 0) {
+            glm::mat4 modelMatrix = objects[spotLights[i].objectIdx].getModelMatrix();
+            spotLights[i].position = modelMatrix * glm::vec4(objects[spotLights[i].objectIdx].position, 1.0f);
+        }
+        spotLights[i].setUniforms(shader);
     }
 }
 
@@ -106,7 +121,8 @@ void Scene::draw(glm::mat4 projection, float delta) {
                 glUniform1i(glGetUniformLocation(shader, "frameCountY"), 6);
                 glUniform1f(glGetUniformLocation(shader, "frameRate"), 20.0f);
 
-                glm::vec3 direction = glm::normalize(currentCamera->position - obj.position);
+                glm::vec3 position = obj.parent ? obj.parent->getModelMatrix()*glm::vec4(obj.position,1.0f): obj.position;
+                glm::vec3 direction = glm::normalize(currentCamera->position - position);
                 glm::quat rotation = glm::quatLookAt(-direction, glm::vec3(0.0f, 1.0f, 0.0f));
                 model *= glm::mat4_cast(rotation);
             }
@@ -209,7 +225,8 @@ void Scene::save(const std::string& file) {
             {"specular", {light.specular.r, light.specular.g, light.specular.b}},
             {"constant", light.constant},
             {"linear", light.linear},
-            {"quadratic", light.quadratic}
+            {"quadratic", light.quadratic},
+            {"objectIdx", light.objectIdx}
         });
     }
 
@@ -233,7 +250,8 @@ void Scene::save(const std::string& file) {
             {"outerCutOff", light.outerCutOff},
             {"constant", light.constant},
             {"linear", light.linear},
-            {"quadratic", light.quadratic}
+            {"quadratic", light.quadratic},
+            {"objectIdx", light.objectIdx}
         });
     }
 
@@ -283,6 +301,7 @@ void Scene::load(const std::string& file) {
     spotLights.clear();
     cameras.clear();
 
+
     for (const auto& m : j["shaders"]) {
         std::string vertexShaderSource = m["vertexShaderSource"];
         std::string fragmentShaderSource = m["fragmentShaderSource"];
@@ -319,6 +338,7 @@ void Scene::load(const std::string& file) {
         SceneObject obj;
         obj.name = o["name"];
         obj.modelIndex = o["modelIndex"];
+
         auto pos = o["position"];
         auto rot = o["rotation"];
         auto scale = o["scale"];
@@ -326,15 +346,19 @@ void Scene::load(const std::string& file) {
         obj.rotation = glm::vec3(rot[0], rot[1], rot[2]);
         obj.scale = glm::vec3(scale[0], scale[1], scale[2]);
 
-        obj.parentIdx = o["parentIdx"];
-        if (obj.parentIdx >= 0 && obj.parentIdx < objects.size())
-            obj.parent = &objects[obj.parentIdx];
-        else
-            obj.parent = nullptr;
-
         obj.shaderIdx = o["shaderIdx"];
+        obj.parentIdx = o["parentIdx"];
 
         objects.push_back(obj);
+    }
+
+    for (size_t i = 0; i < objects.size(); ++i) {
+        if (objects[i].parentIdx >= 0 && objects[i].parentIdx < objects.size()) {
+            objects[i].parent = &objects[objects[i].parentIdx];
+            objects[i].parent->children.push_back(&objects[i]);
+        } else {
+            objects[i].parent = nullptr;
+        }
     }
 
     std::cout << "Objects loaded" << std::endl;
@@ -348,6 +372,7 @@ void Scene::load(const std::string& file) {
         light.constant = l["constant"];
         light.linear = l["linear"];
         light.quadratic = l["quadratic"];
+        light.objectIdx = l["objectIdx"];
         pointLights.push_back(light);
     }
 
@@ -364,6 +389,21 @@ void Scene::load(const std::string& file) {
 
     std::cout << "Dir lights loaded" << std::endl;
 
+
+    SpotLight cameraSpotLight{};
+    cameraSpotLight.objectIdx = -1;
+    cameraSpotLight.ambient = glm::vec3(0.1f);
+    cameraSpotLight.diffuse = glm::vec3(0.8f);
+    cameraSpotLight.specular = glm::vec3(1.0f);
+    cameraSpotLight.cutOff = 12.5f;
+    cameraSpotLight.outerCutOff = 15.0f;
+    cameraSpotLight.constant = 1.0f;
+    cameraSpotLight.linear = 0.09f;
+    cameraSpotLight.quadratic = 0.032f;
+    cameraSpotLight.direction = glm::vec3(1.0f, 0.0f, 0.0f);
+    cameraSpotLight.position = glm::vec3(0.0f);
+    spotLights.push_back(cameraSpotLight);
+
     for (const auto& l : j["spotLights"]) {
         SpotLight light{};
         light.position = glm::vec3(l["position"][0], l["position"][1], l["position"][2]);
@@ -376,6 +416,7 @@ void Scene::load(const std::string& file) {
         light.constant = l["constant"];
         light.linear = l["linear"];
         light.quadratic = l["quadratic"];
+        light.objectIdx = l["objectIdx"];
         spotLights.push_back(light);
     }
 

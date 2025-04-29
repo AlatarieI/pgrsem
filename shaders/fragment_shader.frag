@@ -1,6 +1,6 @@
 #version 330 core
 
-#define NR_POINT_LIGHTS 4
+#define NR_POINT_LIGHTS 8
 
 struct Material {
     vec3 diffuse;
@@ -62,6 +62,9 @@ uniform DirLight dirLight;
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 uniform SpotLight spotLight;
 
+uniform int activePointLights;
+uniform int activeSpotLights;
+
 uniform vec3 viewPos;
 uniform vec3 colori;
 
@@ -97,12 +100,16 @@ void main() {
     vec3 result = vec3(0.0f);
     result += CalcDirLight(dirLight, norm, viewDir);
     // Point lights
-//    for(int i = 0; i < NR_POINT_LIGHTS; i++)
-//        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
-    // Spot light
-//    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
+    if (activePointLights > 0) {
+        for (int i = 0; i < activePointLights; i++)
+        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
+    }
+//     Spot light
+    if (activeSpotLights > 0)
+        result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
 
     FragColor = vec4(result, 1.0f);
+//    FragColor = vec4(spotLight.direction, 1.0f);
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {

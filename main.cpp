@@ -24,6 +24,7 @@
 #include "model.h"
 #include "scene.h"
 #include "utility.h"
+#include "data.h"
 
 int SCR_WIDTH = 800;
 int SCR_HEIGHT = 600;
@@ -55,7 +56,7 @@ float lastFrame = 0.0f;
 float yaw = -90.0f, pitch = 0.0f;
 float lastX = 400, lastY = 300;
 
-bool firstMouse = true, showCursor = false;
+bool firstMouse = true, showCursor = false, isDragging = false;
 
 Scene scene;
 
@@ -80,22 +81,39 @@ glm::vec3 pointLightPositions[] = {
     glm::vec3( 0.0f,  0.0f, -3.0f)
 };
 
+std::unordered_map<int, bool> keyState;
+std::unordered_map<int, bool> keyPressed;
+std::unordered_map<int, bool> keyLastState;
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    keyLastState[key] = keyState[key];
+    if (action == GLFW_PRESS) {
+        keyState[key] = true;
+    } else if (action == GLFW_RELEASE) {
+        keyState[key] = false;
+    }
+}
+
 void processInput(GLFWwindow *window) {
     currentCamera = scene.getActiveCamera();
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (keyState[GLFW_KEY_ESCAPE])
         glfwSetWindowShouldClose(window, true);
 
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+    if (keyState[GLFW_KEY_LEFT_SHIFT])
         currentCamera->speed = 6.5f;
     else
         currentCamera->speed = 3.0f;
 
-    if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
+    if (keyState[GLFW_KEY_F1])
         scene.activeCameraIndex = 0;
-    if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
+
+    if (keyState[GLFW_KEY_F2])
         scene.activeCameraIndex = 1;
 
-    if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
+    if (keyPressed[GLFW_KEY_L])
+        scene.cameraSpotlightActive = !scene.cameraSpotlightActive;
+
+    if (keyState[GLFW_KEY_M]) {
         Camera* curr = scene.getActiveCamera();
         scene.activeCameraIndex = 2;
         Camera* moving = scene.getActiveCamera();
@@ -108,38 +126,35 @@ void processInput(GLFWwindow *window) {
 
     }
 
-    if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS) {
-        showUI = !showUI;
-    }
 
-    if (!showCursor) {
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-            currentCamera->move(FRONT, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            currentCamera->move(BACK, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-            currentCamera->move(LEFT, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-            currentCamera->move(RIGHT, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-            currentCamera->move(UP, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-            currentCamera->move(DOWN, deltaTime);
+    if (keyState[GLFW_KEY_W])
+        currentCamera->move(FRONT, deltaTime);
+    if (keyState[GLFW_KEY_S])
+        currentCamera->move(BACK, deltaTime);
+    if (keyState[GLFW_KEY_A])
+        currentCamera->move(LEFT, deltaTime);
+    if (keyState[GLFW_KEY_D])
+        currentCamera->move(RIGHT, deltaTime);
+    if (keyState[GLFW_KEY_SPACE])
+        currentCamera->move(UP, deltaTime);
+    if (keyState[GLFW_KEY_LEFT_CONTROL])
+        currentCamera->move(DOWN, deltaTime);
 
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-            currentCamera->changeDirection(0.0f, 1.0f);
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-            currentCamera->changeDirection(0.0f, -1.0f);
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-            currentCamera->changeDirection(-1.0f, 0.0f);
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            currentCamera->changeDirection(1.0f, 0.0f);
-    }
+    if (keyState[GLFW_KEY_UP])
+        currentCamera->changeDirection(0.0f, 1.0f);
+    if (keyState[ GLFW_KEY_DOWN])
+        currentCamera->changeDirection(0.0f, -1.0f);
+    if (keyState[GLFW_KEY_LEFT])
+        currentCamera->changeDirection(-1.0f, 0.0f);
+    if (keyState[GLFW_KEY_RIGHT])
+        currentCamera->changeDirection(1.0f, 0.0f);
+
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
         showCursor = !showCursor;
+        showUI = !showUI;
         if (!showCursor) {
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
         } else {
@@ -147,9 +162,14 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
         }
     }
 
-    if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-        glfwGetCursorPos(window, &mouseX, &mouseY);
-        doPicking = true;
+    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        if (action == GLFW_PRESS) {
+            glfwGetCursorPos(window, &mouseX, &mouseY);
+            doPicking = true;
+            isDragging = true;
+        } else if (action == GLFW_RELEASE) {
+            isDragging = false;
+        }
     }
 }
 
@@ -173,9 +193,10 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
     lastX = xPos;
     lastY = yPos;
 
-    if (!showCursor) {
+    if (!showCursor)
         currentCamera->changeDirection(xOffset, yOffset);
-    }
+    else if (isDragging && !ImGui::GetIO().WantCaptureMouse)
+        currentCamera->changeDirection(-xOffset, -yOffset);
 }
 
 void init() {
@@ -196,6 +217,7 @@ void init() {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetKeyCallback(window, keyCallback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
 
@@ -272,59 +294,12 @@ GLuint create_program(const char* vertex_file_name, const char* fragment_file_na
     return prog;
 }
 
-void buffers_set_up() {
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
-    float vertices[] = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
-    };
-    // first, configure the cube's VAO (and VBO)
+void box_set_up() {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(boxVertices), boxVertices, GL_STATIC_DRAW);
 
     glBindVertexArray(VAO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
@@ -333,15 +308,6 @@ void buffers_set_up() {
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
-
-    // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
-    glGenVertexArrays(1, &light_cube_VAO);
-    glBindVertexArray(light_cube_VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    // note that we update the lamp's position attribute's stride to reflect the updated buffer data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
 }
 
 
@@ -372,103 +338,8 @@ void locations_setup() {
 
 }
 
-// void generateSkyDome() {
-//     float pi = 3.14159265359f;
-//     std::vector<float> vertices;
-//     std::vector<unsigned int> indices;
-//
-//     unsigned int X_SEGMENTS = 64;
-//     unsigned int Y_SEGMENTS = 64;
-//
-//     for (unsigned int y = 0; y <= Y_SEGMENTS; ++y) {
-//         for (unsigned int x = 0; x <= X_SEGMENTS; ++x) {
-//             float xSegment = (float)x / (float)X_SEGMENTS;
-//             float ySegment = (float)y / (float)Y_SEGMENTS;
-//             float xPos = std::cos(xSegment * 2.0f * pi) * std::sin(ySegment * pi);
-//             float yPos = std::cos(ySegment * pi);
-//             float zPos = std::sin(xSegment * 2.0f * pi) * std::sin(ySegment * pi);
-//
-//             // positions (x, y, z), texture coords (u, v)
-//             vertices.push_back(xPos);
-//             vertices.push_back(yPos);
-//             vertices.push_back(zPos);
-//             vertices.push_back(xSegment);
-//             vertices.push_back(ySegment);
-//         }
-//     }
-//
-//     // Now create indices
-//     for (unsigned int y = 0; y < Y_SEGMENTS; ++y) {
-//         for (unsigned int x = 0; x < X_SEGMENTS; ++x) {
-//             unsigned int i0 = y * (X_SEGMENTS + 1) + x;
-//             unsigned int i1 = (y + 1) * (X_SEGMENTS + 1) + x;
-//
-//             indices.push_back(i0);
-//             indices.push_back(i1);
-//             indices.push_back(i0 + 1);
-//
-//             indices.push_back(i0 + 1);
-//             indices.push_back(i1);
-//             indices.push_back(i1 + 1);
-//         }
-//     }
-//
-//     skyDome.size = indices.size();
-//
-//     glGenVertexArrays(1, &skyDome.VAO);
-//     glGenBuffers(1, &skyDome.VBO);
-//     glGenBuffers(1, &skyDome.EBO);
-//
-//     glBindVertexArray(skyDome.VAO);
-//
-//     glBindBuffer(GL_ARRAY_BUFFER, skyDome.VBO);
-//     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices[0], GL_STATIC_DRAW);
-//
-//     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, skyDome.EBO);
-//     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
-//
-//
-//     // position
-//     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-//     glEnableVertexAttribArray(0);
-//     // texcoords
-//     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-//     glEnableVertexAttribArray(1);
-//     glBindVertexArray(0);
-//
-// }
-//
-// void drawSkyDome() {
-//     glDepthMask(GL_FALSE);
-//     glUseProgram(skyDome_shader);
-//     glm::mat4 model = glm::mat4(1.0f);
-//     model = glm::translate(model, currentCamera->Position);
-//     model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-//     model = glm::scale(model, glm::vec3(10.0f));
-//
-//     GLint skyDome_projLoc = glGetUniformLocation( skyDome_shader, "projection");
-//     GLint skyDome_viewLoc = glGetUniformLocation( skyDome_shader, "view");
-//     GLint skyDome_modelLoc = glGetUniformLocation( skyDome_shader, "model");
-//
-//     // Uniforms
-//     glUniformMatrix4fv(skyDome_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-//     glUniformMatrix4fv(skyDome_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-//     glUniformMatrix4fv(skyDome_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-//
-//     // Texture
-//     glActiveTexture(GL_TEXTURE0);
-//     glBindTexture(GL_TEXTURE_2D, skyDome.texture);
-//     glUniform1i(glGetUniformLocation(skyDome_shader, "skyTexture"), 0);
-//
-//     // Render
-//     glBindVertexArray(skyDome.VAO);
-//     glDrawElements(GL_TRIANGLES, skyDome.size, GL_UNSIGNED_INT, 0);
-//     glBindVertexArray(0);
-//     glDepthMask(GL_TRUE);
-// }
 
 void setLightUniforms() {
-
     // Directional light
     glUniform3f(glGetUniformLocation(main_shader, "dirLight.direction"),
                                     glm::sin(glm::radians(-30.0f)) * glm::cos(glm::radians(70.0f)),
@@ -502,55 +373,6 @@ void setLightUniforms() {
     glUniform1f(glGetUniformLocation(main_shader, "spotLight.cutOff"), glm::cos(glm::radians(12.5f)));
     glUniform1f(glGetUniformLocation(main_shader, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));
 }
-
-// Scene createScene() {
-//
-//
-// }
-
-// void renderUI(Scene& scene) {
-//     ImGui::Begin("Scene Controls");
-//
-//     // Camera selection
-//     if (!scene.cameras.empty()) {
-//         static int selectedCamera = scene.activeCameraIndex;
-//         if (ImGui::SliderInt("Active Camera", &selectedCamera, 0, scene.cameras.size() - 1)) {
-//             scene.activeCameraIndex = selectedCamera;
-//         }
-//     }
-//
-//     // SkyDome control
-//     if (scene.skyDome) {
-//         static char skyPath[256] = "";
-//         ImGui::InputText("Sky Texture Path", skyPath, sizeof(skyPath));
-//         if (ImGui::Button("Set Sky Texture")) {
-//             scene.skyDome->texture.path = std::string(skyPath);
-//             scene.skyDome->texture.id = load_texture(skyPath);
-//         }
-//     }
-//
-//     // Scene objects
-//     if (!scene.objects.empty()) {
-//         ImGui::Separator();
-//         ImGui::Text("Scene Objects");
-//
-//         for (size_t i = 0; i < scene.objects.size(); ++i) {
-//             SceneObject& obj = scene.objects[i];
-//             if (ImGui::TreeNode(obj.name.c_str())) {
-//                 bool changed = false;
-//                 changed |= ImGui::DragFloat3("Position", glm::value_ptr(obj.position), 0.1f);
-//                 changed |= ImGui::DragFloat3("Rotation", glm::value_ptr(obj.rotation), 0.1f);
-//                 changed |= ImGui::DragFloat3("Scale",    glm::value_ptr(obj.scale), 0.1f);
-//                 if (changed) {
-//                     obj.isDirty = true;
-//                 }
-//                 ImGui::TreePop();
-//             }
-//         }
-//     }
-//
-//     ImGui::End();
-// }
 
 void renderUI(Scene& scene) {
     static char fileName[128] = "scene.json";
@@ -595,6 +417,11 @@ void renderUI(Scene& scene) {
                 scene.addObject(objectName, shaderIndex, modelIndex, {0,0,0}, {0,0,0}, {1,1,1});
                 objectName[0] = '\0';
             }
+
+            ImGui::SeparatorText("Loaded Objects:");
+            for (int i = 0; i < scene.objects.size(); ++i) {
+                ImGui::Text("%d: %s", i, scene.objects[i].name.c_str());
+            }
             ImGui::EndTabItem();
         }
 
@@ -610,14 +437,88 @@ void renderUI(Scene& scene) {
         }
 
         if (ImGui::BeginTabItem("Lights")) {
-            if (ImGui::CollapsingHeader("Directional lights")) {
-                for (int i = 0; i < scene.dirLights.size(); i++) {
-                    auto* light = &scene.dirLights[i];
+            if (ImGui::CollapsingHeader("Directional Lights")) {
+                for (int i = 0; i < scene.dirLights.size(); ++i) {
                     ImGui::PushID(i);
-                    ImGui::DragFloat3("Direction", glm::value_ptr(light->direction), 0.1f);
-                    ImGui::DragFloat3("Ambient", glm::value_ptr(light->ambient), 0.1f);
-                    ImGui::DragFloat3("Diffuse", glm::value_ptr(light->diffuse), 0.1f);
-                    ImGui::DragFloat3("Specular", glm::value_ptr(light->specular), 0.1f);
+
+                    auto& light = scene.dirLights[i];
+                    if (ImGui::TreeNode(("Directional Light " + std::to_string(i)).c_str())) {
+                        ImGui::DragFloat3("Direction", glm::value_ptr(light.direction), 0.1f);
+                        ImGui::ColorEdit3("Ambient", glm::value_ptr(light.ambient));
+                        ImGui::ColorEdit3("Diffuse", glm::value_ptr(light.diffuse));
+                        ImGui::ColorEdit3("Specular", glm::value_ptr(light.specular));
+
+                        if (ImGui::Button("Delete")) {
+                            scene.dirLights.erase(scene.dirLights.begin() + i);
+                            ImGui::TreePop();
+                            ImGui::PopID();
+                            break;
+                        }
+
+                        ImGui::TreePop();
+                    }
+
+                    ImGui::PopID();
+                }
+            }
+
+            if (ImGui::CollapsingHeader("Point Lights")) {
+                for (int i = 0; i < scene.pointLights.size(); ++i) {
+                    ImGui::PushID(1000 + i);
+
+                    auto& light = scene.pointLights[i];
+                    if (ImGui::TreeNode(("Point Light " + std::to_string(i)).c_str())) {
+                        ImGui::DragFloat3("Position", glm::value_ptr(light.position), 0.1f);
+                        ImGui::ColorEdit3("Ambient", glm::value_ptr(light.ambient));
+                        ImGui::ColorEdit3("Diffuse", glm::value_ptr(light.diffuse));
+                        ImGui::ColorEdit3("Specular", glm::value_ptr(light.specular));
+                        ImGui::DragFloat("Constant", &light.constant, 0.01f, 0.0f, 10.0f);
+                        ImGui::DragFloat("Linear", &light.linear, 0.01f, 0.0f, 1.0f);
+                        ImGui::DragFloat("Quadratic", &light.quadratic, 0.01f, 0.0f, 1.0f);
+                        ImGui::InputInt("Attached Object Index", &light.objectIdx);
+
+                        if (ImGui::Button("Delete")) {
+                            scene.pointLights.erase(scene.pointLights.begin() + i);
+                            ImGui::TreePop();
+                            ImGui::PopID();
+                            break;
+                        }
+
+                        ImGui::TreePop();
+                    }
+
+                    ImGui::PopID();
+                }
+            }
+
+            if (ImGui::CollapsingHeader("Spot Lights")) {
+                for (int i = 0; i < scene.spotLights.size(); ++i) {
+                    ImGui::PushID(2000 + i);
+
+                    auto& light = scene.spotLights[i];
+                    if (ImGui::TreeNode(("Spot Light " + std::to_string(i)).c_str())) {
+                        ImGui::DragFloat3("Position", glm::value_ptr(light.position), 0.1f);
+                        ImGui::DragFloat3("Direction", glm::value_ptr(light.direction), 0.1f);
+                        ImGui::ColorEdit3("Ambient", glm::value_ptr(light.ambient));
+                        ImGui::ColorEdit3("Diffuse", glm::value_ptr(light.diffuse));
+                        ImGui::ColorEdit3("Specular", glm::value_ptr(light.specular));
+                        ImGui::DragFloat("Cut Off", &light.cutOff, 0.01f, 0.0f, glm::pi<float>());
+                        ImGui::DragFloat("Outer Cut Off", &light.outerCutOff, 0.01f, 0.0f, glm::pi<float>());
+                        ImGui::DragFloat("Constant", &light.constant, 0.01f, 0.0f, 10.0f);
+                        ImGui::DragFloat("Linear", &light.linear, 0.01f, 0.0f, 1.0f);
+                        ImGui::DragFloat("Quadratic", &light.quadratic, 0.01f, 0.0f, 1.0f);
+                        ImGui::InputInt("Attached Object Index", &light.objectIdx);
+
+                        if (ImGui::Button("Delete")) {
+                            scene.spotLights.erase(scene.spotLights.begin() + i);
+                            ImGui::TreePop();
+                            ImGui::PopID();
+                            break;
+                        }
+
+                        ImGui::TreePop();
+                    }
+
                     ImGui::PopID();
                 }
             }
@@ -646,14 +547,108 @@ void renderUI(Scene& scene) {
                     obj.isDirty = true;
                 }
 
-
                 ImGui::InputInt("Shader Index", &obj.shaderIdx);
                 ImGui::InputInt("Model Index", &obj.modelIndex);
 
+                ImGui::SeparatorText("Attached Point Lights");
+
+                int lightIdx = 0;
+                for (auto& light : scene.pointLights) {
+                    if (light.objectIdx == pickedObjectIdx) {
+                        std::string label = "PointLight " + std::to_string(lightIdx++);
+                        if (ImGui::TreeNode(label.c_str())) {
+                            ImGui::ColorEdit3("Ambient", glm::value_ptr(light.ambient));
+                            ImGui::ColorEdit3("Diffuse", glm::value_ptr(light.diffuse));
+                            ImGui::ColorEdit3("Specular", glm::value_ptr(light.specular));
+
+                            ImGui::DragFloat("Constant", &light.constant, 0.01f);
+                            ImGui::DragFloat("Linear", &light.linear, 0.01f);
+                            ImGui::DragFloat("Quadratic", &light.quadratic, 0.01f);
+
+                            if (ImGui::Button("Unlink")) {
+                                light.objectIdx = -1;  // Detach from object
+                            }
+
+                            ImGui::TreePop();
+                        }
+                    }
+                }
+
+                ImGui::SeparatorText("Attached Spot Lights");
+
+                lightIdx = 0;
+                for (auto& light : scene.spotLights) {
+                    if (light.objectIdx == pickedObjectIdx) {
+                        std::string label = "SpotLight " + std::to_string(lightIdx++);
+                        if (ImGui::TreeNode(label.c_str())) {
+                            ImGui::DragFloat3("Direction", glm::value_ptr(light.direction), 0.1f);
+
+                            ImGui::ColorEdit3("Ambient", glm::value_ptr(light.ambient));
+                            ImGui::ColorEdit3("Diffuse", glm::value_ptr(light.diffuse));
+                            ImGui::ColorEdit3("Specular", glm::value_ptr(light.specular));
+
+                            ImGui::DragFloat("Cut Off", &light.cutOff, 0.01f);
+                            ImGui::DragFloat("Outer Cut Off", &light.outerCutOff, 0.01f);
+
+                            ImGui::DragFloat("Constant", &light.constant, 0.01f);
+                            ImGui::DragFloat("Linear", &light.linear, 0.01f);
+                            ImGui::DragFloat("Quadratic", &light.quadratic, 0.01f);
+
+                            if (ImGui::Button("Unlink")) {
+                                light.objectIdx = -1;
+                            }
+
+                            ImGui::TreePop();
+                        }
+                    }
+                }
+
+                ImGui::SeparatorText("Add Light to Object");
+
+                if (ImGui::Button("Add Point Light")) {
+                    PointLight newLight{};
+                    newLight.objectIdx = pickedObjectIdx;
+                    newLight.ambient = glm::vec3(0.2f);
+                    newLight.diffuse = glm::vec3(0.5f);
+                    newLight.specular = glm::vec3(1.0f);
+                    newLight.constant = 1.0f;
+                    newLight.linear = 0.09f;
+                    newLight.quadratic = 0.032f;
+                    newLight.position = glm::vec3(0.0f);
+                    scene.addPointLight(newLight);
+                }
+
+                if (ImGui::Button("Add Spot Light")) {
+                    SpotLight newLight{};
+                    newLight.objectIdx = pickedObjectIdx;
+                    newLight.ambient = glm::vec3(0.1f);
+                    newLight.diffuse = glm::vec3(0.8f);
+                    newLight.specular = glm::vec3(1.0f);
+                    newLight.cutOff = 12.5f;
+                    newLight.outerCutOff = 15.0f;
+                    newLight.constant = 1.0f;
+                    newLight.linear = 0.09f;
+                    newLight.quadratic = 0.032f;
+                    newLight.direction = glm::vec3(1.0f, 0.0f, 0.0f);
+                    newLight.position = glm::vec3(0.0f);
+                    scene.addSpotLight(newLight);
+                }
+
                 if (ImGui::Button("Delete")) {
+                    // Unlink any lights attached to this object before deletion
+                    for (auto& light : scene.pointLights) {
+                        if (light.objectIdx == pickedObjectIdx)
+                            light.objectIdx = -1;
+                    }
+                    for (auto& light : scene.spotLights) {
+                        if (light.objectIdx == pickedObjectIdx)
+                            light.objectIdx = -1;
+                    }
+
                     scene.objects.erase(scene.objects.begin() + pickedObjectIdx);
                     pickedObjectIdx = -1;
                 }
+
             } else {
                 ImGui::Text("Click object to select it.");
             }
@@ -672,25 +667,19 @@ void renderUI(Scene& scene) {
 
 int main() {
     init();
-    // main_shader = create_program("shaders/vertex_shader.vert", "shaders/fragment_shader.frag");
-    // light_cube_shader = create_program("shaders/lightCube.vert", "shaders/lightCube.frag");
-    //
-    // buffers_set_up();
-    //
-    // GLuint diffuseMap = load_texture("resources/textures/container2.png");
-    // GLuint specularMap = load_texture("resources/textures/container2_specular.png");
-    //
-    // locations_setup();
 
     scene.load("test.json");
-
-    Model myModel = Model("resources/models/backpack/backpack.obj", true);
 
     while(!glfwWindowShouldClose(window)) {
         currentCamera = scene.getActiveCamera();
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
+
+        for (auto& [key, isDown] : keyState) {
+            keyPressed[key] = (isDown && !keyLastState[key]);
+            keyLastState[key] = isDown;
+        }
 
         processInput(window);
 
@@ -715,95 +704,6 @@ int main() {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
-
-        // glUseProgram(main_shader);
-        // glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        // glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        // glUniform3fv(glGetUniformLocation(main_shader, "viewPos"), 1, glm::value_ptr(currentCamera->Position));
-        //
-        //
-        // setLightUniforms();
-        //
-        // // glUniform3fv(materialAmbientLoc, 1, glm::value_ptr(glm::vec3( 1.0f, 0.5f, 0.31f)));
-        // // glUniform3fv(materialDiffuseLoc, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
-        // // glUniform3fv(materialSpecularLoc, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
-        // // glUniform1f(materialShininessLoc, 32.0f);
-        //
-        //
-        //
-        // glBindVertexArray(VAO);
-        //
-        // glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.diffuse"), 0);
-        // glUniform1i(glGetUniformLocation(main_shader, "materialTexture1.specular"), 1);
-        //
-        // glActiveTexture(GL_TEXTURE0);
-        // glBindTexture(GL_TEXTURE_2D, diffuseMap);
-        // glActiveTexture(GL_TEXTURE1);
-        // glBindTexture(GL_TEXTURE_2D, specularMap);
-        //
-        //
-        //
-        // glUniform1i(glGetUniformLocation(main_shader, "useDiffuseTexture"), true);
-        // glUniform1i(glGetUniformLocation(main_shader, "useSpecularTexture"), true);
-        //
-        // for(unsigned int i = 0; i < 10; i++) {
-        //     glm::mat4 model = glm::mat4(1.0f);
-        //     model = glm::translate(model, cubePositions[i]);
-        //     float angle = 20.0f * i;
-        //     model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-        //     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //
-        //     glDrawArrays(GL_TRIANGLES, 0, 36);
-        // }
-        //
-        // glm::mat4 model = glm::mat4(1.0f);
-        // model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f)); // translate it down so it's at the center of the scene
-        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //
-        // myModel.draw(main_shader);
-
-
-
-        // model = glm::mat4(1.0f);
-        // model = glm::translate(model, glm::vec3(0.0f, 9.0f, 0.0f));
-        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //
-        // ourModel3.draw(main_shader);
-
-        // model = glm::mat4(1.0f);
-        // model = glm::translate(model, glm::vec3(0.0f, 4.0f, 12.0f));
-        // model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //
-        // ourModel2.draw(main_shader);
-
-
-
-        // glUseProgram(light_cube_shader);
-        //
-        // GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
-        // GLint light_cube_viewLoc = glGetUniformLocation(light_cube_shader, "view");
-        // GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
-        //
-        // glUniformMatrix4fv(light_cube_viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        // glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        //
-        // GLint colorLoc = glGetUniformLocation(light_cube_shader, "color");
-        // glUniform3fv(colorLoc, 1, glm::value_ptr(currentCamera->Position));
-        // glBindVertexArray(light_cube_VAO);
-        //
-        // for (unsigned int i = 0; i < 4; i++) {
-        //     model = glm::mat4(1.0f);
-        //     model = glm::translate(model, pointLightPositions[i]);
-        //     model = glm::scale(model, glm::vec3(0.2f));
-        //     glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        //     glDrawArrays(GL_TRIANGLES, 0, 36);
-        // }
-        //
-        //
-        // glBindVertexArray(0);
 
         if (!ImGui::GetIO().WantCaptureMouse && doPicking) {
             int winX = showCursor ? static_cast<int>(mouseX) : SCR_WIDTH/2;

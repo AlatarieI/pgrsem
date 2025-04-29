@@ -8,8 +8,8 @@ Model::Model(std::string const &path, bool flipUV, bool gamma) : gammaCorrection
     loadModel(path, flipUV);
 }
 
-Model::Model(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures, bool flipUV, bool gamma) {
-    meshes.push_back(Mesh(vertices,indices,textures));
+Model::Model(std::vector<Mesh> myMeshes, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV) {
+    meshes.insert(meshes.end(), myMeshes.begin(), myMeshes.end());
 }
 
 

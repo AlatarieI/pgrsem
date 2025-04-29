@@ -16,7 +16,7 @@ public:
 
     int shaderIdx;
 
-    std::vector<SceneObject*> children;
+    std::vector<SceneObject*> children{};
     SceneObject* parent;
     int parentIdx;
 
@@ -30,6 +30,8 @@ public:
     bool isDirty = true;
 
     int modelIndex{};
+
+    int lightIdx;
 
     SceneObject();
 

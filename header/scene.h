@@ -43,6 +43,8 @@ public:
 
     SkyBox* skyBox;
 
+    bool cameraSpotlightActive = false;
+
     int addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);
     int addShader(Shader shader);
 

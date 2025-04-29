@@ -4,6 +4,7 @@
 
 #include "lights.h"
 
+#include <iostream>
 
 
 void DirectionalLight::setUniforms(GLuint lightingShader) {

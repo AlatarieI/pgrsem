@@ -8,6 +8,7 @@ SceneObject::SceneObject() {
     shaderIdx = 0;
     parent = nullptr;
     parentIdx = -1;
+    children.clear();
 }
 
 SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 position, const glm::vec3 rotation, const glm::vec3 scale) {
@@ -18,6 +19,7 @@ SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 posit
     this->scale = scale;
     parent = nullptr;
     parentIdx = -1;
+    children.clear();
 }
 
 glm::mat4 SceneObject::getModelMatrix() {
@@ -39,8 +41,12 @@ void SceneObject::updateSelfAndChildren() {
     isDirty = false;
 
     for (auto child : children) {
+        if (child == nullptr) {
+            continue;
+        }
         child->updateSelfAndChildren();
     }
+
 }
 
 

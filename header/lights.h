@@ -33,6 +33,8 @@ public:
     float linear;
     float quadratic;
 
+    int objectIdx;
+
     void setUniforms(GLuint lightingShader, int index);
 };
 
@@ -50,6 +52,8 @@ public:
     float constant;
     float linear;
     float quadratic;
+
+    int objectIdx;
 
     void setUniforms(GLuint lightingShader);
 };
