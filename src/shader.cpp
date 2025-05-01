@@ -30,7 +30,7 @@ void Shader::createProgram() {
     glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
-        std::cout << "Error: Vertex shader compilation failed:\n" << infoLog << std::endl;
+        std::cout << "Error: Vertex shader: " << vertexShaderSource << " compilation failed:\n" << infoLog << std::endl;
     }
 
     // fragment Shader
@@ -41,7 +41,7 @@ void Shader::createProgram() {
     glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
-        std::cout << "Error: Fragment shader compilation failed:\n" << infoLog << std::endl;
+        std::cout << "Error: Fragment shader: " << fragmentShaderSource << "  compilation failed:\n" << infoLog << std::endl;
     }
 
     // shader Program

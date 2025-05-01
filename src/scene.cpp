@@ -104,8 +104,8 @@ void Scene::draw(glm::mat4 projection, float delta) {
 
     Camera* currentCamera = getActiveCamera();
 
-
-    skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
+    if (!useFog)
+        skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
 
     for (auto& obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
@@ -114,9 +114,9 @@ void Scene::draw(glm::mat4 projection, float delta) {
             glm::mat4 model = obj.getModelMatrix();
             glm::mat4 view = currentCamera->getViewMatrix();
 
+            const float myTime = static_cast<float>(glfwGetTime());
+            glUniform1f(glGetUniformLocation(shader, "time"), myTime);
             if (obj.name  == "fire") {
-                const float myTime = static_cast<float>(glfwGetTime());
-                glUniform1f(glGetUniformLocation(shader, "time"), myTime);
                 glUniform1i(glGetUniformLocation(shader, "frameCountX"), 12);
                 glUniform1i(glGetUniformLocation(shader, "frameCountY"), 6);
                 glUniform1f(glGetUniformLocation(shader, "frameRate"), 20.0f);
@@ -135,8 +135,6 @@ void Scene::draw(glm::mat4 projection, float delta) {
 
                 auto texTransform = glm::mat3(1.0f);
                 texTransform[2] = glm::vec3(offset, 0.0f, 1.0f);
-                const float myTime = static_cast<float>(glfwGetTime());
-                glUniform1f(glGetUniformLocation(shader, "time"), myTime);
                 glUniformMatrix3fv(glGetUniformLocation(shader, "texTransform"), 1, GL_FALSE, glm::value_ptr(texTransform));
             }
             setLightUniforms(shader);
@@ -144,6 +142,11 @@ void Scene::draw(glm::mat4 projection, float delta) {
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
             glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, fogTexture.id);
+            glUniform1i(glGetUniformLocation(shader, "useFog"), useFog);
+
             models[obj.modelIndex]->draw(shader);
         }
     }
@@ -269,6 +272,7 @@ void Scene::save(const std::string& file) {
     }
 
     j["activeCameraIndex"] = activeCameraIndex;
+    j["fogTexture"] = fogTexture.path;
 
     std::ofstream out(file);
     if (!out) {
@@ -439,6 +443,12 @@ void Scene::load(const std::string& file) {
 
     if (j.contains("activeCameraIndex")) {
         activeCameraIndex = j["activeCameraIndex"];
+    }
+
+    if (j.contains("fogTexture")) {
+        fogTexture.path = j["fogTexture"];
+        fogTexture.type = "diffuse";
+        fogTexture.id = load_texture(fogTexture.path.c_str());
     }
 
     in.close();

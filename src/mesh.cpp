@@ -49,21 +49,21 @@ void Mesh::draw(GLuint program) {
     unsigned int normalNr   = 1;
     unsigned int heightNr   = 1;
     for(GLint i = 0; i < textures.size(); i++) {
-        glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
+        glActiveTexture(GL_TEXTURE1 + i); // active proper texture unit before binding
         // retrieve texture number (the N in diffuse_textureN)
         std::string number;
         std::string name = textures[i].type;
-        if(name == "diffuse")
+        if (name == "diffuse")
             number = std::to_string(diffuseNr++);
-        else if(name == "specular")
+        else if (name == "specular")
             number = std::to_string(specularNr++);
-        else if(name == "normal")
+        else if (name == "normal")
             number = std::to_string(normalNr++);
-        else if(name == "height")
+        else if (name == "height")
             number = std::to_string(heightNr++);
 
         // now set the sampler to the correct texture unit
-        glUniform1i(glGetUniformLocation(program, ("materialTexture" + number + "." + name).c_str()), i);
+        glUniform1i(glGetUniformLocation(program, ("materialTexture" + number + "." + name).c_str()), i+1);
         // and finally bind the texture
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
@@ -92,7 +92,7 @@ void Mesh::draw(GLuint program) {
 
     // clean up after drawing
     for (int i = 0; i < textures.size(); ++i) {
-        glActiveTexture(GL_TEXTURE0 + i);
+        glActiveTexture(GL_TEXTURE1 + i);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 }

@@ -10,13 +10,38 @@ struct MaterialTexture {
 out vec4 FragColor;
 
 in vec2 TexCoords;
+in vec3 FragPos;
 
 uniform MaterialTexture materialTexture1;
 
+uniform float time;
+
+uniform vec3 viewPos;
+
+uniform sampler2D fogTex;
+uniform bool useFog;
+
 uniform mat3 texTransform; // Transformation matrix for UVs
 
+vec4 applyFog(vec3 fragColor, vec3 fogColor);
+
 void main() {
-    // Convert UV to vec3 for matrix multiplication (homogeneous coords)
     vec3 color = texture(materialTexture1.diffuse, (texTransform * vec3(TexCoords, 1.0)).xy).rgb;
-    FragColor = vec4(color, 0.75);
+    if (useFog)
+        FragColor = applyFog(color, vec3(0.6, 0.7, 0.75));
+    else
+        FragColor = vec4(color, 0.75);
+}
+
+vec4 applyFog(vec3 fragColor, vec3 fogColor) {
+    float distance = length(FragPos - viewPos);
+
+    float expFog = 1.0 - exp(-pow(0.05 * distance, 2.0));
+
+    vec2 uv = FragPos.xz * 0.007 + vec2(time * 0.01, 0.0);
+    float textureFog = texture(fogTex, uv).r;
+
+    float fogAmount = min(1.0, expFog + textureFog);
+
+    return vec4(mix(fragColor, fogColor, fogAmount),0.7);
 }

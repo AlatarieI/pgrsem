@@ -71,12 +71,19 @@ uniform vec3 colori;
 uniform bool useDiffuseTexture;
 uniform bool useSpecularTexture;
 
+
+uniform sampler2D fogTex;
+uniform bool useFog;
+uniform float time;
+
+
 vec3 objectDiffuse;
 vec3 objectSpecular;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec4 applyFog(vec3 fragColor, vec3 fogColor);
 
 void main() {
     if (useDiffuseTexture) {
@@ -108,15 +115,15 @@ void main() {
     if (activeSpotLights > 0)
         result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
 
-    FragColor = vec4(result, 1.0f);
-//    FragColor = vec4(spotLight.direction, 1.0f);
+    if (useFog)
+        FragColor = applyFog(result, vec3(0.6, 0.7, 0.75));
+    else
+        FragColor = vec4(result, 1.0f);
+
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
     vec3 lightDir = normalize(light.direction);
-//    vec3 lightDir = normalize(-vec3(sin(radians(-30.0f)) * cos(radians(45.0f)),
-//                                 sin(radians(-30.0f)) * sin(radians(45.0f)),
-//                                 cos(radians(-30.0f))));
 
     //ambient
     vec3 ambient = light.ambient * objectDiffuse;
@@ -188,4 +195,17 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
     specular *= attenuation * intensity;
 
     return (ambient + diffuse + specular);
+}
+
+vec4 applyFog(vec3 fragColor, vec3 fogColor) {
+    float distance = length(FragPos - viewPos);
+
+    float expFog = 1.0 - exp(-pow(0.05 * distance, 2.0));
+
+    vec2 uv = FragPos.xz * 0.007 + vec2(time * 0.01, 0.0);
+    float textureFog = texture(fogTex, uv).r;
+
+    float fogAmount = min(1.0, expFog + textureFog);
+
+    return vec4(mix(fragColor, fogColor, fogAmount),1.0);
 }

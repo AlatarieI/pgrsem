@@ -43,6 +43,10 @@ public:
 
     SkyBox* skyBox;
 
+    Texture fogTexture;
+
+    bool useFog = false;
+
     bool cameraSpotlightActive = false;
 
     int addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource);

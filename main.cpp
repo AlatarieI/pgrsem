@@ -126,6 +126,10 @@ void processInput(GLFWwindow *window) {
 
     }
 
+    if (keyPressed[GLFW_KEY_F]) {
+        scene.useFog = !scene.useFog;
+    }
+
 
     if (keyState[GLFW_KEY_W])
         currentCamera->move(FRONT, deltaTime);
@@ -683,7 +687,7 @@ int main() {
 
         processInput(window);
 
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.6f, 0.7f, 0.75f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH)/ static_cast<float>(SCR_HEIGHT) , 0.1f, 100.0f);
