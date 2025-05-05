@@ -19,6 +19,7 @@ public:
     std::vector<SceneObject*> children{};
     SceneObject* parent;
     int parentIdx;
+    bool transparent = false;
 
     std::string name;
 

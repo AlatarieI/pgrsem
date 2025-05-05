@@ -26,6 +26,8 @@ public:
     glm::vec3 front = glm::vec3(0.0f, 0.0f, -1.0f);
     glm::vec3 up = glm::vec3(0.0f, 1.0f,  0.0f);
     glm::vec3 worldUp = glm::vec3(0.0f, 1.0f,  0.0f);
+    glm::vec3 sceneMin = glm::vec3(-50.0f, -10.0f, -50.0f);
+    glm::vec3 sceneMax = glm::vec3(50.0f, 50.0f, 50.0f);
     bool shouldMove;
 
     Camera();

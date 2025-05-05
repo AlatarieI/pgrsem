@@ -25,7 +25,7 @@ public:
     SkyBox(std::string texturePath, int shaderIdx);
     SkyBox(const std::vector<std::string>& texturePaths, int shaderIdx);
 
-    void draw(GLuint shader, Camera* currentCamera, glm::mat4 projection, float blend);
+    void draw(GLuint shader, Camera& currentCamera, glm::mat4 projection, float blend);
 
 private:
     void setupSkyBox();

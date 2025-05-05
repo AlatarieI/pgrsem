@@ -203,6 +203,7 @@ vec4 applyFog(vec3 fragColor, vec3 fogColor) {
     float expFog = 1.0 - exp(-pow(0.05 * distance, 2.0));
 
     vec2 uv = FragPos.xz * 0.007 + vec2(time * 0.01, 0.0);
+    uv = uv - vec2(0.0f, 0.5f);
     float textureFog = texture(fogTex, uv).r;
 
     float fogAmount = min(1.0, expFog + textureFog);

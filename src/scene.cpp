@@ -1,6 +1,7 @@
 #include "scene.h"
 
 
+
 using json = nlohmann::json;
 
 int Scene::addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource) {
@@ -55,8 +56,8 @@ void Scene::addCamera(Camera camera) {
     cameras.push_back(camera);
 }
 
-Camera* Scene::getActiveCamera() {
-    return &cameras[activeCameraIndex];
+Camera& Scene::getActiveCamera() {
+    return cameras[activeCameraIndex];
 }
 
 void Scene::setLightUniforms(GLuint shader) {
@@ -76,8 +77,8 @@ void Scene::setLightUniforms(GLuint shader) {
     glUniform1i(glGetUniformLocation(shader, "activeSpotLights"), activeSpotLights);
     for (int i = 0; i < spotLights.size(); i++) {
         if (i == 0 && cameraSpotlightActive) {
-            spotLights[i].position = getActiveCamera()->position;
-            spotLights[i].direction = getActiveCamera()->front;
+            spotLights[i].position = getActiveCamera().position;
+            spotLights[i].direction = getActiveCamera().front;
         } else if (i == 0 && !cameraSpotlightActive) {
             continue;
         } else if (spotLights[i].objectIdx >= 0) {
@@ -87,6 +88,50 @@ void Scene::setLightUniforms(GLuint shader) {
         spotLights[i].setUniforms(shader);
     }
 }
+
+void Scene::setObjectUniforms(GLuint shader,  SceneObject& obj) {
+    Camera& currentCamera =  getActiveCamera();
+
+    const auto myTime = static_cast<float>(glfwGetTime());
+    glUniform1f(glGetUniformLocation(shader, "time"), myTime);
+
+    glm::mat4 model = obj.getModelMatrix();
+    glm::mat4 view = currentCamera.getViewMatrix();
+
+    if (obj.name  == "fire") {
+        glUniform1i(glGetUniformLocation(shader, "frameCountX"), 12);
+        glUniform1i(glGetUniformLocation(shader, "frameCountY"), 6);
+        glUniform1f(glGetUniformLocation(shader, "frameRate"), 20.0f);
+
+        glm::vec3 position = glm::vec3(model * glm::vec4(obj.position, 1.0f));
+        glm::vec3 direction = glm::normalize(currentCamera.position - position);
+        glm::quat rotation = glm::quatLookAt(-direction, glm::vec3(0.0f, 1.0f, 0.0f));
+        model *= glm::mat4_cast(rotation);
+    }
+
+    if (obj.name == "water") {
+        float scrollSpeed = 0.1f;
+        float offset = scrollSpeed * myTime;
+
+        // auto offsetVector = glm::vec2(offset);
+
+        auto texTransform = glm::mat3(1.0f);
+        texTransform[2] = glm::vec3(offset, 0.0f, 1.0f);
+        glUniformMatrix3fv(glGetUniformLocation(shader, "texTransform"), 1, GL_FALSE, glm::value_ptr(texTransform));
+    }
+
+    setLightUniforms(shader);
+    glUniform3fv(glGetUniformLocation(shader, "viewPos"), 1, glm::value_ptr(currentCamera.position));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, fogTexture.id);
+    glUniform1i(glGetUniformLocation(shader, "useFog"), useFog);
+
+}
+
+
 
 void Scene::draw(glm::mat4 projection, float delta) {
     time += delta;
@@ -102,60 +147,73 @@ void Scene::draw(glm::mat4 projection, float delta) {
     }
 
 
-    Camera* currentCamera = getActiveCamera();
+    Camera& currentCamera = getActiveCamera();
 
     if (!useFog)
         skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
 
-    for (auto& obj : objects) {
+    std::vector<SceneObject*> transparent;
+
+    for (auto & obj : objects) {
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
+            if (obj.transparent) {
+                transparent.push_back(&obj);
+                continue;
+            }
             GLuint shader = shaders[obj.shaderIdx].id;
             glUseProgram(shader);
-            glm::mat4 model = obj.getModelMatrix();
-            glm::mat4 view = currentCamera->getViewMatrix();
-
-            const float myTime = static_cast<float>(glfwGetTime());
-            glUniform1f(glGetUniformLocation(shader, "time"), myTime);
-            if (obj.name  == "fire") {
-                glUniform1i(glGetUniformLocation(shader, "frameCountX"), 12);
-                glUniform1i(glGetUniformLocation(shader, "frameCountY"), 6);
-                glUniform1f(glGetUniformLocation(shader, "frameRate"), 20.0f);
-
-                glm::vec3 position = obj.parent ? obj.parent->getModelMatrix()*glm::vec4(obj.position,1.0f): obj.position;
-                glm::vec3 direction = glm::normalize(currentCamera->position - position);
-                glm::quat rotation = glm::quatLookAt(-direction, glm::vec3(0.0f, 1.0f, 0.0f));
-                model *= glm::mat4_cast(rotation);
-            }
-
-            if (obj.name == "water") {
-                float scrollSpeed = 0.1f;
-                float offset = scrollSpeed * glfwGetTime();
-
-                // auto offsetVector = glm::vec2(offset);
-
-                auto texTransform = glm::mat3(1.0f);
-                texTransform[2] = glm::vec3(offset, 0.0f, 1.0f);
-                glUniformMatrix3fv(glGetUniformLocation(shader, "texTransform"), 1, GL_FALSE, glm::value_ptr(texTransform));
-            }
-            setLightUniforms(shader);
-            glUniform3fv(glGetUniformLocation(shader, "viewPos"), 1, glm::value_ptr(currentCamera->position));
-            glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-            glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, fogTexture.id);
-            glUniform1i(glGetUniformLocation(shader, "useFog"), useFog);
+
+            if (obj.name == "ball") {
+                glm::vec3 toCamera = currentCamera.position - obj.position;
+                float dist = glm::length(toCamera);
+
+                if (dist < 2.0f) {
+                    glm::vec3 awayDir = -glm::normalize(toCamera);
+                    obj.position += awayDir * 0.01f;
+                    obj.isDirty = true;
+                }
+            }
+
+            setObjectUniforms(shader,obj);
 
             models[obj.modelIndex]->draw(shader);
         }
     }
 
+    // Sort back-to-front
+    std::sort(transparent.begin(), transparent.end(),
+        [&](SceneObject* a, SceneObject* b) {
+            glm::vec3 posA = glm::vec3(a->getModelMatrix() * glm::vec4(a->position, 1.0));
+            glm::vec3 posB = glm::vec3(b->getModelMatrix() * glm::vec4(b->position, 1.0));
+            float distA = glm::length(currentCamera.position - posA);
+            float distB = glm::length(currentCamera.position - posB);
+            return distA > distB;
+        });
+
+    for (auto obj : transparent) {
+        if (obj->modelIndex >= 0 && obj->modelIndex < models.size() && obj->shaderIdx >= 0 && obj->shaderIdx < shaders.size()) {
+            GLuint shader = shaders[obj->shaderIdx].id;
+            glUseProgram(shader);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glDepthMask(GL_FALSE);
+            glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+            setObjectUniforms(shader, *obj);
+
+            models[obj->modelIndex]->draw(shader);
+
+            glDepthMask(GL_TRUE);
+            glDisable(GL_BLEND);
+        }
+    }
 
 }
 
 void Scene::drawPicking(glm::mat4 projection) {
-    Camera* currentCamera = getActiveCamera();
+    Camera& currentCamera = getActiveCamera();
     for (int i = 0; i < objects.size(); i++) {
         SceneObject obj = objects[i];
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size()) {
@@ -163,7 +221,7 @@ void Scene::drawPicking(glm::mat4 projection) {
             glUseProgram(shader);
             glm::mat4 model = obj.getModelMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-            glm::mat4 view = currentCamera->getViewMatrix();
+            glm::mat4 view = currentCamera.getViewMatrix();
             glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
             glUniform1f(glGetUniformLocation(shader, "id"), static_cast<float>(i + 1));
@@ -216,7 +274,8 @@ void Scene::save(const std::string& file) {
             {"rotation", {obj.rotation.x, obj.rotation.y, obj.rotation.z}},
             {"scale", {obj.scale.x, obj.scale.y, obj.scale.z}},
             {"parentIdx", obj.parentIdx},
-            {"shaderIdx", obj.shaderIdx}
+            {"shaderIdx", obj.shaderIdx},
+            {"transparent", obj.transparent}
         });
     }
 
@@ -352,6 +411,9 @@ void Scene::load(const std::string& file) {
 
         obj.shaderIdx = o["shaderIdx"];
         obj.parentIdx = o["parentIdx"];
+        if (o.contains("transparent")) {
+            obj.transparent = o["transparent"];
+        }
 
         objects.push_back(obj);
     }

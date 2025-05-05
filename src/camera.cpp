@@ -49,6 +49,8 @@ void Camera::move(Directions direction, float deltaTime) {
         if (direction == DOWN)
             position -= worldUp * velocity;
     }
+
+    position = glm::clamp(position, sceneMin, sceneMax);
 }
 
 void Camera::changeDirection(float xOffset, float yOffset) {

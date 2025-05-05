@@ -77,11 +77,11 @@ void SkyBox::setupSkyBox() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 }
 
-void SkyBox::draw(GLuint shader, Camera* currentCamera, glm::mat4 projection, float blend) {
+void SkyBox::draw(GLuint shader, Camera& currentCamera, glm::mat4 projection, float blend) {
     glDepthFunc(GL_LEQUAL);
     glUseProgram(shader);
 
-    glm::mat4 view = glm::mat4(glm::mat3(currentCamera->getViewMatrix())); // remove translation from the view matrix
+    glm::mat4 view = glm::mat4(glm::mat3(currentCamera.getViewMatrix())); // remove translation from the view matrix
 
     GLint skyDome_projLoc = glGetUniformLocation( shader, "projection");
     GLint skyDome_viewLoc = glGetUniformLocation( shader, "view");

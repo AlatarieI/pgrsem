@@ -1,0 +1,472 @@
+{
+    "activeCameraIndex": 2,
+    "cameras": [
+        {
+            "front": [
+                0.4526366591453552,
+                -0.27563682198524475,
+                -0.8480238318443298
+            ],
+            "pitch": -15.999967575073242,
+            "position": [
+                -11.985566139221191,
+                12.993034362792969,
+                38.953346252441406
+            ],
+            "sensitivity": 0.10000000149011612,
+            "shouldMove": false,
+            "speed": 3.0,
+            "up": [
+                0.12979120016098022,
+                0.9612618684768677,
+                -0.24316641688346863
+            ],
+            "yaw": 1018.09130859375
+        },
+        {
+            "front": [
+                0.010441683232784271,
+                0.07323698699474335,
+                -0.9972599744796753
+            ],
+            "pitch": 4.199929714202881,
+            "position": [
+                -0.04363459348678589,
+                0.16916842758655548,
+                3.73744535446167
+            ],
+            "sensitivity": 0.10000000149011612,
+            "shouldMove": false,
+            "speed": 3.0,
+            "up": [
+                -0.0007667764439247549,
+                0.9973146319389343,
+                0.0732329711318016
+            ],
+            "yaw": -89.40011596679688
+        }
+    ],
+    "directionalLights": [
+        {
+            "ambient": [
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224
+            ],
+            "diffuse": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "direction": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "specular": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        }
+    ],
+    "fogTexture": "resources/textures/fog3.png",
+    "models": [
+        {
+            "flipUV": true,
+            "gamma": false,
+            "path": "resources/models/backpack/backpack.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/myisland/myislandsmooth.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/water/water.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/torch/torch.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/fire/fire.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/tower/tower.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/ball/ball.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/trees/tree1.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/trees/tree2.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/trees/tree3.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/trees/tree4.obj"
+        }
+    ],
+    "objects": [
+        {
+            "modelIndex": 0,
+            "name": "backpack",
+            "parentIdx": -1,
+            "position": [
+                3.5,
+                1.2000000476837158,
+                3.5999999046325684
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 1,
+            "name": "island",
+            "parentIdx": -1,
+            "position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 2,
+            "name": "water",
+            "parentIdx": -1,
+            "position": [
+                -5.099999904632568,
+                -0.6499999761581421,
+                -6.099999904632568
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.15000000596046448,
+                0.10000000149011612,
+                0.15000000596046448
+            ],
+            "shaderIdx": 4,
+            "transparent": true
+        },
+        {
+            "modelIndex": 3,
+            "name": "torch",
+            "parentIdx": -1,
+            "position": [
+                0.0,
+                2.4000000953674316,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 4,
+            "name": "fire",
+            "parentIdx": 3,
+            "position": [
+                0.0,
+                2.5999999046325684,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                2.5,
+                2.5,
+                2.5
+            ],
+            "shaderIdx": 3,
+            "transparent": true
+        },
+        {
+            "modelIndex": 6,
+            "name": "ball",
+            "parentIdx": -1,
+            "position": [
+                7.572718143463135,
+                4.459523677825928,
+                2.0525758266448975
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.5,
+                0.5,
+                0.5
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 7,
+            "name": "tree1",
+            "parentIdx": -1,
+            "position": [
+                -5.0,
+                -0.6000000238418579,
+                -8.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 8,
+            "name": "tree2",
+            "parentIdx": -1,
+            "position": [
+                -3.0,
+                -0.6000000238418579,
+                -7.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 9,
+            "name": "tree3",
+            "parentIdx": -1,
+            "position": [
+                -6,
+                -0.6000000238418579,
+                -4.5
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "shaderIdx": 0
+        },
+        {
+            "modelIndex": 10,
+            "name": "tree4",
+            "parentIdx": -1,
+            "position": [
+                -7.0,
+                -0.6000000238418579,
+                -4.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "shaderIdx": 0
+        }
+    ],
+    "pickingShaderIdx": 2,
+    "pointLights": [
+        {
+            "ambient": [
+                0.19607843458652496,
+                0.0784313753247261,
+                0.0784313753247261
+            ],
+            "constant": 1.0,
+            "diffuse": [
+                0.501960813999176,
+                0.2862745225429535,
+                0.0
+            ],
+            "linear": 0.09000000357627869,
+            "objectIdx": 4,
+            "position": [
+                0.0,
+                3.309999942779541,
+                0.0
+            ],
+            "quadratic": 0.03200000151991844,
+            "specular": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "shaders": [
+        {
+            "fragmentShaderSource": "shaders/fragment_shader.frag",
+            "vertexShaderSource": "shaders/vertex_shader.vert"
+        },
+        {
+            "fragmentShaderSource": "shaders/skyBox.frag",
+            "vertexShaderSource": "shaders/skyBox.vert"
+        },
+        {
+            "fragmentShaderSource": "shaders/picking.frag",
+            "vertexShaderSource": "shaders/picking.vert"
+        },
+        {
+            "fragmentShaderSource": "shaders/animTexture.frag",
+            "vertexShaderSource": "shaders/animTexture.vert"
+        },
+        {
+            "fragmentShaderSource": "shaders/water.frag",
+            "vertexShaderSource": "shaders/water.vert"
+        }
+    ],
+    "skyBox": {
+        "shaderIdx": 1,
+        "texturePaths": [
+            "resources/textures/skybox/morning",
+            "resources/textures/skybox/day",
+            "resources/textures/skybox/night"
+        ]
+    },
+    "spotLights": [
+        {
+            "ambient": [
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
+            ],
+            "constant": 1.0,
+            "cutOff": 12.5,
+            "diffuse": [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+            ],
+            "direction": [
+                -0.5599235892295837,
+                -0.3875162899494171,
+                -0.7323364615440369
+            ],
+            "linear": 0.09000000357627869,
+            "objectIdx": -1,
+            "outerCutOff": 15.0,
+            "position": [
+                2.609872341156006,
+                2.235581636428833,
+                -1.664501667022705
+            ],
+            "quadratic": 0.03200000151991844,
+            "specular": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "ambient": [
+                0.10000000149011612,
+                0.10000000149011612,
+                0.10000000149011612
+            ],
+            "constant": 1.0,
+            "cutOff": 12.5,
+            "diffuse": [
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+            ],
+            "direction": [
+                -0.45521071553230286,
+                0.43679970502853394,
+                0.7758796215057373
+            ],
+            "linear": 0.09000000357627869,
+            "objectIdx": -1,
+            "outerCutOff": 15.0,
+            "position": [
+                9.309131622314453,
+                2.1212568283081055,
+                -1.2078619003295898
+            ],
+            "quadratic": 0.03200000151991844,
+            "specular": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ]
+}

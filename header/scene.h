@@ -14,11 +14,13 @@
 #include <sky_box.h>
 #include <gtc/type_ptr.hpp>
 
+
 #include "camera.h"
 #include "model.h"
 #include "lights.h"
 #include "scene_object.h"
 #include "shader.h"
+
 
 #include <GLFW/glfw3.h>
 
@@ -62,8 +64,10 @@ public:
     void addCamera(Camera camera);
 
     void setLightUniforms(GLuint shader);
+    void setObjectUniforms(GLuint shader, SceneObject& obj);
 
-    Camera* getActiveCamera();
+
+    Camera& getActiveCamera();
 
     void load(const std::string& file);
     void save(const std::string& file);

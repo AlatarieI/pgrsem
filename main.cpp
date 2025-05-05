@@ -5,6 +5,10 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 
+
+#define GLM_ENABLE_EXPERIMENTAL
+#include <gtx/quaternion.hpp>
+
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -26,6 +30,7 @@
 #include "utility.h"
 #include "data.h"
 
+
 int SCR_WIDTH = 800;
 int SCR_HEIGHT = 600;
 
@@ -34,21 +39,12 @@ bool showUI = false;
 int pickedObjectIdx = -1;
 double mouseX, mouseY;
 
-GLuint main_shader, light_cube_shader, VBO, VAO, EBO, texture1, texture2, light_cube_VAO;
+GLuint main_shader, VBO, VAO, EBO;
 GLFWwindow* window;
 
 glm::mat4 model = glm::mat4(1.0f);
 glm::mat4 view = glm::mat4(1.0f);
 glm::mat4 projection = glm::mat4(1.0f);
-GLint modelLoc, viewLoc, projLoc, lightPosLoc, viewPosLoc;
-
-GLint lightAmbientLoc, lightDiffuseLoc, lightSpecularLoc, materialAmbientLoc, materialDiffuseLoc, materialSpecularLoc, materialShininessLoc;
-
-glm::vec3 lightPos = glm::vec3(0.0f, 4.0f, -8.0f);
-
-Camera* currentCamera;
-Camera camera1(glm::vec3(0.0f, 0.0f, 2.0f), true);
-Camera camera2(glm::vec3(0.0f, 0.0f, 12.0f), false);
 
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -60,26 +56,30 @@ bool firstMouse = true, showCursor = false, isDragging = false;
 
 Scene scene;
 
+glm::quat fragmentCurrentRotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
+glm::vec3 fragmentPos = glm::vec3(1.0f, 10.0f, 0.0f);
+glm::vec3 fragmentLastForward =  glm::vec3(1.0f, 0.0f, 0.0f);
 
-glm::vec3 cubePositions[] = {
-    glm::vec3( 0.0f,  0.0f,  0.0f),
-    glm::vec3( 2.0f,  5.0f, -15.0f),
-    glm::vec3(-1.5f, -2.2f, -2.5f),
-    glm::vec3(-3.8f, -2.0f, -12.3f),
-    glm::vec3( 2.4f, -0.4f, -3.5f),
-    glm::vec3(-1.7f,  3.0f, -7.5f),
-    glm::vec3( 1.3f, -2.0f, -2.5f),
-    glm::vec3( 1.5f,  2.0f, -2.5f),
-    glm::vec3( 1.5f,  0.2f, -1.5f),
-    glm::vec3(-1.3f,  1.0f, -1.5f)
+
+std::vector<glm::vec3> points = {
+    {  5.0f,  0.0f,  0.0f },  // p0
+    {  5.0f,  3.0f,  3.0f },  // p1
+    {  3.0f,  4.0f,  5.0f },  // p2
+    {  0.0f,  2.0f,  5.0f },  // p3
+
+    { -3.0f,  0.0f,  5.0f },  // p4 = 2*p3 - p2
+    { -5.0f, -1.0f,  3.0f },  // p5
+    { -5.0f, -3.0f,  0.0f },  // p6
+
+    { -5.0f, -5.0f, -3.0f },  // p7
+    { -3.0f, -6.0f, -5.0f },  // p8
+    {  0.0f, -4.0f, -5.0f },  // p9
+
+    {  3.0f, -2.0f, -5.0f },  // p10 = 2*p9 - p8
+    {  5.0f, -3.0f, -3.0f },  // p11 = 2*p0 - p1
+    {  5.0f,  0.0f,  0.0f },  // p12 = p0
 };
 
-glm::vec3 pointLightPositions[] = {
-    glm::vec3( 0.7f,  0.2f,  2.0f),
-    glm::vec3( 2.3f, -3.3f, -4.0f),
-    glm::vec3(-4.0f,  2.0f, -12.0f),
-    glm::vec3( 0.0f,  0.0f, -3.0f)
-};
 
 std::unordered_map<int, bool> keyState;
 std::unordered_map<int, bool> keyPressed;
@@ -95,14 +95,14 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 }
 
 void processInput(GLFWwindow *window) {
-    currentCamera = scene.getActiveCamera();
+    Camera& currentCamera = scene.getActiveCamera();
     if (keyState[GLFW_KEY_ESCAPE])
         glfwSetWindowShouldClose(window, true);
 
     if (keyState[GLFW_KEY_LEFT_SHIFT])
-        currentCamera->speed = 6.5f;
+        currentCamera.speed = 6.5f;
     else
-        currentCamera->speed = 3.0f;
+        currentCamera.speed = 3.0f;
 
     if (keyState[GLFW_KEY_F1])
         scene.activeCameraIndex = 0;
@@ -114,15 +114,15 @@ void processInput(GLFWwindow *window) {
         scene.cameraSpotlightActive = !scene.cameraSpotlightActive;
 
     if (keyState[GLFW_KEY_M]) {
-        Camera* curr = scene.getActiveCamera();
+        Camera curr = scene.getActiveCamera();
         scene.activeCameraIndex = 2;
-        Camera* moving = scene.getActiveCamera();
+        Camera moving = scene.getActiveCamera();
 
-        moving->front = curr->front;
-        moving->up = curr->up;
-        moving->yaw = curr->yaw;
-        moving->pitch = curr->pitch;
-        moving->position = curr->position;
+        moving.front = curr.front;
+        moving.up = curr.up;
+        moving.yaw = curr.yaw;
+        moving.pitch = curr.pitch;
+        moving.position = curr.position;
 
     }
 
@@ -132,26 +132,26 @@ void processInput(GLFWwindow *window) {
 
 
     if (keyState[GLFW_KEY_W])
-        currentCamera->move(FRONT, deltaTime);
+        currentCamera.move(FRONT, deltaTime);
     if (keyState[GLFW_KEY_S])
-        currentCamera->move(BACK, deltaTime);
+        currentCamera.move(BACK, deltaTime);
     if (keyState[GLFW_KEY_A])
-        currentCamera->move(LEFT, deltaTime);
+        currentCamera.move(LEFT, deltaTime);
     if (keyState[GLFW_KEY_D])
-        currentCamera->move(RIGHT, deltaTime);
+        currentCamera.move(RIGHT, deltaTime);
     if (keyState[GLFW_KEY_SPACE])
-        currentCamera->move(UP, deltaTime);
+        currentCamera.move(UP, deltaTime);
     if (keyState[GLFW_KEY_LEFT_CONTROL])
-        currentCamera->move(DOWN, deltaTime);
+        currentCamera.move(DOWN, deltaTime);
 
     if (keyState[GLFW_KEY_UP])
-        currentCamera->changeDirection(0.0f, 1.0f);
+        currentCamera.changeDirection(0.0f, 1.0f);
     if (keyState[ GLFW_KEY_DOWN])
-        currentCamera->changeDirection(0.0f, -1.0f);
+        currentCamera.changeDirection(0.0f, -1.0f);
     if (keyState[GLFW_KEY_LEFT])
-        currentCamera->changeDirection(-1.0f, 0.0f);
+        currentCamera.changeDirection(-1.0f, 0.0f);
     if (keyState[GLFW_KEY_RIGHT])
-        currentCamera->changeDirection(1.0f, 0.0f);
+        currentCamera.changeDirection(1.0f, 0.0f);
 
 }
 
@@ -185,7 +185,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 
 void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
-    currentCamera = scene.getActiveCamera();
+    Camera& currentCamera = scene.getActiveCamera();
     if (firstMouse) {
         lastX = xPos;
         lastY = yPos;
@@ -198,9 +198,9 @@ void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
     lastY = yPos;
 
     if (!showCursor)
-        currentCamera->changeDirection(xOffset, yOffset);
+        currentCamera.changeDirection(xOffset, yOffset);
     else if (isDragging && !ImGui::GetIO().WantCaptureMouse)
-        currentCamera->changeDirection(-xOffset, -yOffset);
+        currentCamera.changeDirection(-xOffset, -yOffset);
 }
 
 void init() {
@@ -249,134 +249,31 @@ void init() {
     ImGui_ImplOpenGL3_Init("#version 330"); // Use appropriate GLSL version
 }
 
-GLuint create_program(const char* vertex_file_name, const char* fragment_file_name) {
-    std::string vertexCode = readFile(vertex_file_name);
-    std::string fragmentCode = readFile(fragment_file_name);
-
-    const char* vShaderCode = vertexCode.c_str();
-    const char* fShaderCode = fragmentCode.c_str();
-
-    int success;
-    char infoLog[512];
-
-    GLuint vertex, fragment;
-    // vertex shader
-    vertex = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex, 1, &vShaderCode, nullptr);
-    glCompileShader(vertex);
-
-    glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
-        std::cout << "Error: Vertex shader compilation failed:\n" << infoLog << std::endl;
-    }
-
-    // fragment Shader
-    fragment = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment, 1, &fShaderCode, nullptr);
-    glCompileShader(fragment);
-
-    glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
-        std::cout << "Error: Fragment shader compilation failed:\n" << infoLog << std::endl;
-    }
-
-    // shader Program
-    GLuint prog = glCreateProgram();
-    glAttachShader(prog, vertex);
-    glAttachShader(prog, fragment);
-    glLinkProgram(prog);
-    glGetProgramiv(prog, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(prog, 512, nullptr, infoLog);
-        std::cout << "Error: Program linking failed:\n" << infoLog << std::endl;
-    }
-
-    glDeleteShader(vertex);
-    glDeleteShader(fragment);
-    return prog;
-}
-
-void box_set_up() {
+void ivory_fragment_set_up() {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(boxVertices), boxVertices, GL_STATIC_DRAW);
+    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    // load data into vertex buffers
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    glBufferData(GL_ARRAY_BUFFER, cube_n_vertices * cube_n_attribs_per_vertex * sizeof(float), cube_vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, cube_n_triangles * 3 * sizeof(unsigned int), cube_triangles, GL_STATIC_DRAW);
+
+    // vertex Positions
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, cube_n_attribs_per_vertex * sizeof(float), (void*)0);
+    // vertex normals
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, cube_n_attribs_per_vertex * sizeof(float), (void*)(3*sizeof(float)));
+    // vertex texture coords
     glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, cube_n_attribs_per_vertex * sizeof(float), (void*)(6*sizeof(float)));
 }
 
-
-
-void locations_setup() {
-    glUseProgram(main_shader);
-    modelLoc = glGetUniformLocation(main_shader, "model");
-    viewLoc = glGetUniformLocation(main_shader, "view");
-    projLoc = glGetUniformLocation(main_shader, "projection");
-
-    materialAmbientLoc = glGetUniformLocation(main_shader, "material.ambient");
-    materialDiffuseLoc = glGetUniformLocation(main_shader, "material.diffuse");
-    materialSpecularLoc = glGetUniformLocation(main_shader, "material.specular");
-    materialShininessLoc = glGetUniformLocation(main_shader, "material.shininess");
-
-    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-    glUseProgram(light_cube_shader);
-    GLint light_cube_modelLoc = glGetUniformLocation(light_cube_shader, "model");
-    GLint light_cube_projLoc = glGetUniformLocation(light_cube_shader, "projection");
-
-    glm::mat4 model(1.0f);
-    model = glm::translate(model, lightPos);
-    glUniformMatrix4fv(light_cube_modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-    glUniformMatrix4fv(light_cube_projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-}
-
-
-void setLightUniforms() {
-    // Directional light
-    glUniform3f(glGetUniformLocation(main_shader, "dirLight.direction"),
-                                    glm::sin(glm::radians(-30.0f)) * glm::cos(glm::radians(70.0f)),
-                                    glm::sin(glm::radians(-30.0f)) * glm::sin(glm::radians(70.0f)),
-                                    glm::cos(glm::radians(-30.0f))); // approximate direction to sky dome sun
-    glUniform3f(glGetUniformLocation(main_shader, "dirLight.ambient"), 0.2f, 0.2f, 0.2f);
-    glUniform3f(glGetUniformLocation(main_shader, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
-    glUniform3f(glGetUniformLocation(main_shader, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
-
-    // Point lights
-    for (int i = 0; i < 4; ++i) {
-        std::string idx = "pointLights[" + std::to_string(i) + "]";
-        glUniform3fv(glGetUniformLocation(main_shader, (idx + ".position").c_str()), 1, glm::value_ptr(pointLightPositions[i]));
-        glUniform3f(glGetUniformLocation(main_shader, (idx + ".ambient").c_str()), 0.05f, 0.05f, 0.05f);
-        glUniform3f(glGetUniformLocation(main_shader, (idx + ".diffuse").c_str()), 0.8f, 0.8f, 0.8f);
-        glUniform3f(glGetUniformLocation(main_shader, (idx + ".specular").c_str()), 1.0f, 1.0f, 1.0f);
-        glUniform1f(glGetUniformLocation(main_shader, (idx + ".constant").c_str()), 1.0f);
-        glUniform1f(glGetUniformLocation(main_shader, (idx + ".linear").c_str()), 0.09f);
-        glUniform1f(glGetUniformLocation(main_shader, (idx + ".quadratic").c_str()), 0.032f);
-    }
-
-    // Spotlight
-    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.position"), 1, glm::value_ptr(currentCamera->position));
-    glUniform3fv(glGetUniformLocation(main_shader, "spotLight.direction"), 1, glm::value_ptr(currentCamera->front));
-    glUniform3f(glGetUniformLocation(main_shader, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
-    glUniform3f(glGetUniformLocation(main_shader, "spotLight.diffuse"), 1.0f, 1.0f, 1.0f);
-    glUniform3f(glGetUniformLocation(main_shader, "spotLight.specular"), 1.0f, 1.0f, 1.0f);
-    glUniform1f(glGetUniformLocation(main_shader, "spotLight.constant"), 1.0f);
-    glUniform1f(glGetUniformLocation(main_shader, "spotLight.linear"), 0.09f);
-    glUniform1f(glGetUniformLocation(main_shader, "spotLight.quadratic"), 0.032f);
-    glUniform1f(glGetUniformLocation(main_shader, "spotLight.cutOff"), glm::cos(glm::radians(12.5f)));
-    glUniform1f(glGetUniformLocation(main_shader, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));
-}
 
 void renderUI(Scene& scene) {
     static char fileName[128] = "scene.json";
@@ -667,15 +564,21 @@ void renderUI(Scene& scene) {
     ImGui::End();
 }
 
-
+glm::vec3 bezier(float t, glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, glm::vec3 p3) {
+    float u = 1.0f - t;
+    return u*u*u*p0 + 3*u*u*t*p1 + 3*u*t*t*p2 + t*t*t*p3;
+}
 
 int main() {
     init();
 
     scene.load("test.json");
+    main_shader = scene.shaders[0].id;
+
+    ivory_fragment_set_up();
 
     while(!glfwWindowShouldClose(window)) {
-        currentCamera = scene.getActiveCamera();
+        Camera& currentCamera = scene.getActiveCamera();
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -691,8 +594,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         projection = glm::perspective(glm::radians(45.0f), static_cast<float>(SCR_WIDTH)/ static_cast<float>(SCR_HEIGHT) , 0.1f, 100.0f);
-        view = currentCamera->getViewMatrix();
-        lightPos = glm::vec3(-0.2f, -1.0f, -0.3f);
+        view = currentCamera.getViewMatrix();
 
         // Start the frame
         ImGui_ImplOpenGL3_NewFrame();
@@ -701,6 +603,54 @@ int main() {
 
 
         renderUI(scene);
+
+        int numSegments = (points.size() - 1) / 3;
+        float tTotal = fmod(glfwGetTime() * 0.05f, 1.0f); // slower loop
+        float tPerSegment = 1.0f / numSegments;
+
+        int currentSegment = (int)(tTotal / tPerSegment);
+        float localT = (tTotal - currentSegment * tPerSegment) / tPerSegment;
+
+        int i = currentSegment * 3;
+        glm::vec3 p0 = points[i];
+        glm::vec3 p1 = points[i + 1];
+        glm::vec3 p2 = points[i + 2];
+        glm::vec3 p3 = points[i + 3];
+
+        glm::vec3 next = bezier(localT, p0, p1, p2, p3);
+        glm::vec3 nextNext = bezier(localT + 0.01f, p0, p1, p2, p3);
+
+        glm::vec3 forward = glm::normalize(next - nextNext);
+        glm::quat rotationDelta = glm::rotation(fragmentLastForward, forward);
+
+        fragmentCurrentRotation = rotationDelta * fragmentCurrentRotation;
+
+        fragmentPos = next + glm::vec3(0.0f, 10.0f, 0.0f);
+        fragmentLastForward = forward;
+
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), fragmentPos) * glm::mat4_cast(fragmentCurrentRotation);
+        // glm::mat4 model = glm::translate(glm::mat4(1.0f), fragmentPos);
+
+        glUseProgram(main_shader);
+
+        glBindVertexArray(VAO);
+
+        glUniform3fv(glGetUniformLocation(main_shader, "material.diffuse"), 1, glm::value_ptr(glm::vec3(1.0, 0.95, 0.85)));
+        glUniform3fv(glGetUniformLocation(main_shader, "material.specular"), 1, glm::value_ptr(glm::vec3(0.6, 0.6, 0.6)));
+        glUniform1f(glGetUniformLocation(main_shader, "material.shininess"), 32.0f);
+
+        glUniform1i(glGetUniformLocation(main_shader, "useDiffuseTexture"), false);
+        glUniform1i(glGetUniformLocation(main_shader, "useSpecularTexture"), false);
+
+        scene.setLightUniforms(main_shader);
+
+        glUniform3fv(glGetUniformLocation(main_shader, "viewPos"), 1, glm::value_ptr(currentCamera.position));
+        glUniformMatrix4fv(glGetUniformLocation(main_shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(main_shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(main_shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+        // glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawElements(GL_TRIANGLES, cube_n_triangles * 3 , GL_UNSIGNED_INT, nullptr);
 
         scene.draw(projection, deltaTime);
 
@@ -734,10 +684,9 @@ int main() {
     }
 
     glDeleteVertexArrays(1, &VAO);
-    glDeleteVertexArrays(1, &light_cube_VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(main_shader);
-    glDeleteProgram(light_cube_shader);
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
