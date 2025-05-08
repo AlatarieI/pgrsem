@@ -42,7 +42,7 @@ GLuint load_texture(char const * path) {
     return textureID;
 }
 
-GLuint loadCubemap(std::string dir){
+GLuint load_cube_map(std::string dir){
     GLuint textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
@@ -80,7 +80,7 @@ GLuint loadCubemap(std::string dir){
     return textureID;
 }
 
-std::string readFile(const char* filename) {
+std::string read_file(const char* filename) {
     std::ifstream file(filename, std::ios::binary);
     if (!file) {
         std::cerr << "Error opening file: " << filename << std::endl;

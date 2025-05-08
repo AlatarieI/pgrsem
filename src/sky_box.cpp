@@ -10,7 +10,7 @@ SkyBox::SkyBox(const std::vector<std::string>& texturePaths, int shaderIdx) {
         Texture texture;
         texture.path = path;
         texture.type = "skybox";
-        texture.id = loadCubemap(path.c_str());
+        texture.id = load_cube_map(path.c_str());
         textures.push_back(texture);
     }
     if (textures.size() > 1) {

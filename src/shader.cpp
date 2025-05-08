@@ -12,8 +12,8 @@ Shader::Shader(const std::string &vertexShaderSource, const std::string &fragmen
 
 
 void Shader::createProgram() {
-    std::string vertexCode = readFile(vertexShaderSource.c_str());
-    std::string fragmentCode = readFile(fragmentShaderSource.c_str());
+    std::string vertexCode = read_file(vertexShaderSource.c_str());
+    std::string fragmentCode = read_file(fragmentShaderSource.c_str());
 
     const char* vShaderCode = vertexCode.c_str();
     const char* fShaderCode = fragmentCode.c_str();

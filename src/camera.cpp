@@ -6,6 +6,11 @@
 
 Camera::Camera() {
     position = glm::vec3(0.0f, 0.0f, 0.0f);
+    front = glm::vec3(0.0f, 0.0f, -1.0f);
+    up = glm::vec3(0.0f, 1.0f,  0.0f);
+    worldUp = glm::vec3(0.0f, 1.0f,  0.0f);
+    sceneMin = glm::vec3(-50.0f, -10.0f, -50.0f);
+    sceneMax = glm::vec3(50.0f, 50.0f, 50.0f);
     speed = 2.5;
     sensitivity = 0.1;
     yaw = -90.0f;
@@ -15,6 +20,11 @@ Camera::Camera() {
 Camera::Camera(glm::vec3 position, bool shouldMove) {
     this->shouldMove = shouldMove;
     this->position = position;
+    front = glm::vec3(0.0f, 0.0f, -1.0f);
+    up = glm::vec3(0.0f, 1.0f,  0.0f);
+    worldUp = glm::vec3(0.0f, 1.0f,  0.0f);
+    sceneMin = glm::vec3(-50.0f, -10.0f, -50.0f);
+    sceneMax = glm::vec3(50.0f, 50.0f, 50.0f);
     speed = 2.5;
     sensitivity = 0.1;
     yaw = -90.0f;
@@ -27,6 +37,11 @@ Camera::Camera(glm::vec3 position, float speed, float sensitivity, float yaw, fl
     this->sensitivity = sensitivity;
     this->yaw = yaw;
     this->pitch = pitch;
+    front = glm::vec3(0.0f, 0.0f, -1.0f);
+    up = glm::vec3(0.0f, 1.0f,  0.0f);
+    worldUp = glm::vec3(0.0f, 1.0f,  0.0f);
+    sceneMin = glm::vec3(-50.0f, -10.0f, -50.0f);
+    sceneMax = glm::vec3(50.0f, 50.0f, 50.0f);
 }
 
 glm::mat4 Camera::getViewMatrix() {
