@@ -36,6 +36,8 @@ public:
     std::vector<SpotLight> spotLights;
     std::vector<Camera> cameras;
     int activeCameraIndex = 0;
+    int objectCameraIndex = 3;
+    int curveCameraIndex = 4;
 
     float time;
 

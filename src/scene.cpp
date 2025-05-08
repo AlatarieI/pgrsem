@@ -340,6 +340,7 @@ void Scene::save(const std::string& file) {
     }
     out << j.dump(4);
     out.close();
+    std::cout << "Scene saved to " << file << std::endl;
 }
 
 
@@ -418,12 +419,12 @@ void Scene::load(const std::string& file) {
         objects.push_back(obj);
     }
 
-    for (size_t i = 0; i < objects.size(); ++i) {
-        if (objects[i].parentIdx >= 0 && objects[i].parentIdx < objects.size()) {
-            objects[i].parent = &objects[objects[i].parentIdx];
-            objects[i].parent->children.push_back(&objects[i]);
+    for (auto& object : objects) {
+        if (object.parentIdx >= 0 && object.parentIdx < objects.size()) {
+            object.parent = &objects[object.parentIdx];
+            object.parent->children.push_back(&object);
         } else {
-            objects[i].parent = nullptr;
+            object.parent = nullptr;
         }
     }
 
@@ -456,19 +457,7 @@ void Scene::load(const std::string& file) {
     std::cout << "Dir lights loaded" << std::endl;
 
 
-    SpotLight cameraSpotLight{};
-    cameraSpotLight.objectIdx = -1;
-    cameraSpotLight.ambient = glm::vec3(0.1f);
-    cameraSpotLight.diffuse = glm::vec3(0.8f);
-    cameraSpotLight.specular = glm::vec3(1.0f);
-    cameraSpotLight.cutOff = 12.5f;
-    cameraSpotLight.outerCutOff = 15.0f;
-    cameraSpotLight.constant = 1.0f;
-    cameraSpotLight.linear = 0.09f;
-    cameraSpotLight.quadratic = 0.032f;
-    cameraSpotLight.direction = glm::vec3(1.0f, 0.0f, 0.0f);
-    cameraSpotLight.position = glm::vec3(0.0f);
-    spotLights.push_back(cameraSpotLight);
+
 
     for (const auto& l : j["spotLights"]) {
         SpotLight light{};
@@ -484,6 +473,22 @@ void Scene::load(const std::string& file) {
         light.quadratic = l["quadratic"];
         light.objectIdx = l["objectIdx"];
         spotLights.push_back(light);
+    }
+
+    if (spotLights.size() < 1) {
+        SpotLight cameraSpotLight{};
+        cameraSpotLight.objectIdx = -1;
+        cameraSpotLight.ambient = glm::vec3(0.1f);
+        cameraSpotLight.diffuse = glm::vec3(0.8f);
+        cameraSpotLight.specular = glm::vec3(1.0f);
+        cameraSpotLight.cutOff = 12.5f;
+        cameraSpotLight.outerCutOff = 15.0f;
+        cameraSpotLight.constant = 1.0f;
+        cameraSpotLight.linear = 0.09f;
+        cameraSpotLight.quadratic = 0.032f;
+        cameraSpotLight.direction = glm::vec3(1.0f, 0.0f, 0.0f);
+        cameraSpotLight.position = glm::vec3(0.0f);
+        spotLights.push_back(cameraSpotLight);
     }
 
     std::cout << "Spotlights loaded" << std::endl;

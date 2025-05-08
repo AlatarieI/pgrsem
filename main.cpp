@@ -95,14 +95,12 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 }
 
 void processInput(GLFWwindow *window) {
-    Camera& currentCamera = scene.getActiveCamera();
+    if (ImGui::GetIO().WantCaptureKeyboard)
+        return;
+
     if (keyState[GLFW_KEY_ESCAPE])
         glfwSetWindowShouldClose(window, true);
 
-    if (keyState[GLFW_KEY_LEFT_SHIFT])
-        currentCamera.speed = 6.5f;
-    else
-        currentCamera.speed = 3.0f;
 
     if (keyState[GLFW_KEY_F1])
         scene.activeCameraIndex = 0;
@@ -110,19 +108,30 @@ void processInput(GLFWwindow *window) {
     if (keyState[GLFW_KEY_F2])
         scene.activeCameraIndex = 1;
 
+
+    Camera& currentCamera = scene.getActiveCamera();
+
+    if (keyState[GLFW_KEY_LEFT_SHIFT])
+        currentCamera.speed = 6.5f;
+    else
+        currentCamera.speed = 3.0f;
+
+    if (keyState[GLFW_KEY_1] && keyState[GLFW_KEY_LEFT_ALT])
+        scene.activeCameraIndex = scene.objectCameraIndex;
+
     if (keyPressed[GLFW_KEY_L])
         scene.cameraSpotlightActive = !scene.cameraSpotlightActive;
 
     if (keyState[GLFW_KEY_M]) {
-        Camera curr = scene.getActiveCamera();
         scene.activeCameraIndex = 2;
-        Camera moving = scene.getActiveCamera();
+        Camera& moving = scene.getActiveCamera();
 
-        moving.front = curr.front;
-        moving.up = curr.up;
-        moving.yaw = curr.yaw;
-        moving.pitch = curr.pitch;
-        moving.position = curr.position;
+        moving.front = currentCamera.front;
+        moving.up = currentCamera.up;
+        moving.yaw = currentCamera.yaw;
+        moving.pitch = currentCamera.pitch;
+        moving.position = currentCamera.position;
+
 
     }
 
@@ -145,13 +154,13 @@ void processInput(GLFWwindow *window) {
         currentCamera.move(DOWN, deltaTime);
 
     if (keyState[GLFW_KEY_UP])
-        currentCamera.changeDirection(0.0f, 1.0f);
+        currentCamera.changeDirection(0.0f, 3.0f);
     if (keyState[ GLFW_KEY_DOWN])
-        currentCamera.changeDirection(0.0f, -1.0f);
+        currentCamera.changeDirection(0.0f, -3.0f);
     if (keyState[GLFW_KEY_LEFT])
-        currentCamera.changeDirection(-1.0f, 0.0f);
+        currentCamera.changeDirection(-3.0f, 0.0f);
     if (keyState[GLFW_KEY_RIGHT])
-        currentCamera.changeDirection(1.0f, 0.0f);
+        currentCamera.changeDirection(3.0f, 0.0f);
 
 }
 
@@ -572,7 +581,7 @@ glm::vec3 bezier(float t, glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, glm::vec3 p3
 int main() {
     init();
 
-    scene.load("test.json");
+    scene.load("scene.json");
     main_shader = scene.shaders[0].id;
 
     ivory_fragment_set_up();
@@ -605,7 +614,7 @@ int main() {
         renderUI(scene);
 
         int numSegments = (points.size() - 1) / 3;
-        float tTotal = fmod(glfwGetTime() * 0.05f, 1.0f); // slower loop
+        float tTotal = fmod(glfwGetTime() * 0.05f, 1.0f);
         float tPerSegment = 1.0f / numSegments;
 
         int currentSegment = (int)(tTotal / tPerSegment);
@@ -620,24 +629,33 @@ int main() {
         glm::vec3 next = bezier(localT, p0, p1, p2, p3);
         glm::vec3 nextNext = bezier(localT + 0.01f, p0, p1, p2, p3);
 
-        glm::vec3 forward = glm::normalize(next - nextNext);
+        glm::vec3 forward = glm::normalize(nextNext - next);
         glm::quat rotationDelta = glm::rotation(fragmentLastForward, forward);
 
         fragmentCurrentRotation = rotationDelta * fragmentCurrentRotation;
 
-        fragmentPos = next + glm::vec3(0.0f, 10.0f, 0.0f);
+        fragmentPos = next + glm::vec3(6.3f, 10.0f, 4.7f);
         fragmentLastForward = forward;
 
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), fragmentPos) * glm::mat4_cast(fragmentCurrentRotation);
-        // glm::mat4 model = glm::translate(glm::mat4(1.0f), fragmentPos);
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), fragmentPos) *
+                glm::mat4_cast(fragmentCurrentRotation) *
+                glm::scale(glm::mat4(1.0f), glm::vec3(0.3f));
+
+        Camera& objectCamera = scene.cameras[scene.objectCameraIndex];
+
+        objectCamera.position = fragmentPos - 5.0f*forward + 5.0f*objectCamera.worldUp;
+        glm::vec3 lookAtTarget = fragmentPos +  forward;
+        objectCamera.front = glm::normalize(lookAtTarget - objectCamera.position);
+        glm::vec3 right = glm::normalize(glm::cross(forward, objectCamera.worldUp));
+        objectCamera.up = glm::normalize(glm::cross(right, forward));
 
         glUseProgram(main_shader);
 
         glBindVertexArray(VAO);
 
         glUniform3fv(glGetUniformLocation(main_shader, "material.diffuse"), 1, glm::value_ptr(glm::vec3(1.0, 0.95, 0.85)));
-        glUniform3fv(glGetUniformLocation(main_shader, "material.specular"), 1, glm::value_ptr(glm::vec3(0.6, 0.6, 0.6)));
-        glUniform1f(glGetUniformLocation(main_shader, "material.shininess"), 32.0f);
+        glUniform3fv(glGetUniformLocation(main_shader, "material.specular"), 1, glm::value_ptr(glm::vec3(0.4, 0.35, 0.3)));
+        glUniform1f(glGetUniformLocation(main_shader, "material.shininess"), 16.0f);
 
         glUniform1i(glGetUniformLocation(main_shader, "useDiffuseTexture"), false);
         glUniform1i(glGetUniformLocation(main_shader, "useSpecularTexture"), false);
