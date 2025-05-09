@@ -128,8 +128,8 @@ void processInput(GLFWwindow *window) {
 
         moving.front = currentCamera.front;
         moving.up = currentCamera.up;
-        moving.yaw = currentCamera.yaw;
-        moving.pitch = currentCamera.pitch;
+        moving.rotationY = currentCamera.rotationY;
+        moving.rotationX = currentCamera.rotationX;
         moving.position = currentCamera.position;
 
 

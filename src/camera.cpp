@@ -13,8 +13,8 @@ Camera::Camera() {
     sceneMax = glm::vec3(50.0f, 50.0f, 50.0f);
     speed = 2.5;
     sensitivity = 0.1;
-    yaw = -90.0f;
-    pitch = 0.0f;
+    rotationY = -90.0f;
+    rotationX = 0.0f;
 }
 
 Camera::Camera(glm::vec3 position, bool shouldMove) {
@@ -27,16 +27,16 @@ Camera::Camera(glm::vec3 position, bool shouldMove) {
     sceneMax = glm::vec3(50.0f, 50.0f, 50.0f);
     speed = 2.5;
     sensitivity = 0.1;
-    yaw = -90.0f;
-    pitch = 0.0f;
+    rotationY = -90.0f;
+    rotationX = 0.0f;
 }
 
 Camera::Camera(glm::vec3 position, float speed, float sensitivity, float yaw, float pitch) {
     this->position = position;
     this->speed = speed;
     this->sensitivity = sensitivity;
-    this->yaw = yaw;
-    this->pitch = pitch;
+    this->rotationY = yaw;
+    this->rotationX = pitch;
     front = glm::vec3(0.0f, 0.0f, -1.0f);
     up = glm::vec3(0.0f, 1.0f,  0.0f);
     worldUp = glm::vec3(0.0f, 1.0f,  0.0f);
@@ -73,18 +73,18 @@ void Camera::changeDirection(float xOffset, float yOffset) {
         xOffset *= sensitivity;
         yOffset *= sensitivity;
 
-        yaw += xOffset;
-        pitch += yOffset;
+        rotationY += xOffset;
+        rotationX += yOffset;
 
-        if(pitch > 89.0f)
-            pitch =  89.0f;
-        if(pitch < -89.0f)
-            pitch = -89.0f;
+        if(rotationX > 89.0f)
+            rotationX =  89.0f;
+        if(rotationX < -89.0f)
+            rotationX = -89.0f;
 
         glm::vec3 direction;
-        direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        direction.y = sin(glm::radians(pitch));
-        direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+        direction.x = cos(glm::radians(rotationY)) * cos(glm::radians(rotationX));
+        direction.y = sin(glm::radians(rotationX));
+        direction.z = sin(glm::radians(rotationY)) * cos(glm::radians(rotationX));
 
         front = glm::normalize(direction);
         glm::vec3 right = glm::normalize(glm::cross(front, worldUp));

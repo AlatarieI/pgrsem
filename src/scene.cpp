@@ -322,8 +322,8 @@ void Scene::save(const std::string& file) {
             {"position", {cam.position.x, cam.position.y, cam.position.z}},
             {"front", {cam.front.x, cam.front.y, cam.front.z}},
             {"up", {cam.up.x, cam.up.y, cam.up.z}},
-            {"yaw", cam.yaw},
-            {"pitch", cam.pitch},
+            {"yaw", cam.rotationY},
+            {"pitch", cam.rotationX},
             {"speed", cam.speed},
             {"sensitivity", cam.sensitivity},
             {"shouldMove", cam.shouldMove}
@@ -498,8 +498,8 @@ void Scene::load(const std::string& file) {
         c.position = glm::vec3(cam["position"][0], cam["position"][1], cam["position"][2]);
         c.front = glm::vec3(cam["front"][0], cam["front"][1], cam["front"][2]);
         c.up = glm::vec3(cam["up"][0], cam["up"][1], cam["up"][2]);
-        c.yaw = cam["yaw"];
-        c.pitch = cam["pitch"];
+        c.rotationY = cam["yaw"];
+        c.rotationX = cam["pitch"];
         c.speed = cam["speed"];
         c.sensitivity = cam["sensitivity"];
         c.shouldMove = cam["shouldMove"];

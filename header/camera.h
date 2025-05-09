@@ -39,8 +39,8 @@ class Camera {
 public:
     float speed;        ///< Movement speed in units per second
     float sensitivity;  ///< Mouse sensitivity for camera rotation
-    float yaw;          ///< Horizontal rotation angle in degrees
-    float pitch;        ///< Vertical rotation angle in degrees
+    float rotationY;          ///< Horizontal rotation angle in degrees
+    float rotationX;        ///< Vertical rotation angle in degrees
 
     glm::vec3 position{};       ///< Camera position in world space
     glm::vec3 front;            ///< Calculated front direction vector
