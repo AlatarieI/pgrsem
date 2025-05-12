@@ -159,7 +159,10 @@ void Scene::draw(glm::mat4 projection, float delta) {
 
     std::vector<SceneObject*> transparent;
 
-    for (auto & obj : objects) {
+    int chainNum = 0;
+
+    for (size_t i = 0; i < objects.size(); i++) {
+        auto& obj = objects[i];
         if (obj.modelIndex >= 0 && obj.modelIndex < models.size() && obj.shaderIdx >= 0 && obj.shaderIdx < shaders.size()) {
             if (obj.transparent) {
                 transparent.push_back(&obj);
@@ -179,6 +182,21 @@ void Scene::draw(glm::mat4 projection, float delta) {
                     obj.position += awayDir * 0.01f;
                     obj.isDirty = true;
                 }
+            }
+
+            if (obj.name == "chain1") {
+                float speed = 0.5f + (chainNum % 3) * 0.5f;
+                float amplitude = 6.0f + sin(chainNum * 0.7f) * 2.0f;
+                float delayFactor = chainNum * 0.3f;
+                for (int j = 0; ; j++) {
+                    std::regex pattern("^chain[0-9]+$");
+                    if (!std::regex_match(objects[i+j].name, pattern) || (obj.name == "chain1" && j != 0)) break;
+                    float delay = i * delayFactor;
+                    float sway = sin(glfwGetTime() * speed - delay) * amplitude;
+                    objects[i+j].rotation.x = j!=0 ? 90+sway: sway;
+                    objects[i+j].isDirty = true;
+                }
+                chainNum++;
             }
 
             setObjectUniforms(shader,obj);

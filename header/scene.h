@@ -28,6 +28,7 @@
 #include "lights.h"
 #include "scene_object.h"
 #include "shader.h"
+#include <regex>
 #include <GLFW/glfw3.h>
 
 /// Main scene management class

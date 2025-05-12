@@ -14,8 +14,11 @@ Model::Model(std::vector<Mesh> myMeshes, bool flipUV, bool gamma) : gammaCorrect
 
 
 void Model::draw(GLuint program) {
-    for(unsigned int i = 0; i < meshes.size(); i++)
+    for(unsigned int i = 0; i < meshes.size(); i++) {
+        glUseProgram(program);
+        glUniform1i(glGetUniformLocation(program, "useGammaCorrection"), gammaCorrection);
         meshes[i].draw(program);
+    }
 }
 
 void Model::loadModel(std::string const &path, bool flipUV) {

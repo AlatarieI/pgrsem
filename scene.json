@@ -44,6 +44,72 @@
                 0.0732329711318016
             ],
             "yaw": -89.40011596679688
+        },
+        {
+            "front": [
+                0.7200661897659302,
+                -0.6934021711349487,
+                0.02642175927758217
+            ],
+            "pitch": -43.900028228759766,
+            "position": [
+                -20.596702575683594,
+                19.18877410888672,
+                -1.474793791770935
+            ],
+            "sensitivity": 0.10000000149011612,
+            "shouldMove": true,
+            "speed": 3.0,
+            "up": [
+                0.6929358839988708,
+                0.7205508351325989,
+                0.02542625553905964
+            ],
+            "yaw": 362.1014404296875
+        },
+        {
+            "front": [
+                0.21329623460769653,
+                -0.30276837944984436,
+                0.9288896918296814
+            ],
+            "pitch": 4.199929714202881,
+            "position": [
+                10.226223945617676,
+                10.951898574829102,
+                -0.6835911273956299
+            ],
+            "sensitivity": 0.10000000149011612,
+            "shouldMove": false,
+            "speed": 3.0,
+            "up": [
+                -0.12823139131069183,
+                0.8195750713348389,
+                -0.5584384202957153
+            ],
+            "yaw": -89.40011596679688
+        },
+        {
+            "front": [
+                -0.4769400358200073,
+                -0.8682175874710083,
+                0.13684460520744324
+            ],
+            "pitch": 4.199929714202881,
+            "position": [
+                9.686660766601563,
+                17.633514404296875,
+                -2.7793164253234863
+            ],
+            "sensitivity": 0.10000000149011612,
+            "shouldMove": false,
+            "speed": 3.0,
+            "up": [
+                -0.12823139131069183,
+                0.8195750713348389,
+                -0.5584384202957153
+            ],
+            "yaw": -89.40011596679688
         }
     ],
     "directionalLights": [
@@ -59,8 +125,8 @@
                 0.4000000059604645
             ],
             "direction": [
-                0.0,
-                1.0,
+                0.20000000298023224,
+                0.6000000238418579,
                 0.0
             ],
             "specular": [
@@ -126,6 +192,21 @@
             "flipUV": false,
             "gamma": false,
             "path": "resources/models/trees/tree4.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": true,
+            "path": "resources/models/chain/chain.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/garden-gazebo/gazebo.obj"
+        },
+        {
+            "flipUV": false,
+            "gamma": false,
+            "path": "resources/models/chuliganBouldrovy/rockBuddy.obj"
         }
     ],
     "objects": [
@@ -134,21 +215,22 @@
             "name": "backpack",
             "parentIdx": -1,
             "position": [
-                3.5,
-                1.2000000476837158,
-                3.5999999046325684
+                -2.0,
+                -0.20000000298023224,
+                -6.400000095367432
             ],
             "rotation": [
-                0.0,
+                -18.799999237060547,
                 0.0,
                 0.0
             ],
             "scale": [
-                1.0,
-                1.0,
-                1.0
+                0.20000000298023224,
+                0.20000000298023224,
+                0.20000000298023224
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 1,
@@ -169,7 +251,30 @@
                 0.10000000149011612,
                 0.10000000149011612
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 5,
+            "name": "tower",
+            "parentIdx": -1,
+            "position": [
+                6.300000190734863,
+                -0.6000000238418579,
+                4.699999809265137
+            ],
+            "rotation": [
+                0.0,
+                -130.0,
+                0.0
+            ],
+            "scale": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 2,
@@ -196,11 +301,11 @@
         {
             "modelIndex": 3,
             "name": "torch",
-            "parentIdx": -1,
+            "parentIdx": 2,
             "position": [
-                0.0,
-                2.4000000953674316,
-                0.0
+                -2.0,
+                4.150000095367432,
+                9.0
             ],
             "rotation": [
                 0.0,
@@ -208,16 +313,17 @@
                 0.0
             ],
             "scale": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 4,
             "name": "fire",
-            "parentIdx": 3,
+            "parentIdx": 4,
             "position": [
                 0.0,
                 2.5999999046325684,
@@ -225,7 +331,7 @@
             ],
             "rotation": [
                 0.0,
-                0.0,
+                130.0,
                 0.0
             ],
             "scale": [
@@ -241,9 +347,9 @@
             "name": "ball",
             "parentIdx": -1,
             "position": [
-                7.572718143463135,
-                4.459523677825928,
-                2.0525758266448975
+                4.99275541305542,
+                3.0155601501464844,
+                -1.65114164352417
             ],
             "rotation": [
                 0.0,
@@ -255,7 +361,8 @@
                 0.5,
                 0.5
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 7,
@@ -272,20 +379,21 @@
                 0.0
             ],
             "scale": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 8,
             "name": "tree2",
             "parentIdx": -1,
             "position": [
-                -3.0,
+                -2.0,
                 -0.6000000238418579,
-                -7.0
+                -7.800000190734863
             ],
             "rotation": [
                 0.0,
@@ -293,20 +401,21 @@
                 0.0
             ],
             "scale": [
-                0.30000001192092896,
-                0.30000001192092896,
-                0.30000001192092896
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 9,
             "name": "tree3",
             "parentIdx": -1,
             "position": [
-                -6,
+                -1.7999999523162842,
                 -0.6000000238418579,
-                -4.5
+                -5.800000190734863
             ],
             "rotation": [
                 0.0,
@@ -318,16 +427,39 @@
                 0.30000001192092896,
                 0.30000001192092896
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
         },
         {
             "modelIndex": 10,
             "name": "tree4",
             "parentIdx": -1,
             "position": [
-                -7.0,
+                -1.899999976158142,
                 -0.6000000238418579,
-                -4.0
+                -9.199999809265137
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.44999998807907104,
+                0.44999998807907104,
+                0.44999998807907104
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 3,
+            "name": "torch2",
+            "parentIdx": 2,
+            "position": [
+                2.0,
+                4.150000095367432,
+                9.0
             ],
             "rotation": [
                 0.0,
@@ -339,7 +471,712 @@
                 0.30000001192092896,
                 0.30000001192092896
             ],
-            "shaderIdx": 0
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 4,
+            "name": "fire",
+            "parentIdx": 11,
+            "position": [
+                0.0,
+                2.5999999046325684,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                130.0,
+                0.0
+            ],
+            "scale": [
+                2.5,
+                2.5,
+                2.5
+            ],
+            "shaderIdx": 3,
+            "transparent": true
+        },
+        {
+            "modelIndex": 7,
+            "name": "tree5",
+            "parentIdx": -1,
+            "position": [
+                1.0,
+                -0.6000000238418579,
+                -7.400000095367432
+            ],
+            "rotation": [
+                0.0,
+                15.0,
+                0.0
+            ],
+            "scale": [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 8,
+            "name": "tree6",
+            "parentIdx": -1,
+            "position": [
+                3.200000047683716,
+                -0.6000000238418579,
+                -7.599999904632568
+            ],
+            "rotation": [
+                0.0,
+                -30.0,
+                0.0
+            ],
+            "scale": [
+                0.3799999952316284,
+                0.3799999952316284,
+                0.3799999952316284
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 9,
+            "name": "tree7",
+            "parentIdx": -1,
+            "position": [
+                -3.0,
+                -0.6000000238418579,
+                -10.0
+            ],
+            "rotation": [
+                0.0,
+                45.0,
+                0.0
+            ],
+            "scale": [
+                0.3499999940395355,
+                0.3499999940395355,
+                0.3499999940395355
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 10,
+            "name": "tree8",
+            "parentIdx": -1,
+            "position": [
+                0.5,
+                -0.6000000238418579,
+                -9.5
+            ],
+            "rotation": [
+                0.0,
+                -15.0,
+                0.0
+            ],
+            "scale": [
+                0.3499999940395355,
+                0.3499999940395355,
+                0.3499999940395355
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain1",
+            "parentIdx": -1,
+            "position": [
+                7.199999809265137,
+                -4.099999904632568,
+                3.299999952316284
+            ],
+            "rotation": [
+                5.990731239318848,
+                0.0,
+                90.0
+            ],
+            "scale": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain2",
+            "parentIdx": 17,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain3",
+            "parentIdx": 18,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain4",
+            "parentIdx": 19,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain5",
+            "parentIdx": 20,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain1",
+            "parentIdx": -1,
+            "position": [
+                1.0,
+                -2.0,
+                10.399999618530273
+            ],
+            "rotation": [
+                1.4878190755844116,
+                15.0,
+                90.0
+            ],
+            "scale": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain2",
+            "parentIdx": 22,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain3",
+            "parentIdx": 23,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain1",
+            "parentIdx": -1,
+            "position": [
+                -7.300000190734863,
+                -3.4000000953674316,
+                -3.700000047683716
+            ],
+            "rotation": [
+                5.1101789474487305,
+                -45.0,
+                90.0
+            ],
+            "scale": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain2",
+            "parentIdx": 25,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain3",
+            "parentIdx": 26,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain4",
+            "parentIdx": 27,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain1",
+            "parentIdx": -1,
+            "position": [
+                1.0,
+                -3.799999952316284,
+                -7.199999809265137
+            ],
+            "rotation": [
+                4.732242107391357,
+                90.0,
+                90.0
+            ],
+            "scale": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain2",
+            "parentIdx": 29,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain3",
+            "parentIdx": 30,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain4",
+            "parentIdx": 31,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain5",
+            "parentIdx": 32,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain6",
+            "parentIdx": 33,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain1",
+            "parentIdx": -1,
+            "position": [
+                -5.400000095367432,
+                -3.0,
+                4.199999809265137
+            ],
+            "rotation": [
+                -5.778841972351074,
+                180.0,
+                90.0
+            ],
+            "scale": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain2",
+            "parentIdx": 35,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain1",
+            "parentIdx": -1,
+            "position": [
+                8.300000190734863,
+                -2.700000047683716,
+                -4.800000190734863
+            ],
+            "rotation": [
+                -1.8419898748397827,
+                -15.0,
+                90.0
+            ],
+            "scale": [
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain2",
+            "parentIdx": 37,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain3",
+            "parentIdx": 38,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain4",
+            "parentIdx": 39,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 11,
+            "name": "chain5",
+            "parentIdx": 40,
+            "position": [
+                -3.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                90.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 12,
+            "name": "gazebo",
+            "parentIdx": -1,
+            "position": [
+                -5.800000190734863,
+                -0.6000000238418579,
+                -0.800000011920929
+            ],
+            "rotation": [
+                0.0,
+                116.4000015258789,
+                0.0
+            ],
+            "scale": [
+                1.7000000476837158,
+                1.7000000476837158,
+                1.7000000476837158
+            ],
+            "shaderIdx": 0,
+            "transparent": false
+        },
+        {
+            "modelIndex": 13,
+            "name": "rock1",
+            "parentIdx": -1,
+            "position": [
+                -0.20000000298023224,
+                -0.6000000238418579,
+                9.100000381469727
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.5,
+                0.5,
+                0.5
+            ],
+            "shaderIdx": 0,
+            "transparent": false
         }
     ],
     "pickingShaderIdx": 2,
@@ -357,11 +1194,37 @@
                 0.0
             ],
             "linear": 0.09000000357627869,
-            "objectIdx": 4,
+            "objectIdx": 5,
             "position": [
-                0.0,
-                3.309999942779541,
+                4.617352485656738,
+                1.4639999866485596,
+                2.5048465728759766
+            ],
+            "quadratic": 0.03200000151991844,
+            "specular": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        {
+            "ambient": [
+                0.19607843458652496,
+                0.0784313753247261,
+                0.0784313753247261
+            ],
+            "constant": 1.0,
+            "diffuse": [
+                0.501960813999176,
+                0.2862745225429535,
                 0.0
+            ],
+            "linear": 0.09000000357627869,
+            "objectIdx": 12,
+            "position": [
+                3.8460075855255127,
+                1.4639999866485596,
+                3.424099922180176
             ],
             "quadratic": 0.03200000151991844,
             "specular": [
@@ -416,50 +1279,17 @@
                 0.800000011920929
             ],
             "direction": [
-                -0.5599235892295837,
-                -0.3875162899494171,
-                -0.7323364615440369
+                0.3106173574924469,
+                -0.8489711284637451,
+                -0.4275101125240326
             ],
             "linear": 0.09000000357627869,
             "objectIdx": -1,
             "outerCutOff": 15.0,
             "position": [
-                2.609872341156006,
-                2.235581636428833,
-                -1.664501667022705
-            ],
-            "quadratic": 0.03200000151991844,
-            "specular": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        {
-            "ambient": [
-                0.10000000149011612,
-                0.10000000149011612,
-                0.10000000149011612
-            ],
-            "constant": 1.0,
-            "cutOff": 12.5,
-            "diffuse": [
-                0.800000011920929,
-                0.800000011920929,
-                0.800000011920929
-            ],
-            "direction": [
-                -0.45521071553230286,
-                0.43679970502853394,
-                0.7758796215057373
-            ],
-            "linear": 0.09000000357627869,
-            "objectIdx": -1,
-            "outerCutOff": 15.0,
-            "position": [
-                9.309131622314453,
-                2.1212568283081055,
-                -1.2078619003295898
+                -6.18403434753418,
+                7.220362663269043,
+                1.8788584470748901
             ],
             "quadratic": 0.03200000151991844,
             "specular": [

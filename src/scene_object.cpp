@@ -9,6 +9,7 @@ SceneObject::SceneObject() {
     parent = nullptr;
     parentIdx = -1;
     children.clear();
+    transparent = false;
 }
 
 SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 position, const glm::vec3 rotation, const glm::vec3 scale) {
@@ -20,6 +21,7 @@ SceneObject::SceneObject(int shaderIndex,  int modelIndex, const glm::vec3 posit
     parent = nullptr;
     parentIdx = -1;
     children.clear();
+    transparent = false;
 }
 
 glm::mat4 SceneObject::getModelMatrix() {

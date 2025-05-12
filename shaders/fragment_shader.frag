@@ -70,6 +70,7 @@ uniform vec3 colori;
 
 uniform bool useDiffuseTexture;
 uniform bool useSpecularTexture;
+uniform bool useGammaCorrection;
 
 
 uniform sampler2D fogTex;
@@ -114,6 +115,9 @@ void main() {
 //     Spot light
     if (activeSpotLights > 0)
         result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
+
+    if (useGammaCorrection)
+        result = pow(result,vec3(1/2.2));
 
     if (useFog)
         FragColor = applyFog(result, vec3(0.6, 0.7, 0.75));
