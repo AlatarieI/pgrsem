@@ -110,13 +110,18 @@ void Scene::setObjectUniforms(GLuint shader,  SceneObject& obj) {
     }
 
     if (obj.name == "water") {
-        float scrollSpeed = 0.1f;
+        float scrollSpeed = 0.025f;
         float offset = scrollSpeed * myTime;
 
-        // auto offsetVector = glm::vec2(offset);
+        float rotationSpeed = 0.01f;
+        float angle = myTime * rotationSpeed;
 
-        auto texTransform = glm::mat3(1.0f);
-        texTransform[2] = glm::vec3(offset, 0.0f, 1.0f);
+        glm::mat3 texTransform  = glm::mat3(
+            glm::vec3( cos(angle), sin(angle), 0.0f),
+            glm::vec3(-sin(angle), cos(angle), 0.0f),
+            glm::vec3(      offset ,      0.0f , 1.0f)
+        );
+
         glUniformMatrix3fv(glGetUniformLocation(shader, "texTransform"), 1, GL_FALSE, glm::value_ptr(texTransform));
     }
 

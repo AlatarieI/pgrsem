@@ -80,6 +80,27 @@ std::vector<glm::vec3> points = {
     {  5.0f,  0.0f,  0.0f },  // p12 = p0
 };
 
+std::vector<glm::vec3> cameraPoints = {
+    // Anchor points and control points scaled by 2.0
+    { 10.0f,  0.0f,   0.0f },  // p0 (scaled from 5,0,0)
+    { 10.0f,  6.0f,   6.0f },  // p1 (ensures tangent continuity with p0-p3)
+    {  6.0f,  8.0f,  10.0f },  // p2 (control point for first curve)
+    {  0.0f,  4.0f,  10.0f },  // p3 (anchor point)
+
+    // C1 continuity: p4 = 2*p3 - p2 (mirrored control point)
+    { -6.0f,  0.0f,  10.0f },  // p4 (ensures smooth transition)
+    {-10.0f, -2.0f,   6.0f },  // p5 (control point for next curve)
+    {-10.0f, -6.0f,   0.0f },  // p6 (anchor point)
+
+    {-10.0f,-10.0f,  -6.0f },  // p7 (control point)
+    { -6.0f,-12.0f, -10.0f },  // p8 (control point)
+    {  0.0f, -8.0f, -10.0f },  // p9 (anchor point)
+
+    // C1 continuity: p10 = 2*p9 - p8 (mirrored control point)
+    {  6.0f, -4.0f, -10.0f },  // p10
+    { 10.0f, -6.0f,  -6.0f },  // p11 = 2*p0 - p1 (closing the loop)
+    { 10.0f,  0.0f,   0.0f },  // p12 = p0 (loop closure)
+};
 
 std::unordered_map<int, bool> keyState;
 std::unordered_map<int, bool> keyPressed;
@@ -118,6 +139,8 @@ void processInput(GLFWwindow *window) {
 
     if (keyState[GLFW_KEY_1] && keyState[GLFW_KEY_LEFT_ALT])
         scene.activeCameraIndex = scene.objectCameraIndex;
+    if (keyState[GLFW_KEY_2] && keyState[GLFW_KEY_LEFT_ALT])
+        scene.activeCameraIndex = scene.curveCameraIndex;
 
     if (keyPressed[GLFW_KEY_L])
         scene.cameraSpotlightActive = !scene.cameraSpotlightActive;
@@ -648,6 +671,19 @@ int main() {
         objectCamera.front = glm::normalize(lookAtTarget - objectCamera.position);
         glm::vec3 right = glm::normalize(glm::cross(forward, objectCamera.worldUp));
         objectCamera.up = glm::normalize(glm::cross(right, forward));
+
+
+        Camera& curveCamera = scene.cameras[scene.curveCameraIndex];
+        p0 = cameraPoints[i];
+        p1 = cameraPoints[i + 1];
+        p2 = cameraPoints[i + 2];
+        p3 = cameraPoints[i + 3];
+
+        curveCamera.position = bezier(localT, p0, p1, p2, p3) + glm::vec3(0.0f,20.0f, 0.0f);
+        curveCamera.front = glm::normalize(- curveCamera.position);
+        right = glm::normalize(glm::cross(forward, curveCamera.worldUp));
+        curveCamera.up = glm::normalize(glm::cross(right, forward));
+
 
         glUseProgram(main_shader);
 
