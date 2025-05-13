@@ -1,7 +1,3 @@
-//
-// Created by luky9 on 10.04.2025.
-//
-
 #include "mesh.h"
 
 #include <iostream>

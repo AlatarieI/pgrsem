@@ -81,25 +81,22 @@ std::vector<glm::vec3> points = {
 };
 
 std::vector<glm::vec3> cameraPoints = {
-    // Anchor points and control points scaled by 2.0
-    { 10.0f,  0.0f,   0.0f },  // p0 (scaled from 5,0,0)
-    { 10.0f,  6.0f,   6.0f },  // p1 (ensures tangent continuity with p0-p3)
-    {  6.0f,  8.0f,  10.0f },  // p2 (control point for first curve)
-    {  0.0f,  4.0f,  10.0f },  // p3 (anchor point)
+    { 10.0f,  0.0f,   0.0f },  // p0
+    { 10.0f,  6.0f,   6.0f },  // p1
+    {  6.0f,  8.0f,  10.0f },  // p2
+    {  0.0f,  4.0f,  10.0f },  // p3
 
-    // C1 continuity: p4 = 2*p3 - p2 (mirrored control point)
-    { -6.0f,  0.0f,  10.0f },  // p4 (ensures smooth transition)
-    {-10.0f, -2.0f,   6.0f },  // p5 (control point for next curve)
-    {-10.0f, -6.0f,   0.0f },  // p6 (anchor point)
+    { -6.0f,  0.0f,  10.0f },  // p4
+    {-10.0f, -2.0f,   6.0f },  // p5
+    {-10.0f, -6.0f,   0.0f },  // p6
 
-    {-10.0f,-10.0f,  -6.0f },  // p7 (control point)
-    { -6.0f,-12.0f, -10.0f },  // p8 (control point)
-    {  0.0f, -8.0f, -10.0f },  // p9 (anchor point)
+    {-10.0f,-10.0f,  -6.0f },  // p7
+    { -6.0f,-12.0f, -10.0f },  // p8
+    {  0.0f, -8.0f, -10.0f },  // p9
 
-    // C1 continuity: p10 = 2*p9 - p8 (mirrored control point)
     {  6.0f, -4.0f, -10.0f },  // p10
-    { 10.0f, -6.0f,  -6.0f },  // p11 = 2*p0 - p1 (closing the loop)
-    { 10.0f,  0.0f,   0.0f },  // p12 = p0 (loop closure)
+    { 10.0f, -6.0f,  -6.0f },  // p11
+    { 10.0f,  0.0f,   0.0f },  // p12
 };
 
 std::unordered_map<int, bool> keyState;
@@ -119,8 +116,8 @@ void processInput(GLFWwindow *window) {
     if (ImGui::GetIO().WantCaptureKeyboard)
         return;
 
-    if (keyState[GLFW_KEY_ESCAPE])
-        glfwSetWindowShouldClose(window, true);
+    // if (keyState[GLFW_KEY_ESCAPE])
+    //     glfwSetWindowShouldClose(window, true);
 
 
     if (keyState[GLFW_KEY_F1])

@@ -1,7 +1,5 @@
 #include "scene.h"
 
-
-
 using json = nlohmann::json;
 
 int Scene::addShader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource) {
@@ -68,7 +66,11 @@ void Scene::setLightUniforms(GLuint shader) {
     glUniform1i(glGetUniformLocation(shader, "activePointLights"), static_cast<int>(pointLights.size()));
     for (int i = 0; i < pointLights.size(); i++) {
         if (pointLights[i].objectIdx >= 0) {
-            pointLights[i].position = objects[pointLights[i].objectIdx].getModelMatrix() * glm::vec4( objects[pointLights[i].objectIdx].position,1.0f);
+            if (objects[pointLights[i].objectIdx].parentIdx != -1) {
+                pointLights[i].position = objects[pointLights[i].objectIdx].getModelMatrix() * glm::vec4( objects[pointLights[i].objectIdx].position,1.0f);
+            } else {
+                pointLights[i].position = objects[pointLights[i].objectIdx].position;
+            }
         }
         pointLights[i].setUniforms(shader, i);
     }
@@ -82,8 +84,12 @@ void Scene::setLightUniforms(GLuint shader) {
         } else if (i == 0 && !cameraSpotlightActive) {
             continue;
         } else if (spotLights[i].objectIdx >= 0) {
-            glm::mat4 modelMatrix = objects[spotLights[i].objectIdx].getModelMatrix();
-            spotLights[i].position = modelMatrix * glm::vec4(objects[spotLights[i].objectIdx].position, 1.0f);
+            if (objects[spotLights[i].objectIdx].parentIdx != -1) {
+                glm::mat4 modelMatrix = objects[spotLights[i].objectIdx].getModelMatrix();
+                spotLights[i].position = modelMatrix * glm::vec4(objects[spotLights[i].objectIdx].position, 1.0f);
+            } else {
+                spotLights[i].position = objects[spotLights[i].objectIdx].position;
+            }
         }
         spotLights[i].setUniforms(shader);
     }
@@ -154,6 +160,18 @@ void Scene::draw(glm::mat4 projection, float delta) {
 
     Camera& currentCamera = getActiveCamera();
 
+    // for (auto& obj : objects) {
+    //     if (obj.name == "island" || obj.transparent) {
+    //         auto [transformedMin, transformedMax] = transformAABB(obj.getModelMatrix(), models[obj.modelIndex]->aabbMin, models[obj.modelIndex]->aabbMax);
+    //         if (currentCamera.intersectsAABB(transformedMin, transformedMax)) {
+    //             currentCamera.position = currentCamera.lastPosition;
+    //             break;
+    //         }
+    //     }
+    // }
+
+    currentCamera.lastPosition = currentCamera.position;
+
     if (!useFog)
         skyBox->draw(shaders[skyBox->shaderIdx].id, currentCamera, projection,blend);
 
@@ -208,8 +226,12 @@ void Scene::draw(glm::mat4 projection, float delta) {
     // Sort back-to-front
     std::sort(transparent.begin(), transparent.end(),
         [&](SceneObject* a, SceneObject* b) {
-            glm::vec3 posA = glm::vec3(a->getModelMatrix() * glm::vec4(a->position, 1.0));
-            glm::vec3 posB = glm::vec3(b->getModelMatrix() * glm::vec4(b->position, 1.0));
+            glm::vec3 posA = a->position;
+            glm::vec3 posB = b->position;
+            if (a->parentIdx != -1)
+                posA = glm::vec3(a->getModelMatrix()*glm::vec4(a->position, 0.0f));
+            if (b->parentIdx != -1)
+                posB = glm::vec3(b->getModelMatrix()* glm::vec4(b->position, 1.0));
             float distA = glm::length(currentCamera.position - posA);
             float distB = glm::length(currentCamera.position - posB);
             return distA > distB;
@@ -544,5 +566,24 @@ void Scene::load(const std::string& file) {
     in.close();
 }
 
+std::pair<glm::vec3, glm::vec3> Scene::transformAABB(const glm::mat4& model, const glm::vec3& min, const glm::vec3& max) {
+    glm::vec3 newMin(FLT_MAX);
+    glm::vec3 newMax(-FLT_MAX);
 
+    for (int x = 0; x <= 1; ++x) {
+        for (int y = 0; y <= 1; ++y) {
+            for (int z = 0; z <= 1; ++z) {
+                glm::vec3 corner = glm::vec3(
+                    x ? max.x : min.x,
+                    y ? max.y : min.y,
+                    z ? max.z : min.z
+                );
+                glm::vec3 transformed = glm::vec3(model * glm::vec4(corner, 1.0f));
+                newMin = glm::min(newMin, transformed);
+                newMax = glm::max(newMax, transformed);
+            }
+        }
+    }
+    return std::make_pair(newMin, newMax);
+}
 

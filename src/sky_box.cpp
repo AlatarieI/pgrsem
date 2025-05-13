@@ -1,7 +1,3 @@
-//
-// Created by luky9 on 26.04.2025.
-//
-
 #include "sky_box.h"
 
 SkyBox::SkyBox(const std::vector<std::string>& texturePaths, int shaderIdx) {

@@ -1,6 +1,3 @@
-//
-// Created by luky9 on 10.04.2025.
-//
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 #include "utility.h"

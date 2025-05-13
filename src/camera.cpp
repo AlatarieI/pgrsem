@@ -1,8 +1,6 @@
-//
-// Created by luky9 on 31.03.2025.
-//
-
 #include "camera.h"
+
+#include "scene_object.h"
 
 Camera::Camera() {
     position = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -64,7 +62,6 @@ void Camera::move(Directions direction, float deltaTime) {
         if (direction == DOWN)
             position -= worldUp * velocity;
     }
-
     position = glm::clamp(position, sceneMin, sceneMax);
 }
 
@@ -90,6 +87,12 @@ void Camera::changeDirection(float xOffset, float yOffset) {
         glm::vec3 right = glm::normalize(glm::cross(front, worldUp));
         up = glm::normalize(glm::cross(right, front));
     }
+}
+
+bool Camera::intersectsAABB(glm::vec3 aabbMin, glm::vec3 aabbMax) {
+    glm::vec3 closestPoint = glm::clamp(position, aabbMin, aabbMax);
+    float distance = glm::length(position - closestPoint);
+    return distance < 0.1f; // Choose radius 0.1 cause I want to
 }
 
 

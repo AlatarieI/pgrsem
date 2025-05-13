@@ -11,7 +11,6 @@ add_executable(pgrsem
         src/model.cpp
         src/utility.cpp
         src/scene.cpp
-        src/init.cpp
         src/scene_object.cpp
         src/lights.cpp
         src/shader.cpp

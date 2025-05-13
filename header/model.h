@@ -38,6 +38,8 @@ public:
     std::string directory;                 ///< Base directory of the model file
     bool gammaCorrection;                  ///< Flag for SRGB color space correction
     bool flipUV;                           ///< Flag for vertical texture coordinate flipping
+    glm::vec3 aabbMin;                     ///< Minimum for AABB for collision detection
+    glm::vec3 aabbMax;                     ///< Maximum for AABB for collision detection
 
     /// Constructor from model file path
     /**

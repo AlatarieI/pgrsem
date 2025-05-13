@@ -1,7 +1,3 @@
-//
-// Created by luky9 on 26.04.2025.
-//
-
 #include "shader.h"
 
 Shader::Shader(const std::string &vertexShaderSource, const std::string &fragmentShaderSource) {

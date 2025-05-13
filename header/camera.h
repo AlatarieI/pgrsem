@@ -43,6 +43,7 @@ public:
     float rotationX;        ///< Vertical rotation angle in degrees
 
     glm::vec3 position{};       ///< Camera position in world space
+    glm::vec3 lastPosition{};   ///< Camera position in world space last frame
     glm::vec3 front;            ///< Calculated front direction vector
     glm::vec3 up;               ///< Camera's local up vector
     glm::vec3 worldUp;          ///< World's up vector reference
@@ -89,6 +90,13 @@ public:
      * \param[in] yOffset   Mouse movement in Y-axis (pitch rotation)
      */
     void changeDirection(float xOffset, float yOffset);
+
+    /// Calculates if camera collided with an object
+    /**
+     * \param[in] aabbMin   Minimum of AABB to check a collision with
+     * \param[in] aabbMax   Maximum of AABB to check a collision with
+     */
+    bool intersectsAABB(glm::vec3 aabbMin, glm::vec3 aabbMax);
 };
 
 #endif // CAMERA_H

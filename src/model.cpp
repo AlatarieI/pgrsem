@@ -1,14 +1,10 @@
-//
-// Created by luky9 on 10.04.2025.
-//
-
 #include "model.h"
 
-Model::Model(std::string const &path, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV) {
+Model::Model(std::string const &path, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV), aabbMin(glm::vec3(FLT_MAX)), aabbMax(glm::vec3(FLT_MIN)) {
     loadModel(path, flipUV);
 }
 
-Model::Model(std::vector<Mesh> myMeshes, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV) {
+Model::Model(std::vector<Mesh> myMeshes, bool flipUV, bool gamma) : gammaCorrection(gamma), flipUV(flipUV), aabbMin(glm::vec3(FLT_MAX)), aabbMax(glm::vec3(FLT_MIN)) {
     meshes.insert(meshes.end(), myMeshes.begin(), myMeshes.end());
 }
 
@@ -65,6 +61,9 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
         vector.y = mesh->mVertices[i].y;
         vector.z = mesh->mVertices[i].z;
         vertex.Position = vector;
+
+        aabbMin = glm::min(aabbMin, vertex.Position);
+        aabbMax = glm::max(aabbMax, vertex.Position);
 
         if (mesh->HasNormals()) {
             vector.x = mesh->mNormals[i].x;

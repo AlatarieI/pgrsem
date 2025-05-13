@@ -156,6 +156,15 @@ public:
      * \param[in] projection  Camera projection matrix
      */
     void drawPicking(glm::mat4 projection);
+
+private:
+    /// Transforms AABB into world space
+    /**
+     * \param[in] model Model matrix of the object
+     * \param[in] min Model space minimum of the object AABB
+     * \param[in] max Model space maximum of the object AABB
+     */
+    std::pair<glm::vec3, glm::vec3>  transformAABB(const glm::mat4& model, const glm::vec3& min, const glm::vec3& max);
 };
 
 #endif // SCENE_H
