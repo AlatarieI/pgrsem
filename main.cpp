@@ -81,22 +81,22 @@ std::vector<glm::vec3> points = {
 };
 
 std::vector<glm::vec3> cameraPoints = {
-    { 10.0f,  0.0f,   0.0f },  // p0
-    { 10.0f,  6.0f,   6.0f },  // p1
-    {  6.0f,  8.0f,  10.0f },  // p2
-    {  0.0f,  4.0f,  10.0f },  // p3
+    { 10.0f,  0.0f,   0.0f },
+    { 10.0f,  6.0f,   6.0f },
+    {  6.0f,  8.0f,  10.0f },
+    {  0.0f,  4.0f,  10.0f },
 
-    { -6.0f,  0.0f,  10.0f },  // p4
-    {-10.0f, -2.0f,   6.0f },  // p5
-    {-10.0f, -6.0f,   0.0f },  // p6
+    { -6.0f,  0.0f,  10.0f },
+    {-10.0f, -2.0f,   6.0f },
+    {-10.0f, -6.0f,   0.0f },
 
-    {-10.0f,-10.0f,  -6.0f },  // p7
-    { -6.0f,-12.0f, -10.0f },  // p8
-    {  0.0f, -8.0f, -10.0f },  // p9
+    {-10.0f,-10.0f,  -6.0f },
+    { -6.0f,-12.0f, -10.0f },
+    {  0.0f, -8.0f, -10.0f },
 
-    {  6.0f, -4.0f, -10.0f },  // p10
-    { 10.0f, -6.0f,  -6.0f },  // p11
-    { 10.0f,  0.0f,   0.0f },  // p12
+    {  6.0f, -4.0f, -10.0f },
+    { 10.0f, -6.0f,  -6.0f },
+    { 10.0f,  0.0f,   0.0f },
 };
 
 std::unordered_map<int, bool> keyState;
@@ -116,8 +116,8 @@ void processInput(GLFWwindow *window) {
     if (ImGui::GetIO().WantCaptureKeyboard)
         return;
 
-    // if (keyState[GLFW_KEY_ESCAPE])
-    //     glfwSetWindowShouldClose(window, true);
+    if (keyState[GLFW_KEY_ESCAPE])
+        glfwSetWindowShouldClose(window, true);
 
 
     if (keyState[GLFW_KEY_F1])

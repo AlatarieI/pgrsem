@@ -29,7 +29,7 @@ void main() {
     if (useFog)
         FragColor = applyFog(color, vec3(0.6, 0.7, 0.75));
     else
-        FragColor = vec4(color, 0.75);
+        FragColor = vec4(color, 0.6);
 }
 
 vec4 applyFog(vec3 fragColor, vec3 fogColor) {
@@ -43,5 +43,5 @@ vec4 applyFog(vec3 fragColor, vec3 fogColor) {
 
     float fogAmount = min(1.0, expFog + textureFog);
 
-    return vec4(mix(fragColor, fogColor, fogAmount),0.7);
+    return vec4(mix(fragColor, fogColor, fogAmount),0.6);
 }
